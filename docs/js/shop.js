@@ -8,6 +8,17 @@
   window.TAR.routeCartToCartPage();
   const ready = window.TAR.mountStore(root, { categoryId: Number(root.dataset.category) || 0 });
 
+  // The dropdown's shop pages are the official category pages: when the store
+  // navigates to a category that has its own page, go there instead.
+  const pages = (window.TAR_CONFIG || {}).categoryPages || {};
+  const here = Number(root.dataset.category) || 0;
+  const toCategoryPage = () => {
+    const m = location.hash.match(/^#!\/[^/]*\/c\/(\d+)/);
+    if (m && Number(m[1]) !== here && pages[m[1]]) location.href = (window.TAR_ROOT || '') + pages[m[1]];
+  };
+  window.addEventListener('hashchange', toCategoryPage);
+  toCategoryPage();
+
   // ?product=<id> (used by the cart page) opens that product.
   const productId = Number(new URLSearchParams(location.search).get('product'));
   if (productId) ready.then(Ecwid => Ecwid.openPage('product', { id: productId }));

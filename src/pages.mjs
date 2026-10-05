@@ -114,11 +114,15 @@ const cartPatches = {
 };
 const CART_TOKEN = [{ id: 'tpl', name: '__NAME__', variant: '__VARIANT__', price: 0, qty: 1, img: '', badge: 'Made in USA', href: '#' }];
 
+const config = { ecwidStoreId: ECWID_STORE_ID, freeShippingThreshold: 75, contactEndpoint: '', contactEmail: 'info@tagaroom.com', categoryPages: {} };
+
 function shopPages() {
   const d = readDesign(fileURLToPath(new URL('../design/All Products.dc.html', import.meta.url)));
   const script = patch(d.script, shopPatches.script);
   return SHOP.map(s => {
     const v = evalVals(script, { props: { slug: s.slug } });
+    // Ecwid category id → its official page, so store navigation lands on the designed page.
+    if (v.catId) config.categoryPages[v.catId] = s.out;
     return {
       design: 'All Products', out: s.out, title: T(v.title), description: v.tagline,
       props: { slug: s.slug }, state: { featured: [FEATURED_TOKEN] }, patches: shopPatches, scripts: ['js/shop.js'],
@@ -206,5 +210,5 @@ function list() {
 export const PAGES = {
   list,
   footerPatches,
-  config: { ecwidStoreId: ECWID_STORE_ID, freeShippingThreshold: 75, contactEndpoint: '', contactEmail: 'info@tagaroom.com' },
+  config,
 };
