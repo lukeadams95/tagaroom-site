@@ -47,15 +47,23 @@ const home = {
       ['<span style="min-width:36px;text-align:center;font-weight:700;font-size:18px">{{ qty }}</span>', '<span data-qty aria-live="polite" style="min-width:36px;text-align:center;font-weight:700;font-size:18px">{{ qty }}</span>'],
       // Placeholder links in the design that have real destinations now.
       ['<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:18px;width:140px', '<a href="{{ a.href }}" style="display:flex;flex-direction:column;align-items:center;gap:18px;width:140px'],
+      // Moving tips: three videos from the Moving Tips page instead of blog cards.
+      ['<a href="#" style="font-weight:700">View all posts →</a>', '<a href="Moving%20Tips.dc.html" style="font-weight:700">View all moving tips →</a>'],
+      ['    <sc-for list="{{ posts }}" as="p" hint-placeholder-count="4">\n      <article style="background:#fff;border:1px solid #E3E8EE;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-4px);box-shadow:0 12px 28px rgba(20,32,46,.14)">\n        <div style="aspect-ratio:16/10;background:#fff center/cover no-repeat;background-image:url({{ p.img }})"></div>\n        <div style="padding:22px;display:flex;flex-direction:column;flex:1;gap:14px">\n          <h3 style="font-family:\'Archivo\',sans-serif;font-style:italic;font-weight:900;font-size:22px;line-height:1.15;margin:0;letter-spacing:-.01em;flex:1">{{ p.t }}</h3>\n          <a href="#" style="font-weight:700;font-size:15px">Read More →</a>\n        </div>\n      </article>\n    </sc-for>', '    <sc-for list="{{ videos }}" as="v">\n      <article style="background:#fff;border:1px solid #E3E8EE;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-4px);box-shadow:0 12px 28px rgba(20,32,46,.14)">\n        <button type="button" data-yt="{{ v.id }}" aria-label="Play video: {{ v.t }}" style="position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;cursor:pointer;background:#111111 center/cover no-repeat;background-image:url(https://i.ytimg.com/vi/{{ v.id }}/hqdefault.jpg)" style-hover="filter:brightness(1.08)"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;width:68px;height:68px;margin:-34px 0 0 -34px;border-radius:50%;background:#0169B8;box-shadow:0 0 0 5px rgba(255,255,255,.85),0 6px 18px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5.5v13l10.5-6.5z"/></svg></span></button>\n        <div style="padding:22px;display:flex;flex-direction:column;flex:1;gap:8px">\n          <h3 style="font-family:\'Archivo\',sans-serif;font-style:italic;font-weight:900;font-size:22px;line-height:1.15;margin:0;letter-spacing:-.01em">{{ v.t }}</h3>\n          <p style="margin:0;font-size:16px;line-height:1.5;color:#4A5A6C">{{ v.s }}</p>\n        </div>\n      </article>\n    </sc-for>'],
       ['<a href="#" style="font-weight:700;font-size:16px;border-bottom:2px solid #0169B8;padding-bottom:2px">Read Our Story →</a>', '<a href="About%20Us.dc.html" style="font-weight:700;font-size:16px;border-bottom:2px solid #0169B8;padding-bottom:2px">Read Our Story →</a>'],
-      ['<a href="#" style="font-weight:700">View all posts →</a>', '<a href="Blog.dc.html" style="font-weight:700">View all posts →</a>'],
-      ['<a href="#" style="font-weight:700;font-size:15px">Read More →</a>', '<a href="{{ p.href }}" style="font-weight:700;font-size:15px">Read More →</a>'],
     ],
     script: [
       // Shop links go to the designed shop pages (hero, store, CTA band) rather
       // than the bare inline store the design opened on the homepage.
       [".map(([s, id]) => '#!/' + s + '/c/' + id);", `.map((_, i) => ${JSON.stringify(SHOP.slice(1).map(s => encodeURI(s.design) + '.dc.html'))}[i]);`],
       ["const ALL = '#!/~/shop', PROD = '#!/Open-First-Dont-Load-Labels-125-Count/p/62956784';", "const ALL = 'All%20Products.dc.html', PROD = 'All%20Products.dc.html?product=62956784';"],
+      // Video list for the homepage's Moving tips section (from the Moving Tips page).
+      ['      posts: [', `      videos: [
+        { id: 'Yz5mXi67MqM', t: 'An Organized Move Is a Better Move', s: 'How the color-coded system keeps every move on track.' },
+        { id: '9D-xltneVdU', t: 'Door ID Labels', s: 'Tag each doorway so movers match boxes to rooms.' },
+        { id: 'XBRzcpzmUfM', t: 'Start Early', s: 'Begin packing weeks ahead, starting with rooms you use least.' }
+      ],
+      posts: [`],
       ['return { t: r.t, n: r.n, body:', 'return { t: r.t, n: r.n, s: r.s, f: r.f, body:'],
       ['audiences: audNames.map((t, i) => ({ t, ', `audiences: audNames.map((t, i) => ({ t, href: ${JSON.stringify(FOR)}[i], `],
       ["img: 'assets/blog-checklist.png' }", `img: 'assets/blog-checklist.png', href: '${POST('complete-interstate-moving-checklist-2026')}' }`],

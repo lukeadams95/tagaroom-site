@@ -81,6 +81,19 @@
   const idle = window.requestIdleCallback || (fn => setTimeout(fn, 2500));
   window.addEventListener('load', () => idle(() => { if (!mounted) window.TAR.loadEcwid().then(() => mount()).catch(() => {}); }));
 
+  /* ---------- Moving tips videos ----------
+     Thumbnails load with the page; the YouTube player only loads when clicked. */
+  $$('[data-yt]').forEach(btn => btn.addEventListener('click', () => {
+    const f = document.createElement('iframe');
+    f.src = `https://www.youtube.com/embed/${btn.dataset.yt}?autoplay=1&rel=0`;
+    f.title = btn.getAttribute('aria-label').replace('Play video: ', '');
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    f.allowFullscreen = true;
+    f.style.cssText = 'display:block;width:100%;aspect-ratio:16/9;border:0';
+    btn.replaceWith(f);
+  }));
+
   /* ---------- Reviews ---------- */
   const track = $('[data-rev-track]');
   if (track) {
