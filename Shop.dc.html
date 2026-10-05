@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Archivo',system-ui,sans-serif;color:#111111;background:#fff}
+*{box-sizing:border-box}
+a{color:#0169B8;text-decoration:none}
+a:hover{color:#014F8A}
+#my-store-1805034, #my-store-1805034 *{font-family:'Archivo',sans-serif !important}
+#my-store-1805034 .ec-store{color:#111111}
+#my-store-1805034 .ec-page-title,#my-store-1805034 .ec-header-h1,#my-store-1805034 .ec-header-h3,#my-store-1805034 .page-title__name{font-style:italic !important;font-weight:900 !important;text-transform:uppercase !important;letter-spacing:-.01em !important;color:#111111 !important}
+#my-store-1805034 .grid-category__card,#my-store-1805034 .grid-product__wrap-inner{border-radius:16px !important;overflow:hidden}
+#my-store-1805034 .grid-product__wrap-inner{background:#fff;border:1px solid #E3E8EE;transition:transform .2s,box-shadow .2s}
+#my-store-1805034 .grid-product:hover .grid-product__wrap-inner{transform:translateY(-4px);box-shadow:0 12px 28px rgba(20,32,46,.14)}
+#my-store-1805034 .grid-product__title-inner{font-weight:700 !important;color:#111111 !important}
+#my-store-1805034 .grid-product__price-amount,#my-store-1805034 .details-product-price__value,#my-store-1805034 .ec-price-item{color:#0169B8 !important;font-weight:800 !important}
+#my-store-1805034 .form-control--primary .form-control__button,#my-store-1805034 .form-control--button.form-control--primary .form-control__button{background:#0169B8 !important;border:2px solid #0169B8 !important;color:#fff !important;border-radius:10px !important;font-weight:700 !important;letter-spacing:.02em;box-shadow:none !important}
+#my-store-1805034 .form-control--primary .form-control__button:hover{background:#fff !important;color:#0169B8 !important}
+#my-store-1805034 .form-control--secondary .form-control__button{border:2px solid #0169B8 !important;color:#0169B8 !important;border-radius:10px !important;font-weight:700 !important;background:#fff !important}
+#my-store-1805034 .form-control--secondary .form-control__button:hover{background:#0169B8 !important;color:#fff !important}
+#my-store-1805034 .form-control__text,#my-store-1805034 .form-control__select,#my-store-1805034 .ec-search__input{border-radius:10px !important;border-color:#C9D2DD !important}
+#my-store-1805034 .form-control__text:focus,#my-store-1805034 .form-control__select:focus{border-color:#0169B8 !important}
+#my-store-1805034 a{color:#0169B8}
+#my-store-1805034 .ec-breadcrumbs a{color:#4A5A6C !important}
+#my-store-1805034 .ec-cart-widget__icon,#my-store-1805034 .ec-minicart__counter{color:#0169B8 !important}
+
+#my-store-1805034 .grid__categories{display:grid !important;grid-template-columns:repeat(5,minmax(0,1fr)) !important;gap:0 !important;margin:0 !important;padding:5px !important;border-radius:20px;overflow:hidden;background:linear-gradient(90deg,#FEFA1F 0 12.5%,#FC811C 12.5% 25%,#F91055 25% 37.5%,#DA019F 37.5% 50%,#724DB5 50% 62.5%,#01A0D6 62.5% 75%,#40D13D 75% 87.5%,#DEF306 87.5% 100%) !important;width:100% !important;box-sizing:border-box}
+#my-store-1805034 .grid-category{width:auto !important;max-width:none !important;padding:0 !important;margin:0 !important;float:none !important;background:#fff;box-shadow:0 0 0 .5px #D5DCE5;transition:background .2s,box-shadow .2s}
+#my-store-1805034 .grid-category:hover{background:#F5F7FA;box-shadow:inset 0 -4px 0 #0169B8,0 0 0 .5px #D5DCE5}
+#my-store-1805034 .grid-category__wrap,#my-store-1805034 .grid-category__wrap-inner{height:100%;padding:0 !important;margin:0 !important;box-shadow:none !important;background:none !important;border:0 !important}
+#my-store-1805034 .grid-category__card{display:flex !important;flex-direction:column;align-items:center;text-align:center;padding:28px 20px 32px !important;height:100%;box-sizing:border-box;box-shadow:none !important;background:none !important;border:0 !important}
+#my-store-1805034 .grid-category__image{display:block;width:100%;max-width:260px;margin:0 auto 22px !important;border-radius:8px !important;overflow:hidden;background:#F9F9F9}
+#my-store-1805034 .grid-category__title{display:block;background:none !important;padding:0 !important;margin:0 !important;max-width:220px;font-style:normal !important;font-weight:700 !important;font-size:16px !important;letter-spacing:.14em !important;text-transform:uppercase !important;line-height:1.35 !important;color:#111111 !important}
+#my-store-1805034 .grid-category__title-inner{font-style:normal !important;font-weight:700 !important;font-size:16px !important;letter-spacing:.14em !important;text-transform:uppercase !important;line-height:1.35 !important;color:#111111 !important;white-space:normal}
+#my-store-1805034 .grid-category__shadow,#my-store-1805034 .grid-category__hover-wrap{display:none !important}
+#my-store-1805034 .grid-category__title::before{content:'';display:block;width:10px;height:10px;border-radius:50%;margin:0 auto 12px;background:#0169B8}
+#my-store-1805034 .grid-category__title::after{content:'Shop Now \2192';display:block;margin-top:10px;color:#0169B8;font-weight:600;font-size:15px;letter-spacing:0;text-transform:none}
+#my-store-1805034 .grid-category:nth-child(8n+1) .grid-category__title::before{background:#FEFA1F}
+#my-store-1805034 .grid-category:nth-child(8n+2) .grid-category__title::before{background:#FC811C}
+#my-store-1805034 .grid-category:nth-child(8n+3) .grid-category__title::before{background:#F91055}
+#my-store-1805034 .grid-category:nth-child(8n+4) .grid-category__title::before{background:#DA019F}
+#my-store-1805034 .grid-category:nth-child(8n+5) .grid-category__title::before{background:#724DB5}
+#my-store-1805034 .grid-category:nth-child(8n+6) .grid-category__title::before{background:#01A0D6}
+#my-store-1805034 .grid-category:nth-child(8n+7) .grid-category__title::before{background:#40D13D}
+#my-store-1805034 .grid-category:nth-child(8n+8) .grid-category__title::before{background:#DEF306}
+@media(max-width:1000px){#my-store-1805034 .grid__categories{grid-template-columns:repeat(3,minmax(0,1fr)) !important}}
+@media(max-width:640px){#my-store-1805034 .grid__categories{grid-template-columns:repeat(2,minmax(0,1fr)) !important}#my-store-1805034 .grid-category__card{padding:20px 12px 24px !important}#my-store-1805034 .grid-category__title,#my-store-1805034 .grid-category__title-inner{font-size:13px !important}}
+#InApp_cart_abandon,.InApp_cart_abandon,[class*="cart-abandon"]{display:none !important}
+
+#my-store-1805034 .ec-page-title__featured-products,#my-store-1805034 .ec-page-title{text-align:center !important}
+#my-store-1805034 .ec-page-title__featured-products .page-title__name{font-size:clamp(28px,4vw,42px) !important;line-height:1.05 !important;text-align:center !important}
+#my-store-1805034 .grid-product__wrap-inner{border-radius:24px !important;padding:20px !important;background:#fff !important;border:1px solid #E3E8EE !important;box-shadow:none !important;display:flex;flex-direction:column;height:100%;box-sizing:border-box}
+#my-store-1805034 .grid-product:hover .grid-product__wrap-inner{transform:translateY(-4px);box-shadow:0 12px 28px rgba(20,32,46,.14) !important}
+#my-store-1805034 .grid-product__image{border-radius:18px !important;overflow:hidden;background:#F9F9F9 !important}
+#my-store-1805034 .grid-product__bg{background-color:#F9F9F9 !important}
+#my-store-1805034 .grid-product__title{display:block;margin-top:18px !important;text-align:left !important}
+#my-store-1805034 .grid-product__title-inner{font-style:italic !important;font-weight:900 !important;text-transform:uppercase !important;font-size:20px !important;line-height:1.1 !important;letter-spacing:-.01em !important;color:#111111 !important}
+#my-store-1805034 .ec-store:has(.ec-page-title__featured-products) .grid-product__title::before{content:'Featured';display:inline-block;background:#0169B8;color:#fff;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:12px}
+#my-store-1805034 .grid-product .hc-widget{display:none !important}
+#my-store-1805034 .grid-product__price,#my-store-1805034 .grid-product__price-amount{font-style:italic !important;font-weight:900 !important;font-size:28px !important;color:#0169B8 !important;letter-spacing:-.01em;text-align:left !important}
+#my-store-1805034 .grid-product__price{margin-top:10px}
+#my-store-1805034 .grid-product__button .form-control__button,#my-store-1805034 .grid-product__buy-now .form-control__button{border-radius:10px !important}
+#my-store-1805034 .ec-footer{display:none !important}
+html{overflow-y:auto !important}body{overflow:visible !important;position:static !important;height:auto !important}
+</style>
+</helmet>
+<div style="background:#fff;color:#111111;font-family:'Archivo',system-ui,sans-serif;line-height:1.5">
+<!-- 2 sticky header -->
+<header style="position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 2px 12px rgba(20,32,46,.08)">
+  <div style="max-width:1240px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:24px">
+    <a href="../Homepage.dc.html" aria-label="TAG-A-ROOM home" style="display:block;width:240px;height:50px;overflow:hidden;flex:none"><img src="../uploads/logo-1790711738779-iq0a.webp" alt="TAG-A-ROOM" style="display: block; width: 206px; height: 79px; margin-top: -15px"></a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:22px;flex:1;justify-content:center;font-weight:600;font-size:15px">
+        <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+          <div onMouseEnter="{{ n.enter }}" onMouseLeave="{{ n.leave }}" style="position:relative;padding:10px 0">
+            <a href="#" style="color:#111111;display:flex;align-items:center;gap:5px" style-hover="color:#014F8A">{{ n.t }}<sc-if value="{{ n.hasKids }}" hint-placeholder-val="{{ false }}"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" style="transform:{{ n.rot }}"><path d="M2 4l4 4 4-4"></path></svg></sc-if></a>
+            <sc-if value="{{ n.open }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;top:100%;left:-16px;min-width:{{ n.ddw }};max-height:calc(100vh - 160px);overflow:auto;background:#fff;border:1px solid #E3E8EE;border-radius:12px;box-shadow:0 12px 32px rgba(17,17,17,.16);padding:8px 0;display:flex;flex-direction:column;z-index:60">
+                <sc-for list="{{ n.kids }}" as="k" hint-placeholder-count="3"><div style="border-top:{{ k.bt }};margin-top:{{ k.mt }};padding-top:{{ k.mt }}"><a href="#" style="display:block;color:#111111;padding:9px 22px;font-weight:{{ k.fw }};font-size:15px;white-space:nowrap" style-hover="background:#F5F7FA;color:#0169B8">{{ k.t }}</a></div></sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </nav>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}"><span style="flex:1"></span></sc-if>
+    <div style="display:flex;align-items:center;gap:14px;flex:none;margin-left:auto">
+      <a href="#" aria-label="Search" style="color:#111111;display:flex"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
+      <a href="#" aria-label="Cart" style="color:#111111;display:flex;position:relative"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.5 11h10L20 7H6"></path><circle cx="9" cy="20" r="1.5"></circle><circle cx="17" cy="20" r="1.5"></circle></svg><b style="position:absolute;top:-6px;right:-9px;background:#0169B8;color:#fff;font-size:11px;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center">{{ cartCount }}</b></a>
+      <sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}"><a href="#" style="background:#0169B8;color:#fff;font-weight:700;padding:12px 20px;border-radius:10px;font-size:15px;margin-left:6px" style-hover="background:#014F8A;color:#fff">Shop Professional Packs</a></sc-if>
+      <sc-if value="{{ isMobileOrTablet }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleMenu }}" aria-label="Menu" style="background:none;border:0;padding:4px;cursor:pointer;color:#111111;display:flex"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button></sc-if>
+    </div>
+  </div>
+  <div style="display:flex;height:4px"><i style="flex:1;background:#FEFA1F"></i><i style="flex:1;background:#FC811C"></i><i style="flex:1;background:#F91055"></i><i style="flex:1;background:#DA019F"></i><i style="flex:1;background:#724DB5"></i><i style="flex:1;background:#01A0D6"></i><i style="flex:1;background:#40D13D"></i><i style="flex:1;background:#DEF306"></i></div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="border-top:1px solid #E3E8EE;padding:8px 24px 20px;display:flex;flex-direction:column;background:#fff">
+      <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+        <div style="border-bottom:1px solid #EEF1F5">
+          <a href="#" onClick="{{ n.tap }}" style="color:#111111;font-weight:600;padding:12px 0;display:flex;justify-content:space-between;align-items:center">{{ n.t }}<sc-if value="{{ n.hasKids }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"></path></svg></sc-if></a>
+          <sc-if value="{{ n.mOpen }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;padding:0 0 8px 16px"><sc-for list="{{ n.kids }}" as="k" hint-placeholder-count="3"><a href="#" style="color:#4A5A6C;font-weight:600;padding:10px 0;font-size:15px">{{ k.t }}</a></sc-for></div></sc-if>
+        </div>
+      </sc-for>
+      <a href="#" style="background:#0169B8;color:#fff;font-weight:700;padding:14px 20px;border-radius:10px;margin-top:16px;text-align:center">Shop Professional Packs</a>
+    </div>
+  </sc-if>
+</header>
+
+
+<section style="position:relative;background:#22344A;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background:url('../assets/hero.webp') center/cover no-repeat"></div>
+  <div style="position:absolute;inset:0;background:rgba(10,10,10,.68)"></div>
+  <div style="position:relative;max-width:900px;margin:0 auto;padding:clamp(48px,7vw,88px) 24px clamp(48px,7vw,88px);text-align:center;display:flex;flex-direction:column;align-items:center">
+    <span style="background:#0169B8;color:#fff;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:24px">Shop All Products</span>
+    <h1 style="text-transform:uppercase;font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(34px,5.6vw,64px);line-height:1;margin:0 0 18px;letter-spacing:-.01em">Color-Coded Moving Labels &amp; Supplies</h1>
+    <p style="font-size:clamp(17px,2vw,21px);max-width:640px;margin:0;color:#E8EEF4">Everything you need to pack, label and unpack faster. Made in the USA.</p>
+  </div>
+</section>
+
+<!-- 7 featured product -->
+<div style="background:#F5F7FA;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0">
+  <div style="background:#fff;border:1px solid #E3E8EE;border-radius:24px;padding:clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,56px);align-items:center">
+    <div role="img" aria-label="Open First / Don't Load Labels" style="aspect-ratio:1/1;border-radius:18px;background:#F9F9F9 url('../assets/featured.webp') center/contain no-repeat"></div>
+    <div>
+      <span style="display:inline-block;background:#0169B8;color:#fff;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:16px">Featured</span>
+      <h2 style="text-transform:uppercase;font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,40px);line-height:1.05;margin:0 0 12px;letter-spacing:-.01em">Open First / Don't Load Labels – 125 Count</h2>
+      <div style="font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:38px;color:#0169B8;margin-bottom:12px;letter-spacing:-.01em">$7.99</div>
+      <p style="font-size:17px;color:#4A5A6C;margin:0 0 24px;max-width:480px">Bright, peel-and-stick labels that flag the boxes crews unload first and the items that stay off the truck. Sticks to cardboard, furniture and totes.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+        <div style="display:flex;align-items:center;border:2px solid #C9D2DD;border-radius:10px;background:#fff">
+          <button onClick="{{ qtyDown }}" aria-label="Decrease" style="width:44px;height:48px;border:0;background:none;font-size:22px;cursor:pointer;color:#111111">−</button>
+          <span style="min-width:36px;text-align:center;font-weight:700;font-size:18px">{{ qty }}</span>
+          <button onClick="{{ qtyUp }}" aria-label="Increase" style="width:44px;height:48px;border:0;background:none;font-size:22px;cursor:pointer;color:#111111">+</button>
+        </div>
+        <button onClick="{{ addToCart }}" style="background:#0169B8;color:#fff;font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;padding:0 32px;height:52px;border:0;border-radius:10px;cursor:pointer" style-hover="background:#014F8A;color:#fff">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section></div>
+
+<main style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,72px) 24px clamp(56px,8vw,96px)">
+  <h2 style="text-align:center;text-transform:uppercase;font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:0 0 12px;letter-spacing:-.01em">Shop by category</h2>
+  <p style="text-align:center;font-size:18px;color:#4A5A6C;max-width:620px;margin:0 auto 40px">Packs sized and priced for the way you work.</p>
+  <div id="my-store-1805034"></div>
+</main>
+
+<!-- 14 footer -->
+<footer style="background:#111111;color:#C9D4E0">
+  <div style="display:flex;height:5px"><i style="flex:1;background:#FEFA1F"></i><i style="flex:1;background:#FC811C"></i><i style="flex:1;background:#F91055"></i><i style="flex:1;background:#DA019F"></i><i style="flex:1;background:#724DB5"></i><i style="flex:1;background:#01A0D6"></i><i style="flex:1;background:#40D13D"></i><i style="flex:1;background:#DEF306"></i></div>
+  <div style="max-width:1240px;margin:0 auto;padding:56px 24px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px">
+    <div>
+      <a href="#" aria-label="TAG-A-ROOM home" style="display:block;width:206px;height:50px;overflow:hidden;border-radius:6px"><img src="../uploads/logo-1790711738779-iq0a.webp" alt="TAG-A-ROOM" style="display: block; width: 206px; height: 79px; margin-top: -15px"></a>
+      <p style="font-size:15px;margin:12px 0 18px;max-width:280px">The original creator of the color-coded moving and storage label system.</p>
+      <div style="display:flex;gap:12px">
+        <a href="#" aria-label="Instagram" style="width:38px;height:38px;border-radius:50%;border:1px solid #3A4A5E;color:#fff;display:flex;align-items:center;justify-content:center" style-hover="background:#014F8A;color:#fff"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle></svg></a>
+        <a href="#" aria-label="Facebook" style="width:38px;height:38px;border-radius:50%;border:1px solid #3A4A5E;color:#fff;display:flex;align-items:center;justify-content:center" style-hover="background:#014F8A;color:#fff"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"></path></svg></a>
+      </div>
+      <img src="../assets/payments.png" alt="Accepted payments: Mastercard, Visa, Discover, American Express, PayPal" style="display:block;width:100%;max-width:300px;height:auto;margin-top:18px;border-radius:6px"/>
+    </div>
+    <div>
+      <h4 style="font-family:'Archivo',sans-serif;font-style:italic;font-size:20px;color:#fff;margin:0 0 14px;letter-spacing:.04em;text-transform:uppercase;font-weight:900">Shop</h4>
+      <div style="display:flex;flex-direction:column;gap:9px;font-size:15px"><sc-for list="{{ catNames }}" as="n" hint-placeholder-count="8"><a href="#" style="color:#C9D4E0" style-hover="color:#014F8A">{{ n }}</a></sc-for></div>
+    </div>
+    <div>
+      <h4 style="font-family:'Archivo',sans-serif;font-style:italic;font-size:20px;color:#fff;margin:0 0 14px;letter-spacing:.04em;text-transform:uppercase;font-weight:900">Industries</h4>
+      <div style="display:flex;flex-direction:column;gap:9px;font-size:15px"><sc-for list="{{ audNames }}" as="n" hint-placeholder-count="7"><a href="#" style="color:#C9D4E0" style-hover="color:#014F8A">{{ n }}</a></sc-for></div>
+    </div>
+    <div>
+      <h4 style="font-family:'Archivo',sans-serif;font-style:italic;font-size:20px;color:#fff;margin:0 0 14px;letter-spacing:.04em;text-transform:uppercase;font-weight:900">Company</h4>
+      <div style="display:flex;flex-direction:column;gap:9px;font-size:15px"><sc-for list="{{ company }}" as="n" hint-placeholder-count="5"><a href="#" style="color:#C9D4E0" style-hover="color:#014F8A">{{ n }}</a></sc-for></div>
+      <h4 style="font-family:'Archivo',sans-serif;font-style:italic;font-size:20px;color:#fff;margin:28px 0 14px;letter-spacing:.04em;text-transform:uppercase;font-weight:900">Policies</h4>
+      <div style="display:flex;flex-direction:column;gap:9px;font-size:15px"><sc-for list="{{ policies }}" as="n" hint-placeholder-count="3"><a href="#" style="color:#C9D4E0" style-hover="color:#014F8A">{{ n }}</a></sc-for></div>
+    </div>
+  </div>
+  <div style="border-top:1px solid #2A3A4E">
+    <div style="max-width:1240px;margin:0 auto;padding:18px 24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:14px"><span>© 2026 TAG-A-ROOM®. All rights reserved.</span><span>Made in the USA</span></div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { dd: -1, md: -1, w: 1280, menuOpen: false, qty: 1, cart: 0 };
+  componentDidMount() {
+    const f = () => this.setState({ w: window.innerWidth });
+    f(); window.addEventListener('resize', f); this._f = f;
+    window.ec = window.ec || {}; window.ec.config = window.ec.config || {};
+    window.ec.config.chameleon = { colors: { 'color-button': '#0169B8', 'color-price': '#0169B8', 'color-link': '#0169B8', 'color-title': '#111111', 'color-foreground': '#111111', 'color-background': '#FFFFFF' }, font: { fontFamily: 'Archivo', fontFamilyCustom: 'Archivo' } };
+    const init = () => window.xProductBrowser && window.xProductBrowser("categoriesPerRow=3", "views=grid(20,3) list(60) table(60)", "categoryView=grid", "searchView=list", "id=my-store-1805034");
+    if (window.xProductBrowser) return init();
+    const s = document.createElement('script');
+    s.setAttribute('data-cfasync', 'false'); s.charset = 'utf-8';
+    s.src = 'https://app.ecwid.com/script.js?1805034&data_platform=code&data_date=2026-10-02';
+    s.onload = init;
+    document.body.appendChild(s);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._f); }
+  renderVals() {
+    const w = this.state.w;
+    const catNames = ['Moving Label Systems', 'Moving & Packing Labels', 'Box Content Labels', 'Marketing Gifts', 'Office Labels', 'Alert Labels', 'Shipping Labels', 'Color Coding Labels'];
+    const audNames = ['Professional Movers', 'Realtors', 'Mortgage Companies', 'Restoration Companies', 'Move Managers', 'Apartments/Property Management', 'DIY Movers'];
+    return {
+      isDesktop: w >= 1100, isWide: w >= 640, isMobile: false, isMobileOrTablet: w < 1100,
+      menuOpen: this.state.menuOpen && w < 1100,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      cartCount: this.state.cart,
+      qty: this.state.qty,
+      qtyUp: () => this.setState(s => ({ qty: s.qty + 1 })),
+      qtyDown: () => this.setState(s => ({ qty: Math.max(1, s.qty - 1) })),
+      addToCart: () => this.setState(s => ({ cart: s.cart + s.qty, qty: 1 })),
+      navItems: [
+        { t: 'Products', w: '380px', groups: [['All Products'], ['Tag-A-Room Moving Label Systems', 'Moving & Packing Labels', 'Box Content Labels', 'Marketing Gifts – Loan Officers, Realtors, Moving Companies', 'Office Labels & Supplies', 'Alert Labels', 'Shipping Labels', 'Color Coding Labels'], ['Professional Movers', 'Realtors', 'Mortgage Companies', 'Restoration Companies', 'Move Managers – Organizers', 'Apartments – Property Managers', 'Do-It-Yourself Families']] },
+        { t: 'Label Benefits', w: '320px', groups: [['All Label Benefits'], ['Professional Movers', 'Realtors', 'Mortgage Companies', 'Restoration Companies', 'Move Managers – Organizers', 'Apartments – Property Managers', 'Do-It-Yourself Families']] },
+        { t: 'Templates' },
+        { t: 'About Us', w: '220px', groups: [['About Us'], ['Blog', 'Gallery', 'Moving Tips']] },
+        { t: 'Contact' }
+      ].map((n, i) => ({
+        t: n.t, ddw: n.w || '0', hasKids: !!n.groups,
+        kids: (n.groups || []).flatMap((g, gi) => g.map((t, ti) => ({ t, fw: gi === 0 ? '700' : '400', bt: gi > 0 && ti === 0 ? '1px solid #E3E8EE' : '0 solid transparent', mt: gi > 0 && ti === 0 ? '6px' : '0' }))),
+        open: !!n.groups && this.state.dd === i, mOpen: !!n.groups && this.state.md === i,
+        rot: this.state.dd === i ? 'rotate(180deg)' : 'none',
+        enter: () => n.groups && this.setState({ dd: i }), leave: () => this.setState({ dd: -1 }),
+        tap: e => { if (n.groups) { e.preventDefault(); this.setState(s => ({ md: s.md === i ? -1 : i })); } }
+      })),
+      catNames, audNames,
+      company: ['About', 'Blog', 'Gallery', 'Templates', 'Contact'],
+      policies: ['Shipping', 'Returns', 'General']
+    };
+  }
+}
+</script>
+</body>
+</html>
