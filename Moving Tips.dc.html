@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Archivo',system-ui,sans-serif;color:#111111;background:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+a{color:#0169B8;text-decoration:none}
+a:hover{color:#014F8A}
+</style>
+</helmet>
+<div style="background:#fff;color:#111111;font-family:'Archivo',system-ui,sans-serif;line-height:1.5">
+<dc-import name="Header" active="About Us" active-kid="Moving Tips" hint-size="100%,82px"></dc-import>
+
+<section style="position:relative;background:#0169B8;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(254,250,31,.3) 0 9px,transparent 10px),radial-gradient(circle,rgba(252,129,28,.3) 0 6px,transparent 7px),radial-gradient(circle,rgba(249,16,85,.3) 0 12px,transparent 13px),radial-gradient(circle,rgba(218,1,159,.3) 0 7px,transparent 8px),radial-gradient(circle,rgba(114,77,181,.35) 0 10px,transparent 11px),radial-gradient(circle,rgba(1,160,214,.35) 0 8px,transparent 9px),radial-gradient(circle,rgba(64,209,61,.3) 0 11px,transparent 12px),radial-gradient(circle,rgba(222,243,6,.3) 0 6px,transparent 7px);background-size:260px 260px,190px 190px,310px 310px,230px 230px,280px 280px,210px 210px,340px 340px,170px 170px;background-position:20px 30px,90px 120px,160px 60px,40px 180px,220px 140px,130px 20px,70px 250px,10px 90px"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(40px,5vw,64px) 24px clamp(44px,6vw,72px);display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="display:flex;flex-direction:column;align-items:center;max-width:780px">
+      <span style="background:#fff;color:#0169B8;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:22px">Moving Tips</span>
+      <h1 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(34px,5.2vw,62px);line-height:1;margin:0 0 18px;letter-spacing:-.01em">Helpful Hints for a Smoother Move</h1>
+      <p style="font-size:clamp(17px,2vw,21px);max-width:640px;margin:0 0 28px;color:#fff">Quick video tips from professional movers on planning, packing, labeling and loading, so moving day goes right the first time.</p>
+      <a href="#tips" style="background:#fff;color:#0169B8;font-weight:700;padding:16px 30px;border-radius:10px;font-size:17px;border:2px solid #fff;letter-spacing:.02em" style-hover="background:#E6EEF6;color:#014F8A;border-color:#E6EEF6">Browse Tips</a>
+    </div>
+  </div>
+  <div style="display:flex;height:5px;position:relative"><i style="flex:1;background:#FEFA1F"></i><i style="flex:1;background:#FC811C"></i><i style="flex:1;background:#F91055"></i><i style="flex:1;background:#DA019F"></i><i style="flex:1;background:#724DB5"></i><i style="flex:1;background:#01A0D6"></i><i style="flex:1;background:#40D13D"></i><i style="flex:1;background:#DEF306"></i></div>
+</section>
+
+<div id="tips" style="position:sticky;top:78px;z-index:40;background:#fff;border-bottom:1px solid #E3E8EE;box-shadow:0 2px 10px rgba(17,17,17,.05)">
+  <div style="max-width:1240px;margin:0 auto;padding:14px 24px;display:flex;gap:10px;overflow-x:auto;white-space:nowrap;scrollbar-width:none">
+    <sc-for list="{{ pills }}" as="p" hint-placeholder-count="6">
+      <button onClick="{{ p.pick }}" style="flex:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:15px;letter-spacing:.02em;padding:10px 20px;border-radius:30px;border:2px solid #0169B8;background:{{ p.bg }};color:{{ p.fg }}" style-hover="background:#0169B8;color:#fff">{{ p.t }}</button>
+    </sc-for>
+  </div>
+</div>
+
+<div style="background:#F5F7FA;padding-bottom:clamp(48px,7vw,80px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,80px) 24px 0">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(28px,5vw,64px);align-items:center">
+    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;"><iframe src="https://www.youtube.com/embed/9D-xltneVdU?rel=0" title="Door ID Labels" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+    <div>
+      <span style="font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#0169B8">Featured Tip</span>
+      <h2 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:10px 0 16px;letter-spacing:-.01em">Use Door ID Labels to Speed Up Unloading</h2>
+      <p style="margin:0 0 22px;font-size:18px;line-height:1.6;color:#4A5A6C">Match each room's door to its label color so movers know exactly where every box goes.</p>
+      <a href="Label%20Benefits.dc.html" style="font-weight:700;font-size:17px;text-decoration:underline">Learn more about Label Benefits &rarr;</a>
+    </div>
+  </div>
+</section></div>
+
+<div style="background:#fff;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,80px) 24px 0;display:flex;flex-direction:column;gap:clamp(48px,6vw,72px)">
+  <sc-for list="{{ groups }}" as="g" hint-placeholder-count="5">
+    <div>
+      <h2 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(26px,3.4vw,36px);line-height:1.05;margin:0 0 28px;padding-bottom:12px;letter-spacing:-.01em;border-bottom:4px solid {{ g.c }}">{{ g.name }}</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,max(300px,calc((100% - 56px)/3))),1fr));gap:32px 28px">
+        <sc-for list="{{ g.land }}" as="v" hint-placeholder-count="3">
+          <div>
+            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;"><iframe src="https://www.youtube.com/embed/{{ v.id }}?rel=0" title="{{ v.t }}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+            <h3 style="font-weight:700;font-size:19px;line-height:1.25;margin:14px 0 4px;color:#111111">{{ v.t }}</h3>
+            <p style="margin:0;font-size:16px;line-height:1.5;color:#4A5A6C">{{ v.s }}</p>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{ g.hasVert }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(max(150px,calc((100% - 84px)/4)),1fr));gap:32px 28px;margin-top:{{ g.vmt }}">
+          <sc-for list="{{ g.vert }}" as="v" hint-placeholder-count="4">
+            <div style="max-width:360px;width:100%">
+              <div style="position:relative;padding-bottom:177.78%;height:0;overflow:hidden;border-radius:16px;max-width:360px;"><iframe src="https://www.youtube.com/embed/{{ v.id }}?rel=0" title="{{ v.t }}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+              <h3 style="font-weight:700;font-size:18px;line-height:1.25;margin:14px 0 4px;color:#111111">{{ v.t }}</h3>
+              <p style="margin:0;font-size:16px;line-height:1.5;color:#4A5A6C">{{ v.s }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </sc-for>
+</section></div>
+
+<div style="background:#F5F7FA;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0">
+  <h2 style="text-align:center;text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:0 0 40px;letter-spacing:-.01em">Your Moving Day Checklist</h2>
+  <div style="max-width:900px;margin:0 auto;background:#fff;border:1px solid #E3E8EE;border-radius:20px;padding:clamp(24px,4vw,40px);box-shadow:0 2px 10px rgba(17,17,17,.05);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px 40px">
+    <sc-for list="{{ checks }}" as="k" hint-placeholder-count="8">
+      <div style="display:flex;align-items:center;gap:14px;font-size:18px;font-weight:600">
+        <span style="flex:none;width:32px;height:32px;border-radius:50%;background:{{ k.c }};display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{{ k.t }}
+      </div>
+    </sc-for>
+  </div>
+</section></div>
+
+<div style="background:#fff;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0">
+  <h2 style="text-align:center;text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:0 0 40px;letter-spacing:-.01em">Get the Supplies from These Videos</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px">
+    <sc-for list="{{ shop }}" as="p" hint-placeholder-count="3">
+      <div style="background:#fff;border:1px solid #E3E8EE;border-radius:24px;padding:20px;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(17,17,17,.05)">
+        <div role="img" aria-label="{{ p.name }}" style="height:220px;border-radius:18px;background:#F9F9F9 url('{{ p.img }}') center/contain no-repeat"></div>
+        <h3 style="font-style:italic;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;font-size:21px;line-height:1.1;margin:18px 0 8px">{{ p.name }}</h3>
+        <p style="margin:0 0 20px;color:#4A5A6C;font-size:16px;line-height:1.55">{{ p.desc }}</p>
+        <a href="{{ p.href }}" style="margin-top:auto;display:flex;align-items:center;justify-content:center;background:#0169B8;color:#fff;font-weight:700;padding:14px 24px;border-radius:10px;font-size:16px;border:2px solid #0169B8;letter-spacing:.02em" style-hover="background:#fff;color:#0169B8">Shop Now</a>
+      </div>
+    </sc-for>
+  </div>
+</section></div>
+
+<section style="position:relative;background:#0169B8;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background:url('assets/cta.webp') center 65%/cover no-repeat"></div>
+  <div style="position:absolute;inset:0;background:rgba(1,105,184,.88)"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(64px,9vw,112px) 24px;text-align:center">
+    <h2 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(30px,4.8vw,52px);line-height:1;margin:0 0 28px;letter-spacing:-.01em">Ready to Put These Tips to Work?</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+      <a href="All%20Products.dc.html" style="background:#fff;color:#0169B8;font-weight:700;padding:16px 30px;border-radius:10px;font-size:17px;border:2px solid #fff" style-hover="background:#E6EEF6;color:#111111">Shop Professional Packs</a>
+      <a href="Do-It-Yourself%20Families.dc.html" style="border:2px solid #fff;color:#fff;font-weight:700;padding:16px 30px;border-radius:10px;font-size:17px" style-hover="background:#fff;color:#0169B8">Buy for My Home</a>
+    </div>
+    <p style="margin:24px 0 0;font-size:16px"><a href="https://www.youtube.com/@tagaroom" target="_blank" style="color:#fff;text-decoration:underline" style-hover="color:#E6EEF6">Subscribe to TAG-A-ROOM on YouTube for more tips.</a></p>
+  </div>
+</section>
+
+<dc-import name="Footer" hint-size="100%,520px"></dc-import>
+<a href="All%20Products.dc.html#!/~/cart" aria-label="View cart" style="position:fixed;right:20px;bottom:24px;z-index:90;width:60px;height:60px;border-radius:50%;background:#0169B8;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(1,105,184,.4),0 2px 6px rgba(0,0,0,.2);border:3px solid #fff" style-hover="background:#111111"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.5 11h10L20 7H6"></path><circle cx="9" cy="20" r="1.5"></circle><circle cx="17" cy="20" r="1.5"></circle></svg></a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { cat: 'All' };
+  componentDidMount() { document.title = 'Moving Tips | TAG-A-ROOM'; }
+  renderVals() {
+    const L = 'l', V = 'v';
+    const D = [
+      ['Plan & Prep', '#FC811C', [
+        ['XBRzcpzmUfM', 'Start Early', 'Begin packing weeks ahead, starting with rooms you use least.', L],
+        ['eznHByjAP4A', 'Declutter First', 'Sell, donate or toss before you pack. Fewer boxes means a cheaper move.', V],
+        ['qs1irgPcP44', 'Pack Room by Room', 'Finish one room at a time to keep boxes organized.', V],
+        ['CwhUYTWt0WI', 'Essentials Moving Box', "Pack a first-night box with everything you'll need right away.", V]]],
+      ['Labeling', '#F91055', [
+        ['QcrprJR3-P8', 'Label Strategically', 'Label the sides of boxes, not just the top.', V],
+        ['9D-xltneVdU', 'Door ID Labels', 'Tag each doorway so movers match boxes to rooms.', L],
+        ['5JXXTjlf_A4', 'Fragile Items', "Mark fragile boxes clearly so they're handled with care.", V],
+        ['Yz5mXi67MqM', 'An Organized Move Is a Better Move', 'How the color-coded system keeps every move on track.', L]]],
+      ['Packing', '#724DB5', [
+        ['2WPUE0ZUjQk', 'How to Load Your Tape Gun', 'Load your tape gun correctly for faster, cleaner taping.', L],
+        ['xkRkApMxv-c', 'Using Stretch Film', 'Wrap drawers and furniture to keep them closed and protected.', L],
+        ['M1-lor4KJak', 'Bag Jewelry', 'Keep jewelry tangle-free and easy to find.', L],
+        ['CPyb_CV_ggI', 'Back Up Electronics', 'Back up your devices before they go on the truck.', L],
+        ['sFWuhHQPir4', 'Heavy Items', 'Pack heavy items in small boxes to keep them easy to lift.', V]]],
+      ['Loading & Securing', '#01A0D6', [
+        ['EjxTkfCj1ts', 'Utility Pad', 'Protect furniture from scratches and dents in transit.', L],
+        ['GPNr1JmixKc', 'Utility Rope Cord', 'Use rope to secure loads inside the truck.', L],
+        ['ZVpvdL3cYgs', 'Utility Rope Tension', "Get the right tension so loads don't shift.", L],
+        ['t320qsYqAP4', 'Creating a Tension Loop', 'Tie a tension loop for a tight, secure hold.', L]]],
+      ['Big & Special Items', '#40D13D', [
+        ['QRHjyRq5e3M', 'Moving a Mattress the Right Way', 'Protect and carry a mattress without damage.', L],
+        ['-uXqrrsFfHE', 'Packing a Grandfather Clock', 'Secure the pendulum and weights before moving.', L],
+        ['RFD4_wfkqTY', 'Moving a Baby Grand Piano', 'How pros safely move a baby grand.', L]]]
+    ];
+    const cat = this.state.cat;
+    const mk = a => a.map(x => ({ id: x[0], t: x[1], s: x[2] }));
+    const groups = D.filter(d => cat === 'All' || d[0] === cat).map(d => {
+      const land = mk(d[2].filter(x => x[3] === L)), vert = mk(d[2].filter(x => x[3] === V));
+      return { name: d[0], c: d[1], land, vert, hasVert: vert.length > 0, vmt: land.length ? '40px' : '0' };
+    });
+    const pills = ['All', 'Plan & Prep', 'Labeling', 'Packing', 'Loading & Securing', 'Big & Special Items'].map(t => ({
+      t, bg: cat === t ? '#0169B8' : '#fff', fg: cat === t ? '#fff' : '#0169B8', pick: () => this.setState({ cat: t })
+    }));
+    const S = ['#FEFA1F', '#FC811C', '#F91055', '#DA019F', '#724DB5', '#01A0D6', '#40D13D', '#DEF306'];
+    const checks = ['Start packing early', 'Declutter before you pack', 'Pack one room at a time', 'Label box sides by room color', 'Mark fragile boxes', 'Pack an essentials box', 'Back up your electronics', 'Tag doors at the new home'].map((t, i) => ({ t, c: S[i] }));
+    const shop = [
+      { name: 'Moving Label Systems', desc: 'Color-coded labels that match every box to its room.', img: 'assets/label-systems.webp', href: 'Moving%20Label%20Systems.dc.html' },
+      { name: 'Alert Labels', desc: 'Fragile, Open First and other labels that get boxes handled right.', img: 'assets/alert.webp', href: 'Alert%20Labels.dc.html' },
+      { name: 'Moving Supplies', desc: 'Utility pads, rope and stretch film used by professional movers.', img: 'assets/office.webp', href: 'Office%20Labels%20and%20Supplies.dc.html' }
+    ];
+    return { pills, groups, checks, shop };
+  }
+}
+</script>
+</body>
+</html>

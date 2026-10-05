@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Archivo',system-ui,sans-serif;color:#111111;background:#fff}
+*{box-sizing:border-box}
+a{color:#0169B8;text-decoration:none}
+a:hover{color:#014F8A}
+</style>
+</helmet>
+<div style="background:#F5F7FA;color:#111111;font-family:'Archivo',system-ui,sans-serif;line-height:1.5;min-height:100vh">
+<dc-import name="Header" active="" cart-count="{{ count }}" hint-size="100%,82px"></dc-import>
+
+<section style="position:relative;background:#0169B8;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(254,250,31,.3) 0 9px,transparent 10px),radial-gradient(circle,rgba(252,129,28,.3) 0 6px,transparent 7px),radial-gradient(circle,rgba(249,16,85,.3) 0 12px,transparent 13px),radial-gradient(circle,rgba(218,1,159,.3) 0 7px,transparent 8px),radial-gradient(circle,rgba(114,77,181,.35) 0 10px,transparent 11px),radial-gradient(circle,rgba(1,160,214,.35) 0 8px,transparent 9px),radial-gradient(circle,rgba(64,209,61,.3) 0 11px,transparent 12px),radial-gradient(circle,rgba(222,243,6,.3) 0 6px,transparent 7px);background-size:260px 260px,190px 190px,310px 310px,230px 230px,280px 280px,210px 210px,340px 340px,170px 170px;background-position:20px 30px,90px 120px,160px 60px,40px 180px,220px 140px,130px 20px,70px 250px,10px 90px"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(40px,5vw,64px) 24px clamp(44px,6vw,72px);display:flex;flex-direction:column;align-items:center;text-align:center">
+    <span style="background:#fff;color:#0169B8;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:22px">Cart</span>
+    <h1 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(34px,5.2vw,62px);line-height:1;margin:0 0 14px;letter-spacing:-.01em">Your Cart</h1>
+    <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}"><p style="margin:0;font-size:clamp(17px,2vw,21px);font-weight:600;color:#fff">{{ countLabel }}</p></sc-if>
+  </div>
+  <div style="display:flex;height:5px;position:relative"><i style="flex:1;background:#FEFA1F"></i><i style="flex:1;background:#FC811C"></i><i style="flex:1;background:#F91055"></i><i style="flex:1;background:#DA019F"></i><i style="flex:1;background:#724DB5"></i><i style="flex:1;background:#01A0D6"></i><i style="flex:1;background:#40D13D"></i><i style="flex:1;background:#DEF306"></i></div>
+</section>
+<div style="background:#fff;border-bottom:1px solid #E3E8EE"><section style="max-width:1240px;margin:0 auto;padding:18px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px">
+  <nav style="display:flex;gap:8px;font-size:14px;font-weight:600;color:#4A5A6C"><a href="Homepage.dc.html" style="color:#4A5A6C" style-hover="color:#0169B8">Home</a><span>/</span><span style="color:#111111">Cart</span></nav>
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-weight:700;font-size:15px">
+    <span style="display:flex;align-items:center;gap:8px;color:#0169B8"><span style="width:28px;height:28px;border-radius:50%;background:#0169B8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px">1</span>Cart</span>
+    <span style="width:40px;height:2px;background:#CBD3DD"></span>
+    <span style="display:flex;align-items:center;gap:8px;color:#6B7A8C"><span style="width:28px;height:28px;border-radius:50%;background:#E3E8EE;color:#4A5A6C;display:flex;align-items:center;justify-content:center;font-size:14px">2</span>Shipping</span>
+    <span style="width:40px;height:2px;background:#CBD3DD"></span>
+    <span style="display:flex;align-items:center;gap:8px;color:#6B7A8C"><span style="width:28px;height:28px;border-radius:50%;background:#E3E8EE;color:#4A5A6C;display:flex;align-items:center;justify-content:center;font-size:14px">3</span>Payment</span>
+  </div>
+</section></div>
+
+<sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
+<section style="max-width:1240px;margin:0 auto;padding:28px 24px {{ bottomPad }}">
+  <div style="background:#fff;border:1px solid #E3E8EE;border-radius:16px;padding:20px 24px;margin-bottom:28px">
+    <p style="margin:0 0 12px;font-weight:700;font-size:17px">{{ shipMsg }}</p>
+    <div style="height:12px;border-radius:8px;background:#E3E8EE;overflow:hidden"><div style="{{ barStyle }}"></div></div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+    <div style="flex:2 1 520px;min-width:0">
+      <div style="background:#fff;border:1px solid #E3E8EE;border-radius:16px;box-shadow:0 2px 10px rgba(17,17,17,.05)">
+        <sc-for list="{{ lines }}" as="it" hint-placeholder-count="3">
+          <div style="display:flex;flex-wrap:wrap;gap:16px 20px;align-items:center;padding:22px 24px;border-top:{{ it.bt }}">
+            <div role="img" aria-label="{{ it.name }}" style="flex:none;width:100px;height:100px;border-radius:12px;background:#F5F7FA {{ it.bg }} center/contain no-repeat"></div>
+            <div style="flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:4px;align-items:flex-start">
+              <a href="{{ it.href }}" style="font-weight:700;font-size:18px;line-height:1.25;color:#111111" style-hover="color:#0169B8">{{ it.name }}</a>
+              <span style="font-size:15px;color:#6B7A8C">{{ it.variant }}</span>
+              <span style="background:#EAF3FB;color:#014F8A;font-weight:700;font-size:12px;letter-spacing:.04em;padding:3px 10px;border-radius:20px">{{ it.badge }}</span>
+              <span style="font-size:15px;color:#4A5A6C;margin-top:2px">{{ it.unit }} each</span>
+            </div>
+            <div style="flex:1 1 200px;display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+              <div style="display:flex;align-items:center;border:1px solid #CBD3DD;border-radius:10px;height:40px;background:#fff;overflow:hidden">
+                <button onClick="{{ it.dec }}" aria-label="Decrease quantity" style="width:40px;height:40px;border:0;background:#fff;font-size:20px;font-weight:700;cursor:pointer;color:#111111;font-family:inherit" style-hover="background:#F5F7FA">&minus;</button>
+                <span style="min-width:36px;text-align:center;font-weight:700;font-size:16px">{{ it.qty }}</span>
+                <button onClick="{{ it.inc }}" aria-label="Increase quantity" style="width:40px;height:40px;border:0;background:#fff;font-size:20px;font-weight:700;cursor:pointer;color:#111111;font-family:inherit" style-hover="background:#F5F7FA">+</button>
+              </div>
+              <span style="font-weight:800;font-size:22px;font-style:normal;text-align:right">{{ it.total }}</span>
+              <button onClick="{{ it.remove }}" style="display:flex;align-items:center;gap:6px;border:0;background:none;padding:0;font-family:inherit;font-size:14px;font-weight:600;color:#6B7A8C;cursor:pointer" style-hover="color:#D0103A"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6"></path></svg>Remove</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <a href="All%20Products.dc.html" style="display:inline-block;margin-top:20px;font-weight:700;font-size:16px">&larr; Continue Shopping</a>
+    </div>
+
+    <aside style="flex:1 1 320px;min-width:0;position:sticky;top:104px;background:#fff;border:1px solid #E3E8EE;border-top:4px solid #0169B8;border-radius:16px;padding:28px;box-shadow:0 8px 28px rgba(17,17,17,.08)">
+      <h2 style="margin:0 0 20px;text-transform:uppercase;font-style:italic;font-weight:900;font-size:24px;letter-spacing:-.01em">Order Summary</h2>
+      <div style="display:flex;flex-direction:column;gap:12px;font-size:16px">
+        <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4A5A6C">Subtotal</span><b style="font-weight:700">{{ subtotal }}</b></div>
+        <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4A5A6C">Shipping</span><b style="font-weight:700;color:{{ shipColor }}">{{ shipVal }}</b></div>
+        <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4A5A6C">Estimated Tax</span><span style="color:#6B7A8C;text-align:right">Calculated at checkout</span></div>
+      </div>
+      <div style="margin:18px 0">
+        <button onClick="{{ togglePromo }}" style="border:0;background:none;padding:0;font-family:inherit;font-weight:700;font-size:15px;color:#0169B8;cursor:pointer;text-decoration:underline">Have a promo code?</button>
+        <sc-if value="{{ promoOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <input type="text" value="{{ promo }}" onInput="{{ setPromo }}" aria-label="Promo code" style="flex:1;min-width:0;height:44px;border:1px solid #CBD3DD;border-radius:8px;padding:0 12px;font-family:inherit;font-size:16px;outline:none" style-focus="border-color:#0169B8;box-shadow:0 0 0 3px rgba(1,105,184,.25)">
+            <button onClick="{{ applyPromo }}" style="height:44px;padding:0 20px;border:2px solid #111111;border-radius:8px;background:#111111;color:#fff;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer" style-hover="background:#fff;color:#111111">Apply</button>
+          </div>
+          <sc-if value="{{ promoMsg }}" hint-placeholder-val="{{ false }}"><p style="margin:8px 0 0;font-size:14px;color:#4A5A6C">{{ promoMsg }}</p></sc-if>
+        </sc-if>
+      </div>
+      <div style="border-top:1px solid #E3E8EE;padding-top:18px;display:flex;justify-content:space-between;align-items:baseline;gap:12px"><span style="font-weight:700;font-size:18px">Total</span><b style="font-weight:800;font-size:32px">{{ total }}</b></div>
+      <a href="#" style="margin-top:20px;display:flex;align-items:center;justify-content:center;gap:10px;height:56px;background:#0169B8;color:#fff;font-weight:700;font-size:18px;border-radius:10px;border:2px solid #0169B8;letter-spacing:.02em" style-hover="background:#fff;color:#0169B8"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>Proceed to Checkout</a>
+      <div role="img" aria-label="Accepted payment methods: Visa, Mastercard, Amex, Discover, PayPal" style="height:30px;margin:18px auto 0;max-width:260px;background:url('assets/payments.png') center/contain no-repeat;filter:grayscale(1);opacity:.7"></div>
+      <div style="margin-top:22px;padding-top:18px;border-top:1px solid #E3E8EE;display:flex;flex-direction:column;gap:12px;font-size:15px;font-weight:600">
+        <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:32px;height:32px;border-radius:50%;background:rgba(64,209,61,.2);display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span>Secure Checkout</div>
+        <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:32px;height:32px;border-radius:50%;background:rgba(1,160,214,.16);display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"></path><circle cx="7" cy="18" r="1.6"></circle><circle cx="17" cy="18" r="1.6"></circle></svg></span>Free Fast Shipping</div>
+        <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:32px;height:32px;border-radius:50%;background:rgba(249,16,85,.14);display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg></span>Made in USA · Veteran Packed</div>
+      </div>
+    </aside>
+  </div>
+
+  <div style="margin-top:32px;background:#fff;border:2px solid #0169B8;border-radius:16px;padding:22px 26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+    <p style="margin:0;flex:1 1 360px;font-size:18px;font-weight:600">Ordering for a moving company, brokerage or property? Get bulk pricing and custom logo labels.</p>
+    <a href="Contact%20Us.dc.html" style="flex:none;background:#0169B8;color:#fff;font-weight:700;padding:14px 26px;border-radius:10px;font-size:16px;border:2px solid #0169B8" style-hover="background:#fff;color:#0169B8">Contact Us for Bulk Pricing</a>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,72px) 24px 0;text-align:center">
+  <svg width="180" height="150" viewBox="0 0 180 150" fill="none" style="margin:0 auto 24px;display:block">
+    <path d="M30 55l60-25 60 25v62l-60 25-60-25z" fill="#E7D3B0" stroke="#B9976A" stroke-width="3" stroke-linejoin="round"></path>
+    <path d="M30 55l60 25 60-25M90 80v62" stroke="#B9976A" stroke-width="3" stroke-linejoin="round"></path>
+    <path d="M62 43l60 25" stroke="#B9976A" stroke-width="3"></path>
+    <circle cx="55" cy="92" r="7" fill="#FEFA1F"></circle><circle cx="72" cy="108" r="6" fill="#F91055"></circle><circle cx="120" cy="100" r="7" fill="#01A0D6"></circle><circle cx="130" cy="82" r="5" fill="#40D13D"></circle><circle cx="106" cy="118" r="5" fill="#724DB5"></circle>
+  </svg>
+  <h2 style="margin:0 0 10px;text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;letter-spacing:-.01em">Your Cart Is Empty</h2>
+  <p style="margin:0 0 28px;font-size:19px;color:#4A5A6C">Let's get your move organized.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+    <a href="Moving%20Label%20Systems.dc.html" style="background:#0169B8;color:#fff;font-weight:700;padding:16px 28px;border-radius:10px;font-size:17px;border:2px solid #0169B8" style-hover="background:#fff;color:#0169B8">Shop Moving Label Systems</a>
+    <a href="Do-It-Yourself%20Families.dc.html" style="border:2px solid #0169B8;color:#0169B8;font-weight:700;padding:16px 28px;border-radius:10px;font-size:17px" style-hover="background:#0169B8;color:#fff">Buy for My Home</a>
+  </div>
+</section>
+</sc-if>
+
+<section style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,72px) 24px {{ bottomPad2 }}">
+  <h2 style="margin:0 0 24px;text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(26px,3.6vw,36px);line-height:1.05;letter-spacing:-.01em">Customers Also Added</h2>
+  <div style="display:flex;gap:20px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x proximity">
+    <sc-for list="{{ cross }}" as="p" hint-placeholder-count="4">
+      <div style="flex:1 0 230px;max-width:300px;scroll-snap-align:start;background:#fff;border:1px solid #E3E8EE;border-radius:16px;padding:16px;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(17,17,17,.05)">
+        <div role="img" aria-label="{{ p.name }}" style="height:160px;border-radius:12px;background:#F5F7FA {{ p.bg }} center/contain no-repeat"></div>
+        <h3 style="margin:14px 0 4px;font-weight:700;font-size:17px;line-height:1.25">{{ p.name }}</h3>
+        <span style="font-weight:800;font-size:18px;margin-bottom:14px">{{ p.price }}</span>
+        <button onClick="{{ p.add }}" style="margin-top:auto;height:42px;border:2px solid #0169B8;border-radius:8px;background:#fff;color:#0169B8;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer" style-hover="background:#0169B8;color:#fff">Add to Cart</button>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<sc-if value="{{ showBar }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;left:0;right:0;bottom:0;z-index:80;background:#fff;border-top:1px solid #E3E8EE;box-shadow:0 -6px 20px rgba(17,17,17,.12);padding:12px 16px;display:flex;align-items:center;gap:16px">
+    <div style="display:flex;flex-direction:column;line-height:1.1"><span style="font-size:13px;color:#6B7A8C;font-weight:600">Total</span><b style="font-weight:800;font-size:24px">{{ total }}</b></div>
+    <a href="#" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;height:50px;background:#0169B8;color:#fff;font-weight:700;font-size:17px;border-radius:10px">Checkout</a>
+  </div>
+</sc-if>
+
+<dc-import name="Footer" hint-size="100%,520px"></dc-import>
+
+<sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:200;display:flex;justify-content:flex-end">
+    <div onClick="{{ closeDrawer }}" style="position:absolute;inset:0;background:rgba(17,17,17,.6)"></div>
+    <aside style="position:relative;width:min(100%,440px);height:100%;background:#fff;display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(0,0,0,.25)">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #E3E8EE">
+        <h2 style="margin:0;display:flex;align-items:center;gap:10px;font-style:italic;font-weight:900;text-transform:uppercase;font-size:22px;letter-spacing:-.01em">Added to Cart <span style="width:26px;height:26px;border-radius:50%;background:#40D13D;display:inline-flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span></h2>
+        <button onClick="{{ closeDrawer }}" aria-label="Close" style="width:40px;height:40px;border:0;border-radius:50%;background:#F5F7FA;font-size:24px;line-height:1;cursor:pointer;color:#111111;font-family:inherit" style-hover="background:#E3E8EE">&times;</button>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:8px 24px">
+        <sc-for list="{{ lines }}" as="it" hint-placeholder-count="3">
+          <div style="display:flex;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid #EEF1F5">
+            <div role="img" aria-label="{{ it.name }}" style="flex:none;width:64px;height:64px;border-radius:10px;background:#F5F7FA {{ it.bg }} center/contain no-repeat"></div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
+              <span style="font-weight:700;font-size:15px;line-height:1.25">{{ it.name }}</span>
+              <div style="display:flex;align-items:center;border:1px solid #CBD3DD;border-radius:8px;height:32px;align-self:flex-start;overflow:hidden">
+                <button onClick="{{ it.dec }}" aria-label="Decrease" style="width:32px;height:32px;border:0;background:#fff;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit">&minus;</button>
+                <span style="min-width:28px;text-align:center;font-weight:700;font-size:14px">{{ it.qty }}</span>
+                <button onClick="{{ it.inc }}" aria-label="Increase" style="width:32px;height:32px;border:0;background:#fff;font-size:17px;font-weight:700;cursor:pointer;font-family:inherit">+</button>
+              </div>
+            </div>
+            <b style="font-weight:800;font-size:16px;text-align:right">{{ it.total }}</b>
+          </div>
+        </sc-for>
+      </div>
+      <div style="padding:20px 24px;border-top:1px solid #E3E8EE;background:#F5F7FA;display:flex;flex-direction:column;gap:14px">
+        <div>
+          <p style="margin:0 0 8px;font-weight:700;font-size:14px">{{ shipMsg }}</p>
+          <div style="height:10px;border-radius:8px;background:#E3E8EE;overflow:hidden"><div style="{{ barStyle }}"></div></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-weight:700;font-size:17px">Subtotal</span><b style="font-weight:800;font-size:24px">{{ subtotal }}</b></div>
+        <div style="display:flex;gap:12px">
+          <button onClick="{{ closeDrawer }}" style="flex:1;height:50px;border:2px solid #0169B8;border-radius:10px;background:#fff;color:#0169B8;font-family:inherit;font-weight:700;font-size:16px;cursor:pointer" style-hover="background:#0169B8;color:#fff">View Cart</button>
+          <a href="#" style="flex:1;display:flex;align-items:center;justify-content:center;height:50px;border:2px solid #0169B8;border-radius:10px;background:#0169B8;color:#fff;font-weight:700;font-size:16px" style-hover="background:#fff;color:#0169B8">Checkout</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;freeShippingThreshold&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:75,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:0,&quot;max&quot;:500,&quot;step&quot;:5,&quot;unit&quot;:&quot;$&quot;,&quot;section&quot;:&quot;Cart&quot;},&quot;showEmpty&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Cart&quot;}}">
+class Component extends DCLogic {
+  state = { items: null, promoOpen: false, promo: '', promoMsg: '', drawer: false, w: 1280 };
+  componentDidMount() {
+    document.title = 'Your Cart | TAG-A-ROOM';
+    const f = () => this.setState({ w: window.innerWidth }); f(); window.addEventListener('resize', f); this._f = f;
+    this.setState({ items: this.props.showEmpty ? [] : [
+      { id: 'open-first', name: "Open First / Don't Load Labels", variant: '125 Count', price: 7.99, qty: 2, img: 'assets/open-first.png', badge: 'Veteran Packed', href: 'Alert%20Labels.dc.html' },
+      { id: 'system', name: 'Tag-A-Room Moving Label System', variant: 'Move By Color · 350 Count', price: 9.95, qty: 1, img: 'assets/label-systems.webp', badge: 'Made in USA', href: 'Moving%20Label%20Systems.dc.html' },
+      { id: 'fragile', name: 'Fragile Labels', variant: '50 Count', price: 5.95, qty: 1, img: 'assets/alert.webp', badge: 'Made in USA', href: 'Alert%20Labels.dc.html' }
+    ] });
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._f); }
+  money(n) { return '$' + n.toFixed(2); }
+  upd(id, d) { this.setState(s => ({ items: s.items.map(i => i.id === id ? Object.assign({}, i, { qty: Math.max(1, i.qty + d) }) : i) })); }
+  renderVals() {
+    const items = this.state.items || [];
+    const T = Number(this.props.freeShippingThreshold ?? 75);
+    const sub = items.reduce((a, i) => a + i.price * i.qty, 0);
+    const count = items.reduce((a, i) => a + i.qty, 0);
+    const unlocked = sub >= T, pct = Math.min(100, (sub / T) * 100);
+    const mobile = this.state.w < 900, has = items.length > 0;
+    const lines = items.map((i, k) => ({
+      name: i.name, variant: i.variant, badge: i.badge, href: i.href, qty: i.qty, bg: "url('" + i.img + "')",
+      unit: this.money(i.price), total: this.money(i.price * i.qty), bt: k ? '1px solid #E3E8EE' : '0 solid transparent',
+      inc: () => this.upd(i.id, 1), dec: () => this.upd(i.id, -1),
+      remove: () => this.setState(s => ({ items: s.items.filter(x => x.id !== i.id) }))
+    }));
+    const CR = [
+      { id: 'box', name: 'Box Content Labels', price: 9.50, img: 'assets/box-content.webp', variant: 'Packing Content · 190 Count', badge: 'Made in USA', href: 'Box%20Content%20Labels.dc.html' },
+      { id: 'alert', name: 'Alert Labels', price: 7.99, img: 'assets/alert.webp', variant: 'Alert Pack', badge: 'Veteran Packed', href: 'Alert%20Labels.dc.html' },
+      { id: 'door', name: 'Door ID / Room Labels', price: 5.95, img: 'assets/door-ids.webp', variant: 'Room Identification Cards', badge: 'Made in USA', href: 'Moving%20Label%20Systems.dc.html' },
+      { id: 'ship', name: 'Shipping Labels', price: 8.95, img: 'assets/shipping.webp', variant: 'Shipping Pack', badge: 'Made in USA', href: 'Shipping%20Labels.dc.html' }
+    ];
+    const cross = CR.map(p => ({
+      name: p.name, price: this.money(p.price), bg: "url('" + p.img + "')",
+      add: () => this.setState(s => {
+        const ex = s.items.find(i => i.id === p.id);
+        const next = ex ? s.items.map(i => i.id === p.id ? Object.assign({}, i, { qty: i.qty + 1 }) : i) : s.items.concat([{ id: p.id, name: p.name, variant: p.variant, price: p.price, qty: 1, img: p.img, badge: p.badge, href: p.href }]);
+        return { items: next, drawer: true };
+      })
+    }));
+    return {
+      lines, cross, count, hasItems: has, isEmpty: this.state.items !== null && !has,
+      countLabel: count + (count === 1 ? ' item' : ' items'),
+      subtotal: this.money(sub), total: this.money(sub),
+      shipMsg: unlocked ? '🎉 You\'ve unlocked FREE shipping!' : "You're " + this.money(T - sub) + ' away from FREE shipping!',
+      barStyle: { width: pct + '%', height: '100%', borderRadius: 8, transition: 'width .3s', backgroundSize: (pct ? 10000 / pct : 100) + '% 100%', backgroundImage: 'linear-gradient(90deg,#FEFA1F,#FC811C,#F91055,#DA019F,#724DB5,#01A0D6,#40D13D,#DEF306)' },
+      shipVal: unlocked ? 'FREE' : 'Calculated at next step', shipColor: unlocked ? '#1E9E1B' : '#6B7A8C',
+      promoOpen: this.state.promoOpen, promo: this.state.promo, promoMsg: this.state.promoMsg,
+      togglePromo: () => this.setState(s => ({ promoOpen: !s.promoOpen })),
+      setPromo: e => this.setState({ promo: e.target.value }),
+      applyPromo: () => this.setState(s => ({ promoMsg: s.promo.trim() ? 'Code "' + s.promo.trim() + '" will be applied at checkout.' : 'Enter a promo code.' })),
+      showBar: mobile && has, bottomPad: mobile ? '96px' : '0px', bottomPad2: mobile && has ? '112px' : '72px',
+      drawerOpen: this.state.drawer && has, closeDrawer: () => this.setState({ drawer: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

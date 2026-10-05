@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Archivo',system-ui,sans-serif;color:#111111;background:#fff}
+*{box-sizing:border-box}
+a{color:#0169B8;text-decoration:none}
+a:hover{color:#014F8A}
+#my-store-1805034, #my-store-1805034 *{font-family:'Archivo',sans-serif !important}
+#my-store-1805034 .ec-store{color:#111111}
+#my-store-1805034 .ec-page-title,#my-store-1805034 .ec-header-h1,#my-store-1805034 .ec-header-h3,#my-store-1805034 .page-title__name{font-style:italic !important;font-weight:900 !important;text-transform:uppercase !important;letter-spacing:-.01em !important;color:#111111 !important}
+#my-store-1805034 .grid-category__card,#my-store-1805034 .grid-product__wrap-inner{border-radius:16px !important;overflow:hidden}
+#my-store-1805034 .grid-product__wrap-inner{background:#fff;border:1px solid #E3E8EE;transition:transform .2s,box-shadow .2s}
+#my-store-1805034 .grid-product:hover .grid-product__wrap-inner{transform:translateY(-4px);box-shadow:0 12px 28px rgba(20,32,46,.14)}
+#my-store-1805034 .grid-product__title-inner{font-weight:700 !important;color:#111111 !important}
+#my-store-1805034 .grid-product__price-amount,#my-store-1805034 .details-product-price__value,#my-store-1805034 .ec-price-item{color:#0169B8 !important;font-weight:800 !important}
+#my-store-1805034 .form-control--primary .form-control__button,#my-store-1805034 .form-control--button.form-control--primary .form-control__button{background:#0169B8 !important;border:2px solid #0169B8 !important;color:#fff !important;border-radius:10px !important;font-weight:700 !important;letter-spacing:.02em;box-shadow:none !important}
+#my-store-1805034 .form-control--primary .form-control__button:hover{background:#fff !important;color:#0169B8 !important}
+#my-store-1805034 .form-control--secondary .form-control__button{border:2px solid #0169B8 !important;color:#0169B8 !important;border-radius:10px !important;font-weight:700 !important;background:#fff !important}
+#my-store-1805034 .form-control--secondary .form-control__button:hover{background:#0169B8 !important;color:#fff !important}
+#my-store-1805034 .form-control__text,#my-store-1805034 .form-control__select,#my-store-1805034 .ec-search__input{border-radius:10px !important;border-color:#C9D2DD !important}
+#my-store-1805034 .form-control__text:focus,#my-store-1805034 .form-control__select:focus{border-color:#0169B8 !important}
+#my-store-1805034 a{color:#0169B8}
+#my-store-1805034 .ec-breadcrumbs a{color:#4A5A6C !important}
+#my-store-1805034 .ec-cart-widget__icon,#my-store-1805034 .ec-minicart__counter{color:#0169B8 !important}
+
+#my-store-1805034 .grid__categories{display:grid !important;grid-template-columns:repeat(5,minmax(0,1fr)) !important;gap:0 !important;margin:0 !important;padding:5px !important;border-radius:20px;overflow:hidden;background:linear-gradient(90deg,#FEFA1F 0 12.5%,#FC811C 12.5% 25%,#F91055 25% 37.5%,#DA019F 37.5% 50%,#724DB5 50% 62.5%,#01A0D6 62.5% 75%,#40D13D 75% 87.5%,#DEF306 87.5% 100%) !important;width:100% !important;box-sizing:border-box}
+#my-store-1805034 .grid-category{width:auto !important;max-width:none !important;padding:0 !important;margin:0 !important;float:none !important;background:#fff;box-shadow:0 0 0 .5px #D5DCE5;transition:background .2s,box-shadow .2s}
+#my-store-1805034 .grid-category:hover{background:#F5F7FA;box-shadow:inset 0 -4px 0 #0169B8,0 0 0 .5px #D5DCE5}
+#my-store-1805034 .grid-category__wrap,#my-store-1805034 .grid-category__wrap-inner{height:100%;padding:0 !important;margin:0 !important;box-shadow:none !important;background:none !important;border:0 !important}
+#my-store-1805034 .grid-category__card{display:flex !important;flex-direction:column;align-items:center;text-align:center;padding:28px 20px 32px !important;height:100%;box-sizing:border-box;box-shadow:none !important;background:none !important;border:0 !important}
+#my-store-1805034 .grid-category__image{display:block;width:100%;max-width:260px;margin:0 auto 22px !important;border-radius:8px !important;overflow:hidden;background:#F9F9F9}
+#my-store-1805034 .grid-category__title{display:block;background:none !important;padding:0 !important;margin:0 !important;max-width:220px;font-style:normal !important;font-weight:700 !important;font-size:16px !important;letter-spacing:.14em !important;text-transform:uppercase !important;line-height:1.35 !important;color:#111111 !important}
+#my-store-1805034 .grid-category__title-inner{font-style:normal !important;font-weight:700 !important;font-size:16px !important;letter-spacing:.14em !important;text-transform:uppercase !important;line-height:1.35 !important;color:#111111 !important;white-space:normal}
+#my-store-1805034 .grid-category__shadow,#my-store-1805034 .grid-category__hover-wrap{display:none !important}
+#my-store-1805034 .grid-category__title::before{content:'';display:block;width:10px;height:10px;border-radius:50%;margin:0 auto 12px;background:#0169B8}
+#my-store-1805034 .grid-category__title::after{content:'Shop Now \2192';display:block;margin-top:10px;color:#0169B8;font-weight:600;font-size:15px;letter-spacing:0;text-transform:none}
+#my-store-1805034 .grid-category:nth-child(8n+1) .grid-category__title::before{background:#FEFA1F}
+#my-store-1805034 .grid-category:nth-child(8n+2) .grid-category__title::before{background:#FC811C}
+#my-store-1805034 .grid-category:nth-child(8n+3) .grid-category__title::before{background:#F91055}
+#my-store-1805034 .grid-category:nth-child(8n+4) .grid-category__title::before{background:#DA019F}
+#my-store-1805034 .grid-category:nth-child(8n+5) .grid-category__title::before{background:#724DB5}
+#my-store-1805034 .grid-category:nth-child(8n+6) .grid-category__title::before{background:#01A0D6}
+#my-store-1805034 .grid-category:nth-child(8n+7) .grid-category__title::before{background:#40D13D}
+#my-store-1805034 .grid-category:nth-child(8n+8) .grid-category__title::before{background:#DEF306}
+@media(max-width:1000px){#my-store-1805034 .grid__categories{grid-template-columns:repeat(3,minmax(0,1fr)) !important}}
+@media(max-width:640px){#my-store-1805034 .grid__categories{grid-template-columns:repeat(2,minmax(0,1fr)) !important}#my-store-1805034 .grid-category__card{padding:20px 12px 24px !important}#my-store-1805034 .grid-category__title,#my-store-1805034 .grid-category__title-inner{font-size:13px !important}}
+#InApp_cart_abandon,.InApp_cart_abandon,[class*="cart-abandon"]{display:none !important}
+
+#my-store-1805034 .ec-page-title__featured-products,#my-store-1805034 .ec-page-title{text-align:center !important}
+#my-store-1805034 .ec-page-title__featured-products .page-title__name{font-size:clamp(28px,4vw,42px) !important;line-height:1.05 !important;text-align:center !important}
+#my-store-1805034 .grid-product__wrap-inner{border-radius:24px !important;padding:20px !important;background:#fff !important;border:1px solid #E3E8EE !important;box-shadow:none !important;display:flex;flex-direction:column;height:100%;box-sizing:border-box}
+#my-store-1805034 .grid-product:hover .grid-product__wrap-inner{transform:translateY(-4px);box-shadow:0 12px 28px rgba(20,32,46,.14) !important}
+#my-store-1805034 .grid-product__image{border-radius:18px !important;overflow:hidden;background:#F9F9F9 !important}
+#my-store-1805034 .grid-product__bg{background-color:#F9F9F9 !important}
+#my-store-1805034 .grid-product__title{display:block;margin-top:18px !important;text-align:left !important}
+#my-store-1805034 .grid-product__title-inner{font-style:italic !important;font-weight:900 !important;text-transform:uppercase !important;font-size:20px !important;line-height:1.1 !important;letter-spacing:-.01em !important;color:#111111 !important}
+#my-store-1805034 .ec-store:has(.ec-page-title__featured-products) .grid-product__title::before{content:'Featured';display:inline-block;background:#0169B8;color:#fff;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:12px}
+#my-store-1805034 .grid-product .hc-widget{display:none !important}
+#my-store-1805034 .grid-product__price,#my-store-1805034 .grid-product__price-amount{font-style:italic !important;font-weight:900 !important;font-size:28px !important;color:#0169B8 !important;letter-spacing:-.01em;text-align:left !important}
+#my-store-1805034 .grid-product__price{margin-top:10px}
+#my-store-1805034 .grid-product__button .form-control__button,#my-store-1805034 .grid-product__buy-now .form-control__button{border-radius:10px !important}
+#my-store-1805034.hide-featured-grid .ec-page-title__featured-products,#my-store-1805034.hide-featured-grid .grid__products{display:none !important}
+#my-store-1805034 .ec-cart-widget,#my-store-1805034 .ec-minicart,#my-store-1805034 .ec-store__search-wrap,#my-store-1805034 .ec-search{display:none !important}
+#my-store-1805034 .ec-footer{display:none !important}
+html{overflow-y:auto !important}body{overflow:visible !important;position:static !important;height:auto !important}
+
+#my-store-1805034 .grid__products{display:grid !important;grid-template-columns:repeat(5,minmax(0,1fr)) !important;gap:0 !important;margin:0 0 24px !important;padding:1px !important;border-radius:20px;overflow:hidden;width:100% !important;box-sizing:border-box;background:#D5DCE5 !important}
+#my-store-1805034 .grid-product{width:auto !important;max-width:none !important;padding:0 !important;margin:0 !important;float:none !important;background:#fff;box-shadow:0 0 0 .5px #D5DCE5;transition:background .2s,box-shadow .2s;display:block !important}
+#my-store-1805034 .grid-product:hover{background:#F5F7FA;box-shadow:inset 0 -4px 0 #0169B8,0 0 0 .5px #D5DCE5}
+#my-store-1805034 .grid-product:hover .grid-product__wrap-inner{transform:none;box-shadow:none !important}
+#my-store-1805034 .grid-product__wrap,#my-store-1805034 .grid-product__wrap-inner{height:100%;padding:0 !important;margin:0 !important;box-shadow:none !important;background:none !important;border:0 !important;border-radius:0 !important}
+#my-store-1805034 .grid-product__wrap-inner{display:flex !important;flex-direction:column;align-items:center;text-align:center;padding:28px 20px 32px !important;box-sizing:border-box}
+#my-store-1805034 .grid-product__image{display:block;width:100%;max-width:260px;margin:0 auto 22px !important;border-radius:8px !important;overflow:hidden;background:#F9F9F9 !important}
+#my-store-1805034 .grid-product__title{display:flex !important;flex-direction:column;align-items:center;text-align:center !important;margin:0 !important;max-width:220px;padding:0 !important}
+#my-store-1805034 .grid-product__title::before{content:'';display:block;width:10px;height:10px;border-radius:50%;margin:0 auto 12px;background:#0169B8}
+#my-store-1805034 .grid-product__title-inner{font-style:normal !important;font-weight:700 !important;font-size:15px !important;letter-spacing:.12em !important;text-transform:uppercase !important;line-height:1.35 !important;color:#111111 !important;text-align:center !important}
+#my-store-1805034 .grid-product__title::after{content:'Shop Now \2192';display:block;margin-top:10px;color:#0169B8;font-weight:600;font-size:15px;letter-spacing:0;text-transform:none}
+#my-store-1805034 .grid-product__price{order:3;margin:6px 0 0 !important;text-align:center !important}
+#my-store-1805034 .grid-product__price,#my-store-1805034 .grid-product__price-amount{font-style:normal !important;font-weight:700 !important;font-size:15px !important;color:#4A5A6C !important;letter-spacing:0 !important;text-align:center !important}
+#my-store-1805034 .grid-product__button,#my-store-1805034 .grid-product__buy-now,#my-store-1805034 .grid-product__hover-wrap,#my-store-1805034 .grid-product .grid-product__shadow{display:none !important}
+#my-store-1805034 .ec-store:has(.ec-page-title__featured-products) .grid-product__title::before{content:'';background:#0169B8;padding:0;border-radius:50%;width:10px;height:10px;font-size:0}
+#my-store-1805034 .grid-product:nth-child(8n+1) .grid-product__title::before{background:#FEFA1F !important}
+#my-store-1805034 .grid-product:nth-child(8n+2) .grid-product__title::before{background:#FC811C !important}
+#my-store-1805034 .grid-product:nth-child(8n+3) .grid-product__title::before{background:#F91055 !important}
+#my-store-1805034 .grid-product:nth-child(8n+4) .grid-product__title::before{background:#DA019F !important}
+#my-store-1805034 .grid-product:nth-child(8n+5) .grid-product__title::before{background:#724DB5 !important}
+#my-store-1805034 .grid-product:nth-child(8n+6) .grid-product__title::before{background:#01A0D6 !important}
+#my-store-1805034 .grid-product:nth-child(8n+7) .grid-product__title::before{background:#40D13D !important}
+#my-store-1805034 .grid-product:nth-child(8n+8) .grid-product__title::before{background:#DEF306 !important}
+@media(max-width:1000px){#my-store-1805034 .grid__products{grid-template-columns:repeat(3,minmax(0,1fr)) !important}}
+@media(max-width:640px){#my-store-1805034 .grid__products{grid-template-columns:repeat(2,minmax(0,1fr)) !important}#my-store-1805034 .grid-product__wrap-inner{padding:20px 12px 24px !important}#my-store-1805034 .grid-product__title-inner{font-size:12px !important}}
+
+#my-store-1805034 .grid__products{display:flex !important;flex-wrap:wrap !important;justify-content:center !important;background:#fff !important;padding:0 !important;border:1px solid #D5DCE5 !important}
+#my-store-1805034 .grid-product{flex:0 0 20% !important;width:20% !important}
+@media(max-width:1000px){#my-store-1805034 .grid-product{flex-basis:33.3333% !important;width:33.3333% !important}}
+@media(max-width:640px){#my-store-1805034 .grid-product{flex-basis:50% !important;width:50% !important}}
+#my-store-1805034 .grid-product{flex:0 0 25% !important;width:25% !important}
+@media(max-width:1000px){#my-store-1805034 .grid-product{flex-basis:50% !important;width:50% !important}}
+</style>
+</helmet>
+<div style="background:#fff;color:#111111;font-family:'Archivo',system-ui,sans-serif;line-height:1.5">
+<dc-import name="Header" cart-count="{{ cartCount }}" hint-size="100%,82px"></dc-import>
+
+
+<section style="position:relative;background:#22344A;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background:url('assets/hero.webp') center/cover no-repeat"></div>
+  <div style="position:absolute;inset:0;background:rgba(10,10,10,.68)"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,80px) 24px;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="display:flex;flex-direction:column;align-items:center;max-width:860px">
+      <span style="background:#0169B8;color:#fff;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:24px">{{ eyebrow }}</span>
+      <h1 style="text-transform:uppercase;font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(34px,5.2vw,62px);line-height:1;margin:0 0 18px;letter-spacing:-.01em">{{ title }}</h1>
+      <p style="font-size:clamp(17px,2vw,21px);max-width:620px;margin:0 0 28px;color:#E8EEF4">{{ tagline }}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+        <a href="#store" style="background:#0169B8;color:#fff;font-weight:700;padding:16px 30px;border-radius:10px;font-size:17px;border:2px solid #0169B8;letter-spacing:.02em" style-hover="background:#fff;color:#0169B8;border-color:#fff">Shop Now</a>
+        <a href="Do-It-Yourself%20Families.dc.html" style="border:2px solid #fff;color:#fff;font-weight:700;padding:16px 30px;border-radius:10px;font-size:17px;letter-spacing:.02em" style-hover="background:#fff;color:#111111">Buy for My Home →</a>
+      </div>
+    </div>
+    
+  </div>
+  <div style="display:flex;height:5px;position:relative"><i style="flex:1;background:#FEFA1F"></i><i style="flex:1;background:#FC811C"></i><i style="flex:1;background:#F91055"></i><i style="flex:1;background:#DA019F"></i><i style="flex:1;background:#724DB5"></i><i style="flex:1;background:#01A0D6"></i><i style="flex:1;background:#40D13D"></i><i style="flex:1;background:#DEF306"></i></div>
+</section>
+
+<main id="store" style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,72px) 24px clamp(56px,8vw,96px)">
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;margin:0 auto 32px;max-width:720px"><label style="display:flex;align-items:center;gap:12px;flex:1 1 320px;background:#fff;border:2px solid #D5DCE5;border-radius:12px;padding:0 18px;height:54px" style-focus="border-color:#0169B8">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B7B8D" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+    <input type="search" value="{{ q }}" onInput="{{ onQ }}" onKeyDown="{{ onSearchKey }}" placeholder="Search products and categories" aria-label="Search products" style="flex:1;border:0;outline:0;background:none;font-family:'Archivo',sans-serif;font-size:16px;color:#111111;min-width:0">
+  </label>
+  <a href="#!/~/cart" onClick="{{ openCart }}" aria-label="View cart" style="display:flex;align-items:center;gap:10px;height:54px;padding:0 22px;background:#0169B8;color:#fff;font-weight:700;border-radius:12px;font-size:16px" style-hover="background:#014F8A;color:#fff"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.5 11h10L20 7H6"></path><circle cx="9" cy="20" r="1.5"></circle><circle cx="17" cy="20" r="1.5"></circle></svg>Cart<b style="background:#fff;color:#0169B8;min-width:24px;height:24px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:13px">{{ cartCount }}</b></a></div>
+  <div id="my-store-1805034"></div>
+</main>
+<sc-if value="{{ hasFeatured }}" hint-placeholder-val="{{ false }}">
+<div style="background:#F5F7FA;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0;display:flex;flex-direction:column;gap:24px">
+  <h2 style="text-align:center;text-transform:uppercase;font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:0 0 8px;letter-spacing:-.01em">Featured Products</h2>
+  <sc-for list="{{ featured }}" as="f" hint-placeholder-count="1">
+  <div style="background:#fff;border:1px solid #E3E8EE;border-radius:24px;padding:clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,56px);align-items:center">
+    <a href="{{ f.href }}" onClick="{{ f.open }}" role="img" aria-label="{{ f.title }}" style="display:block;aspect-ratio:1/1;border-radius:18px;background:#F9F9F9 center/contain no-repeat;background-image:url({{ f.img }})"></a>
+    <div>
+      <span style="display:inline-block;background:#0169B8;color:#fff;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:16px">Featured</span>
+      <h2 style="text-transform:uppercase;font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,40px);line-height:1.05;margin:0 0 12px;letter-spacing:-.01em"><a href="{{ f.href }}" onClick="{{ f.open }}" style="color:inherit" style-hover="color:#0169B8">{{ f.title }}</a></h2>
+      <div style="font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:38px;color:#0169B8;margin-bottom:24px;letter-spacing:-.01em">{{ f.price }}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+        <div style="display:flex;align-items:center;border:2px solid #C9D2DD;border-radius:10px;background:#fff">
+          <button onClick="{{ f.down }}" aria-label="Decrease" style="width:44px;height:48px;border:0;background:none;font-size:22px;cursor:pointer;color:#111111">−</button>
+          <span style="min-width:36px;text-align:center;font-weight:700;font-size:18px">{{ f.qty }}</span>
+          <button onClick="{{ f.up }}" aria-label="Increase" style="width:44px;height:48px;border:0;background:none;font-size:22px;cursor:pointer;color:#111111">+</button>
+        </div>
+        <button onClick="{{ f.add }}" style="background:#0169B8;color:#fff;font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;padding:0 32px;height:52px;border:0;border-radius:10px;cursor:pointer" style-hover="background:#014F8A;color:#fff">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  </sc-for>
+</section></div>
+</sc-if>
+
+
+<!-- CTA band -->
+<section style="position:relative;background:#0169B8;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background:url('assets/cta.webp') center 65%/cover no-repeat"></div>
+  <div style="position:absolute;inset:0;background:rgba(1,105,184,.88)"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(64px,9vw,112px) 24px;text-align:center">
+    <h2 style="text-transform:uppercase;font-family:'Archivo',sans-serif;font-style:italic;font-weight:900;font-size:clamp(30px,4.8vw,52px);line-height:1;margin:0 0 28px;letter-spacing:-.01em">Ready to Get Organized?</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+      <a href="All%20Products.dc.html" style="background:#fff;color:#0169B8;font-weight:700;padding:16px 28px;border-radius:10px;font-size:17px" style-hover="background:#E6EEF6;color:#111111">Shop Professional Packs</a>
+      <a href="Do-It-Yourself%20Families.dc.html" style="border:2px solid #fff;color:#fff;font-weight:700;padding:14px 28px;border-radius:10px;font-size:17px" style-hover="background:#fff;color:#0169B8">Buy for My Home</a>
+    </div>
+    <p style="margin:24px 0 0;font-size:15px;color:#fff">Need a custom or bulk order? <a href="#" style="color:#fff;text-decoration:underline;font-weight:700">Contact us</a></p>
+  </div>
+</section>
+
+<!-- 14 footer -->
+<dc-import name="Footer" hint-size="100%,520px"></dc-import>
+<a href="#!/~/cart" onClick="{{ openCart }}" aria-label="View cart" style="position:fixed;right:20px;bottom:24px;z-index:90;width:60px;height:60px;border-radius:50%;background:#0169B8;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(1,105,184,.4),0 2px 6px rgba(0,0,0,.2);border:3px solid #fff" style-hover="background:#111111"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.5 11h10L20 7H6"></path><circle cx="9" cy="20" r="1.5"></circle><circle cx="17" cy="20" r="1.5"></circle></svg><b style="position:absolute;top:-8px;right:-8px;background:#F91055;color:#fff;font-size:12px;min-width:22px;height:22px;border-radius:11px;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-sizing:border-box">{{ cartCount }}</b></a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { dd: -1, md: -1, w: 1280, menuOpen: false, featured: [], qtys: {}, q: '', cart: 0 };
+  componentDidMount() {
+    try {
+      const here = location.pathname + location.search;
+      const nav = (performance.getEntriesByType('navigation')[0] || {}).type;
+      const last = localStorage.getItem('tar_last_page');
+      if (nav === 'reload' && last && last !== here && last.split('?')[0] !== here.split('?')[0]) { location.replace(last); return; }
+      localStorage.setItem('tar_last_page', here);
+    } catch (e) {}
+    const f = () => this.setState({ w: window.innerWidth });
+    f(); window.addEventListener('resize', f); this._f = f;
+    const pg = this.page();
+    const hk = 'tar_prod_' + pg.s;
+    try { const sv = localStorage.getItem(hk); if (sv && location.hash.indexOf('#!/') !== 0) location.hash = sv; } catch (e) {}
+    this._hs = () => { if (location.hash.indexOf('#!/') === 0) { try { localStorage.setItem(hk, location.hash); } catch (e) {} } };
+    window.addEventListener('hashchange', this._hs);
+    document.title = pg.title + ' | TAG-A-ROOM';
+    window.ec = window.ec || {}; window.ec.config = window.ec.config || {};
+    window.ec.config.chameleon = { colors: { 'color-button': '#0169B8', 'color-price': '#0169B8', 'color-link': '#0169B8', 'color-title': '#111111', 'color-foreground': '#111111', 'color-background': '#FFFFFF' }, font: { fontFamily: 'Archivo', fontFamilyCustom: 'Archivo' } };
+    const init = () => {
+      const a = ["categoriesPerRow=3", "views=grid(20,3) list(60) table(60)", "categoryView=grid", "searchView=list"];
+      if (pg.id) a.push("defaultCategoryId=" + pg.id);
+      a.push("id=my-store-1805034");
+      window.xProductBrowser && window.xProductBrowser.apply(null, a);
+      window.Ecwid && window.Ecwid.OnAPILoaded.add(() => window.Ecwid.OnCartChanged.add(c => this.setState({ cart: c.productsQuantity })));
+      const root = document.getElementById('my-store-1805034');
+      if (root) { let t; this._mo = new MutationObserver(() => { clearTimeout(t); t = setTimeout(() => this.scrape(), 250); }); this._mo.observe(root, { childList: true, subtree: true }); }
+    };
+    if (window.xProductBrowser) return init();
+    const s = document.createElement('script');
+    s.setAttribute('data-cfasync', 'false'); s.charset = 'utf-8';
+    s.src = 'https://app.ecwid.com/script.js?1805034&data_platform=code&data_date=2026-10-02';
+    s.onload = init; document.body.appendChild(s);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._f); window.removeEventListener('hashchange', this._hs); this._mo && this._mo.disconnect(); }
+  scrape() {
+    const root = document.getElementById('my-store-1805034'); if (!root) return;
+    const on = !!root.querySelector('.ec-page-title__featured-products');
+    root.classList.toggle('hide-featured-grid', on);
+    if (!on) { if (this.state.featured.length) this.setState({ featured: [] }); return; }
+    const items = [...root.querySelectorAll('.grid-product')].map(c => {
+      const w = c.querySelector('[data-product-id]'), a = c.querySelector('a.grid-product__title'), im = c.querySelector('img.grid-product__picture'), p = c.querySelector('.grid-product__price-amount') || c.querySelector('.grid-product__price');
+      return w && a ? { id: +w.dataset.productId, title: (c.querySelector('.grid-product__title-inner') || a).textContent.trim(), href: a.getAttribute('href'), img: im ? (im.getAttribute('src') || '') : '', price: p ? p.textContent.trim() : '' } : null;
+    }).filter(Boolean);
+    if (items.map(i => i.id).join() !== this.state.featured.map(i => i.id).join()) this.setState({ featured: items });
+  }
+  pages() {
+    const aud = ['Tools built for crews that move all day.'];
+    return [
+      { s: 'all', t: 'All Products', g: 'Color-coded moving labels and supplies, made in the USA.', id: 0, img: 'assets/label-systems.webp' },
+      { s: 'moving-label-systems', t: 'Tag-A-Room Moving Label Systems', g: 'The complete color-coded system. Label every room, box and item once.', id: 4497123, img: 'assets/label-systems.webp' },
+      { s: 'moving-packing-labels', t: 'Moving & Packing Labels', g: 'Heavy, fragile, this side up and more. Clear handling labels for every box.', id: 123853660, img: 'assets/moving-packing.webp' },
+      { s: 'box-content-labels', t: 'Box Content Labels', g: 'Say what is inside before the tape goes on.', id: 116934867, img: 'assets/box-content.webp' },
+      { s: 'marketing-gifts', t: 'Marketing Gifts', g: 'Closing gifts for loan officers, realtors and moving companies that keep your name in the new home.', id: 23731047, img: 'assets/marketing-gifts.webp' },
+      { s: 'office-labels', t: 'Office Labels & Supplies', g: 'Keep office moves and storage organized from desk to floor.', id: 123842924, img: 'assets/office.webp' },
+      { s: 'alert-labels', t: 'Alert Labels', g: 'Open first, do not load, fragile, caution. Flag what matters at a glance.', id: 116935873, img: 'assets/alert.webp' },
+      { s: 'shipping-labels', t: 'Shipping Labels', g: 'Clear, sturdy labels for shipping and freight.', id: 123842925, img: 'assets/shipping.webp' },
+      { s: 'color-coding-labels', t: 'Color Coding Labels', g: 'Bright room colors your crew can read from across the house.', id: 123923742, img: 'assets/color-coding.webp' },
+      { s: 'professional-movers', t: 'Professional Movers', g: 'Label every job the same way and cut load-in time.', id: 196046558, img: 'assets/pro-movers.webp' },
+      { s: 'realtors', t: 'Realtors', g: 'Give clients a clear system from listing to closing.', id: 196046559, img: 'assets/realtors.webp' },
+      { s: 'mortgage-companies', t: 'Mortgage Companies', g: 'A useful closing gift that keeps your name in the new home.', id: 196046560, img: 'assets/mortgage.webp' },
+      { s: 'restoration-companies', t: 'Restoration Companies', g: 'Keep contents and rooms straight after a loss.', id: 196045060, img: 'assets/restoration.webp' },
+      { s: 'move-managers', t: 'Move Managers & Organizers', g: 'Coordinate every room and every crew with one color code.', id: 196052787, img: 'assets/move-managers.webp' },
+      { s: 'apartments', t: 'Apartments & Property Managers', g: 'Standardize unit moves for residents and staff.', id: 196046561, img: 'assets/apartments.webp' },
+      { s: 'diy-families', t: 'Do-It-Yourself Families', g: 'Pack once, unpack by color, and skip the guesswork.', id: 196045061, img: 'assets/diy.webp' }
+    ];
+  }
+  page() {
+    const s = 'all';
+    return this.pages().find(p => p.s === s) || this.pages()[0];
+  }
+  renderVals() {
+    const w = this.state.w, pg = this.page();
+    const catNames = ['Moving Label Systems', 'Moving & Packing Labels', 'Box Content Labels', 'Marketing Gifts', 'Office Labels', 'Alert Labels', 'Shipping Labels', 'Color Coding Labels'];
+    const audNames = ['Professional Movers', 'Realtors', 'Mortgage Companies', 'Restoration Companies', 'Move Managers', 'Apartments/Property Management', 'DIY Movers'];
+    const FM = {'all':'All%20Products.dc.html','moving-label-systems':'Moving%20Label%20Systems.dc.html','moving-packing-labels':'Moving%20and%20Packing%20Labels.dc.html','box-content-labels':'Box%20Content%20Labels.dc.html','marketing-gifts':'Marketing%20Gifts.dc.html','office-labels':'Office%20Labels%20and%20Supplies.dc.html','alert-labels':'Alert%20Labels.dc.html','shipping-labels':'Shipping%20Labels.dc.html','color-coding-labels':'Color%20Coding%20Labels.dc.html','professional-movers':'Professional%20Movers.dc.html','realtors':'Realtors.dc.html','mortgage-companies':'Mortgage%20Companies.dc.html','restoration-companies':'Restoration%20Companies.dc.html','move-managers':'Move%20Managers.dc.html','apartments':'Apartments%20and%20Property%20Managers.dc.html','diy-families':'Do-It-Yourself%20Families.dc.html'};
+    const PG = this.pages().map(p => FM[p.s]), SL = this.pages().map(p => p.s);
+    const clr = s => () => { try { localStorage.removeItem('tar_prod_' + s); } catch (e) {} };
+    const R = [];
+    return {
+      isDesktop: w >= 1100, isWide: w >= 640, isMobile: false, isMobileOrTablet: w < 1100,
+      menuOpen: this.state.menuOpen && w < 1100,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      cartCount: this.state.cart, q: this.state.q, onQ: e => this.setState({ q: e.target.value }),
+      onSearchKey: e => { if (e.key === 'Enter') { const v = this.state.q.trim(); location.hash = v ? '#!/~/search/keyword=' + encodeURIComponent(v) : '#!/~/shop'; } },
+      openCart: e => { e.preventDefault(); location.hash = '#!/~/cart'; },
+      eyebrow: pg.s === 'all' ? 'Shop' : (pg.id >= 196000000 ? 'Built for' : 'Product category'),
+      title: pg.t, tagline: pg.g, heroImg: pg.img,
+      hasFeatured: this.state.featured.length > 0,
+      featured: this.state.featured.map(f => { const q = this.state.qtys[f.id] || 1, set = v => this.setState(s => ({ qtys: { ...s.qtys, [f.id]: Math.max(1, v) } })); return { ...f, qty: q, open: e => { e.preventDefault(); location.hash = f.href; window.scrollTo({ top: 0 }); }, up: () => set(q + 1), down: () => set(q - 1), add: () => { window.Ecwid && window.Ecwid.Cart ? window.Ecwid.Cart.addProduct({ id: f.id, quantity: q, callback: () => set(1) }) : (location.hash = f.href); } }; }),
+      navItems: [
+        { t: 'Products', w: '380px', groups: [['All Products'], ['Tag-A-Room Moving Label Systems', 'Moving & Packing Labels', 'Box Content Labels', 'Marketing Gifts – Loan Officers, Realtors, Moving Companies', 'Office Labels & Supplies', 'Alert Labels', 'Shipping Labels', 'Color Coding Labels'], ['Professional Movers', 'Realtors', 'Mortgage Companies', 'Restoration Companies', 'Move Managers – Organizers', 'Apartments – Property Managers', 'Do-It-Yourself Families']] },
+        { t: 'Label Benefits', w: '320px', groups: [['All Label Benefits'], ['Professional Movers', 'Realtors', 'Mortgage Companies', 'Restoration Companies', 'Move Managers – Organizers', 'Apartments – Property Managers', 'Do-It-Yourself Families']] },
+        { t: 'Templates' },
+        { t: 'About Us', w: '220px', groups: [['About Us'], ['Blog', 'Gallery', 'Moving Tips']] },
+        { t: 'Contact' }
+      ].map((n, i) => ({
+        t: n.t, ddw: n.w || '0', hasKids: !!n.groups,
+        kids: (n.groups || []).flatMap((g, gi) => g.map((t, ti) => ({ t, href: i === 0 ? PG[gi === 0 ? 0 : gi === 1 ? 1 + ti : 9 + ti] : '#', tap: i === 0 ? clr(SL[gi === 0 ? 0 : gi === 1 ? 1 + ti : 9 + ti]) : (() => {}), fw: gi === 0 ? '700' : '400', bt: gi > 0 && ti === 0 ? '1px solid #E3E8EE' : '0 solid transparent', mt: gi > 0 && ti === 0 ? '6px' : '0' }))),
+        open: !!n.groups && this.state.dd === i, mOpen: !!n.groups && this.state.md === i,
+        rot: this.state.dd === i ? 'rotate(180deg)' : 'none',
+        enter: () => n.groups && this.setState({ dd: i }), leave: () => this.setState({ dd: -1 }),
+        tap: e => { if (n.groups) { e.preventDefault(); this.setState(s => ({ md: s.md === i ? -1 : i })); } }
+      })),
+      catNames, audNames,
+      company: ['About', 'Blog', 'Gallery', 'Templates', 'Contact'],
+      policies: ['Shop', 'Returns', 'General'].map((x, i) => ['Shipping', 'Returns', 'General'][i])
+    };
+  }
+}
+</script>
+</body>
+</html>

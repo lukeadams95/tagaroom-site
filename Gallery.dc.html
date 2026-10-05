@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Archivo',system-ui,sans-serif;color:#111111;background:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+a{color:#0169B8;text-decoration:none}
+a:hover{color:#014F8A}
+</style>
+</helmet>
+<div style="background:#fff;color:#111111;font-family:'Archivo',system-ui,sans-serif;line-height:1.5">
+<dc-import name="Header" active="About Us" active-kid="Gallery" hint-size="100%,82px"></dc-import>
+
+<section style="position:relative;background:#0169B8;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(254,250,31,.3) 0 9px,transparent 10px),radial-gradient(circle,rgba(252,129,28,.3) 0 6px,transparent 7px),radial-gradient(circle,rgba(249,16,85,.3) 0 12px,transparent 13px),radial-gradient(circle,rgba(218,1,159,.3) 0 7px,transparent 8px),radial-gradient(circle,rgba(114,77,181,.35) 0 10px,transparent 11px),radial-gradient(circle,rgba(1,160,214,.35) 0 8px,transparent 9px),radial-gradient(circle,rgba(64,209,61,.3) 0 11px,transparent 12px),radial-gradient(circle,rgba(222,243,6,.3) 0 6px,transparent 7px);background-size:260px 260px,190px 190px,310px 310px,230px 230px,280px 280px,210px 210px,340px 340px,170px 170px;background-position:20px 30px,90px 120px,160px 60px,40px 180px,220px 140px,130px 20px,70px 250px,10px 90px"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(40px,5vw,64px) 24px clamp(44px,6vw,72px);display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="display:flex;flex-direction:column;align-items:center;max-width:780px">
+      <span style="background:#fff;color:#0169B8;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:22px">Gallery</span>
+      <h1 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(34px,5.2vw,62px);line-height:1;margin:0 0 18px;letter-spacing:-.01em">TAG-A-ROOM in Action</h1>
+      <p style="font-size:clamp(17px,2vw,21px);max-width:620px;margin:0 0 28px;color:#fff">Labels, packing supplies and the people behind them, from our warehouse to your front door.</p>
+      <a href="#photos" style="background:#fff;color:#0169B8;font-weight:700;padding:16px 30px;border-radius:10px;font-size:17px;border:2px solid #fff;letter-spacing:.02em" style-hover="background:#E6EEF6;color:#014F8A;border-color:#E6EEF6">View Photos</a>
+    </div>
+  </div>
+  <div style="display:flex;height:5px;position:relative"><i style="flex:1;background:#FEFA1F"></i><i style="flex:1;background:#FC811C"></i><i style="flex:1;background:#F91055"></i><i style="flex:1;background:#DA019F"></i><i style="flex:1;background:#724DB5"></i><i style="flex:1;background:#01A0D6"></i><i style="flex:1;background:#40D13D"></i><i style="flex:1;background:#DEF306"></i></div>
+</section>
+
+<div id="photos" style="background:#fff;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,80px) 24px 0">
+  <div style="columns:280px;column-gap:20px">
+    <sc-for list="{{ photos }}" as="p" hint-placeholder-count="12">
+      <button onClick="{{ p.open }}" aria-label="Open photo {{ p.n }}" style="display:block;width:100%;padding:0;margin:0 0 20px;border:0;background:#F5F7FA;border-radius:16px;overflow:hidden;cursor:zoom-in;break-inside:avoid;box-shadow:0 2px 10px rgba(17,17,17,.08)" style-hover="box-shadow:0 8px 24px rgba(1,105,184,.25)"><img src="{{ p.src }}" alt="TAG-A-ROOM photo {{ p.n }}" loading="lazy" style="display:block;width:100%;height:auto"></button>
+    </sc-for>
+  </div>
+</section></div>
+
+<sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ close }}" style="position:fixed;inset:0;z-index:200;background:rgba(17,17,17,.92);display:flex;align-items:center;justify-content:center;padding:56px 64px">
+    <div role="img" aria-label="Gallery photo" style="{{ lbStyle }}"></div>
+    <button onClick="{{ close }}" aria-label="Close" style="position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:#111111;font-size:26px;line-height:1;cursor:pointer;font-family:inherit">&times;</button>
+    <button onClick="{{ prev }}" aria-label="Previous" style="position:absolute;left:12px;top:50%;margin-top:-22px;width:44px;height:44px;border-radius:50%;border:0;background:#0169B8;color:#fff;font-size:24px;cursor:pointer;font-family:inherit">&lsaquo;</button>
+    <button onClick="{{ next }}" aria-label="Next" style="position:absolute;right:12px;top:50%;margin-top:-22px;width:44px;height:44px;border-radius:50%;border:0;background:#0169B8;color:#fff;font-size:24px;cursor:pointer;font-family:inherit">&rsaquo;</button>
+    <span style="position:absolute;bottom:16px;left:0;right:0;text-align:center;color:#fff;font-weight:600;font-size:15px">{{ lbCount }}</span>
+  </div>
+</sc-if>
+
+<section style="position:relative;background:#0169B8;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background:url('assets/cta.webp') center 65%/cover no-repeat"></div>
+  <div style="position:absolute;inset:0;background:rgba(1,105,184,.88)"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(64px,9vw,112px) 24px;text-align:center">
+    <h2 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(30px,4.8vw,52px);line-height:1;margin:0 0 28px;letter-spacing:-.01em">Ready to Label Your Move?</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+      <a href="All%20Products.dc.html" style="background:#fff;color:#0169B8;font-weight:700;padding:16px 30px;border-radius:10px;font-size:17px;border:2px solid #fff" style-hover="background:#E6EEF6;color:#111111">Shop Professional Packs</a>
+      <a href="Do-It-Yourself%20Families.dc.html" style="border:2px solid #fff;color:#fff;font-weight:700;padding:16px 30px;border-radius:10px;font-size:17px" style-hover="background:#fff;color:#0169B8">Buy for My Home</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="Footer" hint-size="100%,520px"></dc-import>
+<a href="All%20Products.dc.html#!/~/cart" aria-label="View cart" style="position:fixed;right:20px;bottom:24px;z-index:90;width:60px;height:60px;border-radius:50%;background:#0169B8;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(1,105,184,.4),0 2px 6px rgba(0,0,0,.2);border:3px solid #fff" style-hover="background:#111111"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.5 11h10L20 7H6"></path><circle cx="9" cy="20" r="1.5"></circle><circle cx="17" cy="20" r="1.5"></circle></svg></a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { i: -1 };
+  componentDidMount() {
+    document.title = 'Gallery | TAG-A-ROOM';
+    this._k = e => { if (this.state.i < 0) return; if (e.key === 'Escape') this.setState({ i: -1 }); if (e.key === 'ArrowRight') this.go(1); if (e.key === 'ArrowLeft') this.go(-1); };
+    window.addEventListener('keydown', this._k);
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this._k); }
+  go(d) { const n = this.P.length; this.setState(s => ({ i: (s.i + d + n) % n })); }
+  renderVals() {
+    const B = 'https://tagaroom.com/wp-content/uploads/';
+    this.P = ['2026/03/IMG_0430.jpeg', '2026/03/IMG_0429.jpeg', '2026/03/IMG_0427.jpeg', '2024/02/IMG_4094.jpg', '2024/02/IMG_4095.jpg', '2024/02/IMG_4120.jpg', '2024/02/IMG_4130.jpg', '2024/02/IMG_4234.jpg', '2024/02/IMG_4809.jpg', '2024/02/IMG_4822.jpg', '2024/02/IMG_5857.jpg', '2024/02/IMG_5858.jpg', '2024/02/IMG_5859.jpg', '2024/02/IMG_5860.jpg', '2024/02/IMG_6660.jpg', '2024/02/IMG_7342.jpg', '2024/04/moving-labels-and-packing-supplies.jpg', '2024/04/moving-labels-at-walmart.jpg', '2024/04/moving-labels-warehouse.jpg', '2024/04/moving-supplier-signage.jpg', '2024/04/packing-moving-labels.jpg'].map(p => B + p);
+    const i = this.state.i;
+    return {
+      photos: this.P.map((src, k) => ({ src, n: k + 1, open: () => this.setState({ i: k }) })),
+      lbOpen: i >= 0, lbStyle: { width: '100%', height: '100%', borderRadius: 8, background: i >= 0 ? 'url(' + this.P[i] + ') center/contain no-repeat' : 'none' }, lbCount: (i + 1) + ' / ' + this.P.length,
+      close: () => this.setState({ i: -1 }),
+      prev: e => { e.stopPropagation(); this.go(-1); },
+      next: e => { e.stopPropagation(); this.go(1); }
+    };
+  }
+}
+</script>
+</body>
+</html>

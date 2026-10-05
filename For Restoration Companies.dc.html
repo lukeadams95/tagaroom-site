@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="Audience Template" page="{{ data }}" hint-size="100%,4200px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { data: {
+      idx: 3, nav: 'Restoration Companies', who: 'Restoration Companies', how: 'Restoration',
+      headline: 'Faster Pack-Outs. Cleaner Inventory. Fewer Disputes.',
+      sub: 'A color-coded labeling system that keeps contents organized from pack-out to move-back.',
+      shop: 'Shop Restoration Packs', shopHref: 'Restoration%20Companies.dc.html',
+      cta: 'Get Custom Logo Labels', ctaHref: '#',
+      img: 'A restoration crew on a pack-out, labeling contents.',
+      challengeH: 'Pack-outs get complicated fast', challenge: 'Pack-outs involve multiple techs, storage and long timelines. Without a clear system, items get mixed up and disputes follow.',
+      benefits: [
+        ['Fewer packing errors', 'Every item is labeled to its room at the source.'],
+        ['Faster storage and retrieval', 'Find what you need by color, not by guessing.'],
+        ['Fewer callbacks and disputes', 'A clear record of what went where.'],
+        ['Easier team coordination', 'Every tech works from the same system.'],
+        ['Accurate inventory', 'Track contents from pack-out to completion.'],
+        ['Works on any item', 'Boxes, wrapped items and bins.']
+      ],
+      steps: ['Label by room at pack-out', 'Store and track by color', 'Return every item to the right room'],
+      included: [
+        ['Color-Coded Room Labels', 'One color per room from pack-out to move-back.', 'assets/color-coding.webp', 'Color%20Coding%20Labels.dc.html'],
+        ['Content / Inventory Labels', 'Record what is inside every box.', 'assets/box-content.webp', 'Box%20Content%20Labels.dc.html'],
+        ['Workflow Labels', 'Optional labels to flag status and handling.', 'assets/alert.webp', 'Alert%20Labels.dc.html'],
+        ['Custom Logo Labels', 'Your brand on every label. Contact us for options.', 'assets/restoration.webp', 'Restoration%20Companies.dc.html']
+      ],
+      quote: '[Placeholder testimonial. Replace with a real review from a restoration company.]', quoteBy: 'Customer name, Restoration Company',
+      ctaH: 'Bring Order to Every Pack-Out'
+    } };
+  }
+}
+</script>
+</body>
+</html>

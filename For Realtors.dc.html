@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="Audience Template" page="{{ data }}" hint-size="100%,4200px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { data: {
+      idx: 1, nav: 'Realtors', who: 'Realtors', how: 'Realtors',
+      headline: 'A Closing Gift They\u2019ll Actually Use',
+      sub: 'Give clients a move-week organization system that keeps your name in their new home long after closing.',
+      shop: 'Shop Realtor Packs', shopHref: 'Realtors.dc.html',
+      cta: 'Get Brokerage Pricing', ctaHref: '#',
+      img: 'A realtor handing over house keys to new homeowners.',
+      challengeH: 'Most closing gifts get forgotten', challenge: 'Move week is when clients need help most, and when most agents disappear.',
+      benefits: [
+        ['A memorable, useful gift', 'A closing gift clients open, use and keep.'],
+        ['Less stress in move week', 'Clients know where every box goes before the truck arrives.'],
+        ['Long-term brand visibility', 'Your name stays in the home long after closing.'],
+        ['More referrals and reviews', 'Helpful agents get talked about.'],
+        ['A premium impression', 'A thoughtful gift that feels personal, not generic.']
+      ],
+      steps: ['Choose a neutral or co-branded kit', 'Give it at closing or listing', 'Clients move organized and remember who helped'],
+      included: [
+        ['Giftable Move Kits', 'Neutral or co-branded kits, ready to hand over.', 'assets/marketing-gifts.webp', 'Marketing%20Gifts.dc.html'],
+        ['Color-Coded Room Labels', 'One color per room for a smoother move.', 'assets/color-coding.webp', 'Color%20Coding%20Labels.dc.html'],
+        ['Box Content Labels', 'Say what is inside before the tape goes on.', 'assets/box-content.webp', 'Box%20Content%20Labels.dc.html'],
+        ['60-Pack and 140-Pack Options', 'Sized for condos to large family homes.', 'assets/label-systems.webp', 'Moving%20Label%20Systems.dc.html']
+      ],
+      quote: '[Placeholder testimonial. Replace with a real review from a realtor.]', quoteBy: 'Customer name, Realty Group',
+      ctaH: 'Be the Agent They Remember on Move Day'
+    } };
+  }
+}
+</script>
+</body>
+</html>

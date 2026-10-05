@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Archivo',system-ui,sans-serif;color:#111111;background:#fff}
+*{box-sizing:border-box}
+a{color:#0169B8;text-decoration:none}
+a:hover{color:#014F8A}
+</style>
+</helmet>
+<div style="background:#fff;color:#111111;font-family:'Archivo',system-ui,sans-serif;line-height:1.5">
+<dc-import name="Header" active="About Us" hint-size="100%,82px"></dc-import>
+
+<!-- 1 hero -->
+<section style="position:relative;background:#22344A;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background:url('assets/hero.webp') center/cover no-repeat"></div>
+  <div style="position:absolute;inset:0;background:rgba(10,10,10,.68)"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,80px) 24px;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="display:flex;flex-direction:column;align-items:center;max-width:860px">
+      <span style="background:#0169B8;color:#fff;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:24px">About TAG-A-ROOM®</span>
+      <h1 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(34px,5.2vw,62px);line-height:1;margin:0 0 18px;letter-spacing:-.01em">Built by a Mover. Packed by Veterans. Trusted Nationwide.</h1>
+      <p style="font-size:clamp(17px,2vw,21px);max-width:660px;margin:0;color:#E8EEF4">The original color-coded moving and storage label system, created to answer moving's biggest question: “Where does it go?”</p>
+    </div>
+  </div>
+  <div style="display:flex;height:5px;position:relative"><i style="flex:1;background:#FEFA1F"></i><i style="flex:1;background:#FC811C"></i><i style="flex:1;background:#F91055"></i><i style="flex:1;background:#DA019F"></i><i style="flex:1;background:#724DB5"></i><i style="flex:1;background:#01A0D6"></i><i style="flex:1;background:#40D13D"></i><i style="flex:1;background:#DEF306"></i></div>
+</section>
+
+<!-- 2 story -->
+<div style="background:#F5F7FA;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(28px,5vw,64px);align-items:center">
+    <div>
+      <span style="font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#0169B8">Our Story</span>
+      <h2 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:10px 0 16px;letter-spacing:-.01em">It Started on a Moving Truck in San Antonio</h2>
+      <p style="margin:0;font-size:18px;line-height:1.6;color:#4A5A6C">More than 30 years ago, a San Antonio, Texas moving company owner wanted a better way to set his business apart. He created a color-coded label system that kept boxes and furniture organized, cut down on misplaced items and saved customers time and money. That simple idea became TAG-A-ROOM®.</p>
+    </div>
+    <div style="aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#111111;box-shadow:0 8px 28px rgba(17,17,17,.18)">
+      <iframe src="https://www.youtube.com/embed/ng8vOXsVLi0?si=I68bXKU071GfXMuM" title="The TAG-A-ROOM story" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width:100%;height:100%;border:0;display:block"></iframe>
+    </div>
+  </div>
+</section></div>
+
+<!-- 3 nationwide -->
+<div style="background:#fff;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0">
+  <h2 style="text-align:center;text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:0 0 12px;letter-spacing:-.01em">From One Moving Company to Nationwide</h2>
+  <p style="font-size:18px;color:#4A5A6C;max-width:660px;margin:0 auto 40px;text-align:center">What started with one moving company now serves customers across the country with hundreds of products.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:24px">
+    <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #E3E8EE;border-top:5px solid {{ s.c }};border-radius:16px;padding:28px;text-align:center;box-shadow:0 2px 10px rgba(17,17,17,.05)">
+        <span style="width:56px;height:56px;border-radius:14px;background:#F5F7FA;display:flex;align-items:center;justify-content:center;margin:0 auto 16px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0169B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="{{ s.icon }}"></path></svg></span>
+        <div style="font-style:italic;font-weight:900;font-size:22px;line-height:1.15;text-transform:uppercase;letter-spacing:-.01em">{{ s.t }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="text-align:center;margin:40px 0 14px;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#6B7B8D">Who we serve</div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+    <sc-for list="{{ serve }}" as="v" hint-placeholder-count="6">
+      <a href="{{ v.href }}" style="display:inline-flex;align-items:center;gap:10px;background:#fff;border:2px solid #E3E8EE;color:#111111;font-weight:700;font-size:15px;padding:10px 20px;border-radius:30px" style-hover="border-color:#0169B8;color:#0169B8"><i style="width:10px;height:10px;border-radius:50%;background:{{ v.c }};display:block"></i>{{ v.t }}</a>
+    </sc-for>
+  </div>
+</section></div>
+
+<!-- 4 mission -->
+<section style="background:#F5F7FA;padding:clamp(56px,8vw,96px) 24px">
+  <div style="max-width:1000px;margin:0 auto;text-align:center">
+    <div style="font-weight:700;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#0169B8;margin-bottom:16px">Our mission</div>
+    <blockquote style="margin:0 0 clamp(36px,5vw,56px);font-style:italic;font-weight:900;text-transform:uppercase;font-size:clamp(28px,4.4vw,50px);line-height:1.08;letter-spacing:-.01em">“Our goal is to help your move become as smooth and stress-free as possible.”</blockquote>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;text-align:left">
+      <sc-for list="{{ values }}" as="v" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid #E3E8EE;border-radius:16px;padding:28px;box-shadow:0 2px 10px rgba(17,17,17,.05)">
+          <span style="width:52px;height:52px;border-radius:14px;background:#F5F7FA;display:flex;align-items:center;justify-content:center;margin-bottom:16px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0169B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="{{ v.icon }}"></path></svg></span>
+          <h3 style="font-weight:800;font-size:20px;line-height:1.2;margin:0 0 8px">{{ v.t }}</h3>
+          <p style="margin:0;color:#4A5A6C;font-size:16px;line-height:1.6">{{ v.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- 5 veteran packed -->
+<div style="background:#fff;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(28px,5vw,64px);align-items:center">
+    <div style="position:relative">
+      <div role="img" aria-label="Veteran team packing TAG-A-ROOM orders" style="aspect-ratio:5/4;border-radius:20px;background:#E3E8EE url('assets/veterans.webp') center/cover no-repeat"></div>
+      <div style="position:absolute;right:20px;bottom:-28px;width:112px;height:128px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 8px 16px rgba(17,17,17,.25))">
+        <svg width="112" height="128" viewBox="0 0 112 128" style="position:absolute;inset:0"><path d="M56 4l48 16v42c0 30-20 52-48 62C28 114 8 92 8 62V20L56 4z" fill="#0169B8" stroke="#fff" stroke-width="5"></path><path d="M56 16l36 12v34c0 23-15 40-36 48-21-8-36-25-36-48V28l36-12z" fill="none" stroke="#fff" stroke-width="1.5" opacity=".7"></path></svg>
+        <div style="position:relative;text-align:center;color:#fff;line-height:1"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3z"></path></svg><div style="font-style:italic;font-weight:900;font-size:17px;letter-spacing:.02em;margin-top:6px;text-transform:uppercase">Veteran</div><div style="font-style:italic;font-weight:900;font-size:17px;letter-spacing:.02em;text-transform:uppercase">Packed</div></div>
+      </div>
+    </div>
+    <div>
+      <span style="font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#0169B8">Veteran Packed</span>
+      <h2 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:10px 0 16px;letter-spacing:-.01em">Proudly Partnered with Veterans</h2>
+      <p style="margin:0 0 28px;font-size:18px;line-height:1.6;color:#4A5A6C">TAG-A-ROOM® partners with the National Veterans Outreach Program (NVOP) and its Veterans Enterprises of Texas (VETS) initiative. Many of our products are Veteran Packed, providing employment and job training for disabled veterans in a supportive environment. It helps veterans who face barriers in the mainstream workforce rebuild their lives with dignity and purpose.</p>
+      <a href="All%20Products.dc.html" style="display:inline-block;background:#0169B8;color:#fff;font-weight:700;padding:16px 28px;border-radius:10px;font-size:17px;border:2px solid #0169B8;letter-spacing:.02em" style-hover="background:#fff;color:#0169B8">Shop Veteran Packed Products</a>
+    </div>
+  </div>
+</section></div>
+
+<!-- 6 team -->
+<div style="background:#F5F7FA;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0">
+  <h2 style="text-align:center;text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:0 0 40px;letter-spacing:-.01em">The People Behind the Labels</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px">
+    <sc-for list="{{ team }}" as="m" hint-placeholder-count="6">
+      <div style="background:#fff;border:1px solid #E3E8EE;border-top:5px solid {{ m.c }};border-radius:16px;padding:32px 24px;text-align:center;box-shadow:0 2px 10px rgba(17,17,17,.05)">
+        <div style="width:128px;height:128px;border-radius:50%;margin:0 auto 18px;background:#E3E8EE center/cover no-repeat;background-image:url({{ m.photo }});display:flex;align-items:center;justify-content:center;font-style:italic;font-weight:900;font-size:40px;color:#4A5A6C;border:3px solid #fff;box-shadow:0 0 0 1px #E3E8EE">{{ m.ini }}</div>
+        <div style="font-weight:800;font-size:20px;line-height:1.2">{{ m.n }}</div>
+        <div style="color:#0169B8;font-weight:700;font-size:16px;margin-top:4px">{{ m.r }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section></div>
+
+<!-- 7 testimonials -->
+<div style="background:#fff;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1000px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0">
+  <h2 style="text-align:center;text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:0 0 40px;letter-spacing:-.01em">What Our Customers Say</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px">
+    <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="2">
+      <figure style="margin:0;background:#fff;border-radius:16px;padding:30px;display:flex;flex-direction:column;gap:14px;box-shadow:0 6px 28px rgba(20,32,46,.1);border:1px solid #E3E8EE">
+        <div style="color:#F57C23;font-size:20px;letter-spacing:3px">★★★★★</div>
+        <b style="font-size:18px;line-height:1.25">{{ r.t }}</b>
+        <blockquote style="margin:0;font-size:16px;line-height:1.6;color:#2B3846">“{{ r.body }}”</blockquote>
+        <div style="border-top:1px solid #E3E8EE;padding-top:16px;margin-top:auto"><b style="color:#0169B8;font-size:17px">{{ r.n }}</b></div>
+      </figure>
+    </sc-for>
+  </div>
+</section></div>
+
+<!-- 8 CTA band -->
+<section style="position:relative;background:#0169B8;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background:url('assets/cta.webp') center 65%/cover no-repeat"></div>
+  <div style="position:absolute;inset:0;background:rgba(1,105,184,.88)"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(64px,9vw,112px) 24px;text-align:center">
+    <h2 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(30px,4.8vw,52px);line-height:1;margin:0 0 28px;letter-spacing:-.01em">Ready for Your Most Organized Move Yet?</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+      <a href="All%20Products.dc.html" style="background:#fff;color:#0169B8;font-weight:700;padding:16px 28px;border-radius:10px;font-size:17px" style-hover="background:#E6EEF6;color:#111111">Shop Professional Packs</a>
+      <a href="Do-It-Yourself%20Families.dc.html" style="border:2px solid #fff;color:#fff;font-weight:700;padding:14px 28px;border-radius:10px;font-size:17px" style-hover="background:#fff;color:#0169B8">Buy for My Home</a>
+    </div>
+    <p style="margin:24px 0 0;font-size:15px;color:#fff">Questions? <a href="#" style="color:#fff;text-decoration:underline;font-weight:700">Contact our team.</a></p>
+  </div>
+</section>
+
+<dc-import name="Footer" hint-size="100%,520px"></dc-import>
+<a href="All%20Products.dc.html#!/~/cart" aria-label="View cart" style="position:fixed;right:20px;bottom:24px;z-index:90;width:60px;height:60px;border-radius:50%;background:#0169B8;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(1,105,184,.4),0 2px 6px rgba(0,0,0,.2);border:3px solid #fff" style-hover="background:#111111"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.5 11h10L20 7H6"></path><circle cx="9" cy="20" r="1.5"></circle><circle cx="17" cy="20" r="1.5"></circle></svg></a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { document.title = 'About Us | TAG-A-ROOM'; }
+  renderVals() {
+    const S = ['#FEFA1F', '#FC811C', '#F91055', '#DA019F', '#724DB5', '#01A0D6', '#40D13D', '#DEF306'];
+    const P = {
+      calendar: 'M4 6h16v14H4zM4 10h16M8 3v4M16 3v4',
+      grid: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z',
+      truck: 'M2 6h11v10H2zM13 10h4l3 3v3h-7M6 19.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM16 19.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z',
+      flag: 'M5 21V4M5 4h13l-2.5 4L18 12H5',
+      org: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM15 16.5l2 2 3.5-4',
+      clock: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2',
+      smile: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM8.5 14c1 1.3 2.1 2 3.5 2s2.5-.7 3.5-2M9 9.5h.01M15 9.5h.01'
+    };
+    const ini = n => n.split(' ').map(w => w[0]).join('');
+    const TM = [
+      ['Chad Miller', 'Owner', 'https://tagaroom.com/wp-content/uploads/2020/10/chad.jpg'],
+      ['Michael R.', 'Operations Manager', 'https://tagaroom.com/wp-content/uploads/2020/10/michael.jpg'],
+      ['Lisa G.', 'Packaging', 'uploads/lisa%20g.jpg'],
+      ['Sterling S.', 'Receiving & Shipping', 'uploads/sterling.jpg'],
+      ['Emily A.', 'Production', 'uploads/emily.jpg'],
+      ['Marianna M.', 'Marketing & Sales', 'uploads/marianna.jpg']
+    ];
+    const SV = [
+      ['Move Managers', 'For%20Move%20Managers%20and%20Organizers.dc.html'],
+      ['Moving Companies', 'For%20Professional%20Movers.dc.html'],
+      ['Mortgage Companies', 'For%20Mortgage%20Companies.dc.html'],
+      ['Realtors', 'For%20Realtors.dc.html'],
+      ['Retail Outlets', 'All%20Products.dc.html'],
+      ['Families', 'For%20DIY%20Families.dc.html']
+    ];
+    return {
+      stats: [['30+ Years in Business', P.calendar], ['Hundreds of Product Lines', P.grid], ['Nationwide Shipping', P.truck], ['Made in USA', P.flag]].map((s, i) => ({ t: s[0], icon: s[1], c: [S[0], S[2], S[5], S[6]][i] })),
+      serve: SV.map((v, i) => ({ t: v[0], href: v[1], c: S[i + 1] })),
+      values: [
+        { t: 'Organization', d: 'A color for every room, a place for every box.', icon: P.org },
+        { t: 'Saving Time & Money', d: 'Faster loading and unloading means lower moving costs.', icon: P.clock },
+        { t: 'Less Stress', d: 'A clear system everyone can follow on moving day.', icon: P.smile }
+      ],
+      team: TM.map((m, i) => ({ n: m[0], r: m[1], photo: m[2], ini: m[2] ? '' : ini(m[0]), c: S[[0, 2, 5, 6, 4, 1][i]] })),
+      reviews: [
+        { t: 'Stress Reducer on Moving Day', body: 'These labels are going to save me lots and lots of stress not having to answer questions as to where things go.', n: 'Susan Fitz' },
+        { t: 'Perfect for packing!', body: 'I\u2019m happy to buy a product that provides opportunity and gets the job done!', n: 'JD' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

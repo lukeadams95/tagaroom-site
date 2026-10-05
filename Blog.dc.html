@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Archivo',system-ui,sans-serif;color:#111111;background:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+a{color:#0169B8;text-decoration:none}
+a:hover{color:#014F8A}
+</style>
+</helmet>
+<div style="background:#fff;color:#111111;font-family:'Archivo',system-ui,sans-serif;line-height:1.5">
+<dc-import name="Header" active="About Us" active-kid="Blog" hint-size="100%,82px"></dc-import>
+
+<section style="position:relative;background:#0169B8;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(254,250,31,.3) 0 9px,transparent 10px),radial-gradient(circle,rgba(252,129,28,.3) 0 6px,transparent 7px),radial-gradient(circle,rgba(249,16,85,.3) 0 12px,transparent 13px),radial-gradient(circle,rgba(218,1,159,.3) 0 7px,transparent 8px),radial-gradient(circle,rgba(114,77,181,.35) 0 10px,transparent 11px),radial-gradient(circle,rgba(1,160,214,.35) 0 8px,transparent 9px),radial-gradient(circle,rgba(64,209,61,.3) 0 11px,transparent 12px),radial-gradient(circle,rgba(222,243,6,.3) 0 6px,transparent 7px);background-size:260px 260px,190px 190px,310px 310px,230px 230px,280px 280px,210px 210px,340px 340px,170px 170px;background-position:20px 30px,90px 120px,160px 60px,40px 180px,220px 140px,130px 20px,70px 250px,10px 90px"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(40px,5vw,64px) 24px clamp(44px,6vw,72px);display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="display:flex;flex-direction:column;align-items:center;max-width:780px">
+      <span style="background:#fff;color:#0169B8;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:22px">Blog</span>
+      <h1 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(34px,5.2vw,62px);line-height:1;margin:0 0 18px;letter-spacing:-.01em">Tag-A-Blog</h1>
+      <p style="font-size:clamp(17px,2vw,21px);max-width:620px;margin:0 0 28px;color:#fff">Moving checklists, packing advice and labeling tips to make every move easier.</p>
+      <a href="#posts" style="background:#fff;color:#0169B8;font-weight:700;padding:16px 30px;border-radius:10px;font-size:17px;border:2px solid #fff;letter-spacing:.02em" style-hover="background:#E6EEF6;color:#014F8A;border-color:#E6EEF6">Read the Latest</a>
+    </div>
+  </div>
+  <div style="display:flex;height:5px;position:relative"><i style="flex:1;background:#FEFA1F"></i><i style="flex:1;background:#FC811C"></i><i style="flex:1;background:#F91055"></i><i style="flex:1;background:#DA019F"></i><i style="flex:1;background:#724DB5"></i><i style="flex:1;background:#01A0D6"></i><i style="flex:1;background:#40D13D"></i><i style="flex:1;background:#DEF306"></i></div>
+</section>
+
+<div id="posts" style="background:#F5F7FA;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,80px) 24px 0">
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:28px">
+    <sc-for list="{{ posts }}" as="p" hint-placeholder-count="9">
+      <a href="{{ p.href }}" style="display:flex;flex-direction:column;background:#fff;border:1px solid #E3E8EE;border-radius:20px;overflow:hidden;box-shadow:0 2px 10px rgba(17,17,17,.05);color:#111111" style-hover="box-shadow:0 10px 28px rgba(1,105,184,.18);color:#111111">
+        <sc-if value="{{ p.hasImg }}" hint-placeholder-val="{{ false }}"><div role="img" aria-label="{{ p.t }}" style="{{ p.imgStyle }}"></div></sc-if>
+        <div style="height:8px;background:{{ p.c }}"></div>
+        <div style="padding:26px 26px 28px;display:flex;flex-direction:column;flex:1">
+          <span style="font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#0169B8">{{ p.tag }}</span>
+          <h2 style="font-style:italic;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;font-size:22px;line-height:1.1;margin:10px 0 12px">{{ p.t }}</h2>
+          <p style="margin:0 0 20px;color:#4A5A6C;font-size:16px;line-height:1.55">{{ p.d }}</p>
+          <span style="margin-top:auto;font-weight:700;font-size:15px;color:#0169B8">Read More &raquo;</span>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+  <div style="display:flex;justify-content:center;gap:10px;margin-top:48px;flex-wrap:wrap">
+    <sc-for list="{{ pages }}" as="g" hint-placeholder-count="3">
+      <button onClick="{{ g.go }}" aria-label="Page {{ g.n }}" style="cursor:pointer;font-family:inherit;font-weight:700;font-size:16px;width:46px;height:46px;border-radius:10px;border:2px solid #0169B8;background:{{ g.bg }};color:{{ g.fg }}" style-hover="background:#0169B8;color:#fff">{{ g.n }}</button>
+    </sc-for>
+  </div>
+</section></div>
+
+<section style="position:relative;background:#0169B8;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background:url('assets/cta.webp') center 65%/cover no-repeat"></div>
+  <div style="position:absolute;inset:0;background:rgba(1,105,184,.88)"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(64px,9vw,112px) 24px;text-align:center">
+    <h2 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(30px,4.8vw,52px);line-height:1;margin:0 0 28px;letter-spacing:-.01em">Ready to Label Your Move?</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+      <a href="All%20Products.dc.html" style="background:#fff;color:#0169B8;font-weight:700;padding:16px 30px;border-radius:10px;font-size:17px;border:2px solid #fff" style-hover="background:#E6EEF6;color:#111111">Shop Professional Packs</a>
+      <a href="Do-It-Yourself%20Families.dc.html" style="border:2px solid #fff;color:#fff;font-weight:700;padding:16px 30px;border-radius:10px;font-size:17px" style-hover="background:#fff;color:#0169B8">Buy for My Home</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="Footer" hint-size="100%,520px"></dc-import>
+<a href="All%20Products.dc.html#!/~/cart" aria-label="View cart" style="position:fixed;right:20px;bottom:24px;z-index:90;width:60px;height:60px;border-radius:50%;background:#0169B8;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(1,105,184,.4),0 2px 6px rgba(0,0,0,.2);border:3px solid #fff" style-hover="background:#111111"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.5 11h10L20 7H6"></path><circle cx="9" cy="20" r="1.5"></circle><circle cx="17" cy="20" r="1.5"></circle></svg></a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { pg: 1, imgs: {} };
+  componentDidMount() {
+    document.title = 'Blog | TAG-A-ROOM';
+    let pg = parseInt(new URLSearchParams(location.search).get('page'), 10);
+    if (!pg) { try { pg = parseInt(sessionStorage.getItem('tar_blog_pg'), 10); } catch (e) {} }
+    if (pg > 0) this.setState({ pg });
+    fetch('blog-posts.json').then(r => r.json()).then(d => { const m = {}; Object.keys(d).forEach(k => { if (d[k].img) m[k] = d[k].img; }); this.setState({ imgs: m }); }).catch(() => {});
+  }
+  renderVals() {
+    const T = 'Blog%20Post.dc.html?post=';
+    const A = [
+      ['complete-interstate-moving-checklist-2026', 'The Complete Interstate Moving Checklist (2026 Edition)', 'An indispensable tool for anyone facing a long-distance move.', 'Interstate Moving'],
+      ['realtor-closing-gift-guide-practical-moving-solutions', 'The Ultimate Realtor Closing Gift Guide: Practical Moving Solutions for 2026', 'Why a practical moving gift beats the usual closing present.', 'Realtors'],
+      ['properly-pack-a-cardboard-box-for-moving-storage', 'Properly Pack a Cardboard Box for Moving & Storage', 'Packing can feel overwhelming. Here is how to do it right.'],
+      ['the-stress-free-move-why-color-coded-labels-are-a-game-changer-for-your-new-home', 'The Stress-Free Move: Why Color-Coded Labels Are a Game-Changer for Your New Home', 'How color coding turns an exciting new chapter into an organized one.'],
+      ['simplify-your-home-downsizing-journey-with-tag-a-room-moving-labels', 'Simplify Your Home Downsizing Journey with Tag-A-Room Moving Labels', 'Downsizing is a chance to declutter, save money and start fresh.'],
+      ['why-labeling-boxes-by-room-makes-your-move-faster-and-easier', 'Why Labeling Boxes by Room Makes Your Move Faster and Easier', 'Moving is stressful. Room-by-room labels take the guesswork out.'],
+      ['the-art-of-gentle-packing-safeguarding-fragile-items-with-soft-cushioning', 'The Art of Gentle Packing: Safeguarding Fragile Items with Soft Cushioning', 'Protect breakables with the right soft cushioning.'],
+      ['shielding-comfort-the-case-for-mattress-covers-during-moving-and-storage', 'Shielding Comfort: The Case for Mattress Covers During Moving and Storage', 'Why a mattress cover is worth it for any move or storage stay.'],
+      ['leak-proof-luxury-shielding-toiletries-with-plastic-wrap-for-a-smooth-move', 'Leak-Proof Luxury: Shielding Toiletries with Plastic Wrap for a Smooth Move', 'Keep spills out of your boxes with plastic wrap.'],
+      ['sealed-for-success-how-ziplock-bags-safeguard-small-items-during-your-move', 'Sealed for Success: How Ziplock Bags Safeguard Small Items During Your Move', 'Small items stay together and easy to find.'],
+      ['treasures-untangled-safeguarding-your-jewelry-with-thoughtful-storage', 'Treasures Untangled: Safeguarding Your Jewelry with Thoughtful Storage', 'Thoughtful storage keeps jewelry safe and tangle-free.'],
+      ['digital-blueprints-backing-up-electronics-for-seamless-reassembly', 'Digital Blueprints: Backing Up Electronics for Seamless Reassembly', 'Back up and document your electronics before they go on the truck.'],
+      ['moving-tip-measure-your-furniture', 'Moving Tip – Measure Your Furniture', 'Measure first so every piece fits through the door and the room.'],
+      ['smart-moves-utilizing-suitcases-for-heavy-items-to-lighten-your-load', 'Smart Moves: Utilizing Suitcases for Heavy Items to Lighten Your Load', 'Wheeled suitcases make heavy items easy to move.'],
+      ['the-path-to-order-packing-room-by-room-with-color-coded-labels', 'The Path to Order: Packing Room by Room with Color-Coded Labels', 'Pack one room at a time and keep every box organized.'],
+      ['solid-foundations-the-wisdom-of-properly-packing-heavy-items-for-your-move', 'Solid Foundations: The Wisdom of Properly Packing Heavy Items for Your Move', 'Pack heavy items properly so they are safe to lift and carry.'],
+      ['handling-with-care-the-art-of-protecting-fragile-items-during-your-move', 'Handling with Care: The Art of Protecting Fragile Items During Your Move', 'Protect fragile items from first box to final room.'],
+      ['moving-tip-essentials-box', 'Moving Tip: Essentials Box', 'Pack toiletries, clothes and chargers where you can find them first.'],
+      ['moving-tip-label-strategically', 'Moving Tip: Label Strategically', 'Use color-coded labels to identify rooms and box contents.'],
+      ['moving-tip-declutter', 'Moving Tip: Declutter', 'Donate or sell what you no longer need before you pack.'],
+      ['moving-tip-start-early', 'Moving Tip: Start Early', 'Begin packing and planning well ahead to cut last-minute stress.'],
+      ['what-type-of-mover-do-you-need', 'What Type of Mover Do You Need?', 'Choosing the right mover first can save you time and money.', 'Choosing Movers'],
+      ['types-of-movers-moving-companies', 'Types of Movers / Moving Companies', 'Most people relocate themselves, but companies offer many ways to help.', 'Choosing Movers'],
+      ['5-things-to-know-when-calling-a-moving-company-for-a-move-quote', '5 Things to Know When Calling a Moving Company for a Move Quote', 'What to ask when you start hiring movers.', 'Choosing Movers'],
+      ['use-tag-a-room-labels-to-organize-your-move', 'Use Tag A Room Labels to Organize Your Move', 'Speed up loading and unloading with color-coded labels.']
+    ];
+    const S = ['#FEFA1F', '#FC811C', '#F91055', '#DA019F', '#724DB5', '#01A0D6', '#40D13D', '#DEF306'];
+    const IM = this.state.imgs;
+    const all = A.map((a, i) => ({ href: T + a[0], hasImg: !!IM[a[0]], imgStyle: { height: 200, background: IM[a[0]] ? 'url(' + IM[a[0]] + ') center/cover no-repeat #E3E8EE' : 'none' }, t: a[1], d: a[2], tag: a[3] || 'Moving Tip', c: S[i % 8] }));
+    const per = 9, n = Math.ceil(all.length / per), pg = this.state.pg;
+    return {
+      posts: all.slice((pg - 1) * per, pg * per),
+      pages: Array.from({ length: n }, (_, i) => ({ n: i + 1, bg: pg === i + 1 ? '#0169B8' : '#fff', fg: pg === i + 1 ? '#fff' : '#0169B8', go: () => { this.setState({ pg: i + 1 }); try { sessionStorage.setItem('tar_blog_pg', String(i + 1)); history.replaceState(null, '', '?page=' + (i + 1)); } catch (e) {} const e = document.getElementById('posts'); if (e) window.scrollTo({ top: e.offsetTop - 80, behavior: 'smooth' }); } }))
+    };
+  }
+}
+</script>
+</body>
+</html>

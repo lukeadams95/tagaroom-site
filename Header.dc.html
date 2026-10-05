@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;1,900&amp;display=swap" rel="stylesheet">
+<style>body{margin:0;font-family:'Archivo',system-ui,sans-serif}*{box-sizing:border-box}a{color:#0169B8;text-decoration:none}a:hover{color:#014F8A}</style>
+</helmet>
+<div style="font-family:'Archivo',system-ui,sans-serif;line-height:1.5;color:#111111">
+<div style="height:82px"></div>
+<header style="position:fixed;top:0;left:0;right:0;z-index:50;background:#fff;box-shadow:0 2px 12px rgba(20,32,46,.08)">
+  <div style="max-width:1240px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:24px">
+    <a href="Homepage.dc.html" aria-label="TAG-A-ROOM home" style="display:block;width:240px;height:50px;overflow:hidden;flex:none"><img src="uploads/logo-1790711738779-iq0a.webp" alt="TAG-A-ROOM" style="display: block; width: 206px; height: 79px; margin-top: -15px"></a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:22px;flex:1;justify-content:center;font-weight:600;font-size:15px">
+        <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+          <div onMouseEnter="{{ n.enter }}" onMouseLeave="{{ n.leave }}" style="position:relative;padding:10px 0">
+            <a href="{{ n.href }}" style="color:{{ n.color }};display:flex;align-items:center;gap:5px;border-bottom:3px solid {{ n.line }};padding-bottom:2px" style-hover="color:#014F8A">{{ n.t }}<sc-if value="{{ n.hasKids }}" hint-placeholder-val="{{ false }}"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" style="transform:{{ n.rot }}"><path d="M2 4l4 4 4-4"></path></svg></sc-if></a>
+            <sc-if value="{{ n.open }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;top:100%;left:-16px;min-width:{{ n.ddw }};max-height:calc(100vh - 160px);overflow:auto;background:#fff;border:1px solid #E3E8EE;border-radius:12px;box-shadow:0 12px 32px rgba(17,17,17,.16);padding:8px 0;display:flex;flex-direction:column;z-index:60">
+                <sc-for list="{{ n.kids }}" as="k" hint-placeholder-count="3"><div style="border-top:{{ k.bt }};margin-top:{{ k.mt }};padding-top:{{ k.mt }}"><a href="{{ k.href }}" onClick="{{ k.tap }}" style="display:block;color:{{ k.kc }};padding:9px 22px;font-weight:{{ k.fw }};font-size:15px;white-space:nowrap" style-hover="background:#F5F7FA;color:#0169B8">{{ k.t }}</a></div></sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </nav>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}"><span style="flex:1"></span></sc-if>
+    <div style="display:flex;align-items:center;gap:14px;flex:none;margin-left:auto">
+      <a href="#" aria-label="Search" style="color:#111111;display:flex"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
+      <a href="All%20Products.dc.html#!/~/cart" onClick="{{ openCart }}" aria-label="Cart" style="color:#111111;display:flex;position:relative"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.5 11h10L20 7H6"></path><circle cx="9" cy="20" r="1.5"></circle><circle cx="17" cy="20" r="1.5"></circle></svg><b style="position:absolute;top:-6px;right:-9px;background:#0169B8;color:#fff;font-size:11px;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center">{{ cartCount }}</b></a>
+      <sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}"><a href="All%20Products.dc.html" style="background:#0169B8;color:#fff;font-weight:700;padding:12px 20px;border-radius:10px;font-size:15px;margin-left:6px" style-hover="background:#014F8A;color:#fff">Shop Professional Packs</a></sc-if>
+      <sc-if value="{{ isMobileOrTablet }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toggleMenu }}" aria-label="Menu" style="background:none;border:0;padding:4px;cursor:pointer;color:#111111;display:flex"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button></sc-if>
+    </div>
+  </div>
+  <div style="display:flex;height:4px"><i style="flex:1;background:#FEFA1F"></i><i style="flex:1;background:#FC811C"></i><i style="flex:1;background:#F91055"></i><i style="flex:1;background:#DA019F"></i><i style="flex:1;background:#724DB5"></i><i style="flex:1;background:#01A0D6"></i><i style="flex:1;background:#40D13D"></i><i style="flex:1;background:#DEF306"></i></div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="border-top:1px solid #E3E8EE;padding:8px 24px 20px;display:flex;flex-direction:column;background:#fff">
+      <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+        <div style="border-bottom:1px solid #EEF1F5">
+          <a href="#" onClick="{{ n.tap }}" style="color:#111111;font-weight:600;padding:12px 0;display:flex;justify-content:space-between;align-items:center">{{ n.t }}<sc-if value="{{ n.hasKids }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"></path></svg></sc-if></a>
+          <sc-if value="{{ n.mOpen }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;padding:0 0 8px 16px"><sc-for list="{{ n.kids }}" as="k" hint-placeholder-count="3"><a href="{{ k.href }}" onClick="{{ k.tap }}" style="color:#4A5A6C;font-weight:600;padding:10px 0;font-size:15px">{{ k.t }}</a></sc-for></div></sc-if>
+        </div>
+      </sc-for>
+      <a href="All%20Products.dc.html" style="background:#0169B8;color:#fff;font-weight:700;padding:14px 20px;border-radius:10px;margin-top:16px;text-align:center">Shop Professional Packs</a>
+    </div>
+  </sc-if>
+</header>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { dd: -1, md: -1, w: 1280, menuOpen: false };
+  componentDidMount() { const f = () => this.setState({ w: window.innerWidth }); f(); window.addEventListener('resize', f); this._f = f; }
+  componentWillUnmount() { window.removeEventListener('resize', this._f); }
+  renderVals() {
+    const w = this.state.w;
+    const FM = {'all':'All%20Products.dc.html','moving-label-systems':'Moving%20Label%20Systems.dc.html','moving-packing-labels':'Moving%20and%20Packing%20Labels.dc.html','box-content-labels':'Box%20Content%20Labels.dc.html','marketing-gifts':'Marketing%20Gifts.dc.html','office-labels':'Office%20Labels%20and%20Supplies.dc.html','alert-labels':'Alert%20Labels.dc.html','shipping-labels':'Shipping%20Labels.dc.html','color-coding-labels':'Color%20Coding%20Labels.dc.html','professional-movers':'Professional%20Movers.dc.html','realtors':'Realtors.dc.html','mortgage-companies':'Mortgage%20Companies.dc.html','restoration-companies':'Restoration%20Companies.dc.html','move-managers':'Move%20Managers.dc.html','apartments':'Apartments%20and%20Property%20Managers.dc.html','diy-families':'Do-It-Yourself%20Families.dc.html'};
+    const AUD = ['For%20Professional%20Movers.dc.html','For%20Realtors.dc.html','For%20Mortgage%20Companies.dc.html','For%20Restoration%20Companies.dc.html','For%20Move%20Managers%20and%20Organizers.dc.html','For%20Apartments%20and%20Property%20Managers.dc.html','For%20DIY%20Families.dc.html'];
+    const SL = ["all","moving-label-systems","moving-packing-labels","box-content-labels","marketing-gifts","office-labels","alert-labels","shipping-labels","color-coding-labels","professional-movers","realtors","mortgage-companies","restoration-companies","move-managers","apartments","diy-families"];
+    const items = [
+        { t: 'Products', w: '380px', groups: [['All Products'], ['Tag-A-Room Moving Label Systems', 'Moving & Packing Labels', 'Box Content Labels', 'Marketing Gifts – Loan Officers, Realtors, Moving Companies', 'Office Labels & Supplies', 'Alert Labels', 'Shipping Labels', 'Color Coding Labels'], ['Professional Movers', 'Realtors', 'Mortgage Companies', 'Restoration Companies', 'Move Managers – Organizers', 'Apartments – Property Managers', 'Do-It-Yourself Families']] },
+        { t: 'Label Benefits', w: '320px', groups: [['All Label Benefits'], ['Professional Movers', 'Realtors', 'Mortgage Companies', 'Restoration Companies', 'Move Managers – Organizers', 'Apartments – Property Managers', 'Do-It-Yourself Families']] },
+        { t: 'Templates' },
+        { t: 'About Us', w: '220px', groups: [['About Us'], ['Blog', 'Gallery', 'Moving Tips']] },
+        { t: 'Contact' }
+      ];
+    const navItems = items.map((n, i) => ({
+      t: n.t, ddw: n.w || '0', hasKids: !!n.groups, href: n.t === 'Label Benefits' ? 'Label%20Benefits.dc.html' : n.t === 'Templates' ? 'Label%20Templates.dc.html' : n.t === 'About Us' ? 'About%20Us.dc.html' : n.t === 'Contact' ? 'Contact%20Us.dc.html' : '#', color: this.props.active === n.t ? '#0169B8' : '#111111', line: this.props.active === n.t ? '#0169B8' : 'transparent',
+      kids: (n.groups || []).flatMap((g, gi) => g.map((t, ti) => { const s = SL[gi === 0 ? 0 : gi === 1 ? 1 + ti : 9 + ti]; return { t, href: i === 0 ? FM[s] : (i === 1 && gi === 0 ? 'Label%20Benefits.dc.html' : i === 1 ? AUD[ti] : (i === 3 && gi === 0 ? 'About%20Us.dc.html' : i === 3 && t === 'Moving Tips' ? 'Moving%20Tips.dc.html' : i === 3 && t === 'Gallery' ? 'Gallery.dc.html' : i === 3 && t === 'Blog' ? 'Blog.dc.html' : '#')), kc: (i === 1 || i === 3) && gi === 1 && this.props.activeKid === t ? '#0169B8' : '#111111', tap: i === 0 ? () => { try { localStorage.removeItem('tar_prod_' + s); } catch (e) {} } : () => {}, fw: gi === 0 || ((i === 1 || i === 3) && this.props.activeKid === t) ? '700' : '400', bt: gi > 0 && ti === 0 ? '1px solid #E3E8EE' : '0 solid transparent', mt: gi > 0 && ti === 0 ? '6px' : '0' }; })),
+      open: !!n.groups && this.state.dd === i, mOpen: !!n.groups && this.state.md === i,
+      rot: this.state.dd === i ? 'rotate(180deg)' : 'none',
+      enter: () => n.groups && this.setState({ dd: i }), leave: () => this.setState({ dd: -1 }),
+      tap: e => { if (n.groups) { e.preventDefault(); this.setState(s => ({ md: s.md === i ? -1 : i })); } }
+    }));
+    return {
+      isDesktop: w >= 1100, isWide: w >= 640, isMobile: false, isMobileOrTablet: w < 1100,
+      menuOpen: this.state.menuOpen && w < 1100,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      cartCount: this.props.cartCount || 0,
+      openCart: e => { if (document.getElementById('my-store-1805034')) { e.preventDefault(); location.hash = '#!/~/cart'; } },
+      navItems
+    };
+  }
+}
+</script>
+</body>
+</html>

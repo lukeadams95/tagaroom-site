@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="Audience Template" page="{{ data }}" hint-size="100%,4200px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { data: {
+      idx: 4, nav: 'Move Managers \u2013 Organizers', who: 'Move Managers & Organizers', how: 'Move Managers',
+      headline: 'Keep Clients Calm, Organized and On Track',
+      sub: 'A visual labeling system that replaces verbal instructions and gets every helper working from the same plan.',
+      shop: 'Shop Organizer Packs', shopHref: 'Move%20Managers.dc.html',
+      cta: 'Get Custom Logo Labels', ctaHref: '#',
+      img: 'A move manager organizing boxes with a client.',
+      challengeH: 'Everyone needs direction', challenge: 'Clients, family, helpers and movers all need direction, and repeating instructions slows everyone down.',
+      benefits: [
+        ['Direction without instructions', 'Colors do the talking, so you do not have to.'],
+        ['One system for everyone', 'Helpers and movers follow the same plan.'],
+        ['Less client stress', 'A calmer experience while packing and unpacking.'],
+        ['Faster decisions', 'Smoother transitions from room to room.'],
+        ['Professional branding', 'Build relationships with your name on every label.']
+      ],
+      steps: ['Plan the new home\u2019s rooms and colors', 'Label as you pack with the client', 'Movers and helpers follow the colors'],
+      included: [
+        ['Color-Coded Room Labels', 'One color per room for every helper to follow.', 'assets/color-coding.webp', 'Color%20Coding%20Labels.dc.html'],
+        ['Content Labels', 'Say what is inside before the tape goes on.', 'assets/box-content.webp', 'Box%20Content%20Labels.dc.html'],
+        ['Client Kits', 'Optional ready-to-go kits to hand to clients.', 'assets/move-managers.webp', 'Moving%20Label%20Systems.dc.html'],
+        ['Custom Logo Labels', 'Your brand on every label. Contact us for options.', 'assets/marketing-gifts.webp', 'Marketing%20Gifts.dc.html']
+      ],
+      quote: '[Placeholder testimonial. Replace with a real review from a move manager or organizer.]', quoteBy: 'Customer name, Move Management Company',
+      ctaH: 'Ready to Make Move Days Calmer for Your Clients?'
+    } };
+  }
+}
+</script>
+</body>
+</html>

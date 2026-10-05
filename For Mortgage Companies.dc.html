@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="Audience Template" page="{{ data }}" hint-size="100%,4200px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { data: {
+      idx: 2, nav: 'Mortgage Companies', who: 'Mortgage Companies', how: 'Mortgage Companies',
+      headline: 'A Post-Close Gift That Reinforces Trust',
+      sub: 'A practical, branded gift that helps borrowers through move week and keeps your company top of mind.',
+      shop: 'Shop Mortgage Packs', shopHref: 'Mortgage%20Companies.dc.html',
+      cta: 'Get Bulk Pricing', ctaHref: '#',
+      img: 'A mortgage closing table with a loan officer and borrowers.',
+      challengeH: 'Generic gifts feel transactional', challenge: 'Borrowers remember the people who made their move easier.',
+      benefits: [
+        ['Stand out with a useful gift', 'A branded gift borrowers actually use.'],
+        ['Less stress in move week', 'A simple system that keeps the move on track.'],
+        ['A memorable touchpoint', 'Stay present after the closing table.'],
+        ['More satisfaction and referrals', 'Helpful lenders get recommended.'],
+        ['Made in the USA', 'Packed and shipped from the USA.']
+      ],
+      steps: ['Choose your kit and branding', 'Send it at or after closing', 'Clients use it all move week'],
+      included: [
+        ['Giftable Kits', 'Custom branding available.', 'assets/marketing-gifts.webp', 'Marketing%20Gifts.dc.html'],
+        ['Color-Coded Room Labels', 'One color per room for a smoother move.', 'assets/color-coding.webp', 'Color%20Coding%20Labels.dc.html'],
+        ['Box Content Labels', 'Say what is inside before the tape goes on.', 'assets/box-content.webp', 'Box%20Content%20Labels.dc.html'],
+        ['Moving Label Systems', 'The complete color-coded system.', 'assets/label-systems.webp', 'Moving%20Label%20Systems.dc.html']
+      ],
+      quote: '[Placeholder testimonial. Replace with a real review from a mortgage company.]', quoteBy: 'Customer name, Mortgage Company',
+      ctaH: 'Turn Closing Day into a Lasting Relationship'
+    } };
+  }
+}
+</script>
+</body>
+</html>

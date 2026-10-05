@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Archivo',system-ui,sans-serif;color:#111111;background:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+a{color:#0169B8;text-decoration:none}
+a:hover{color:#014F8A}
+</style>
+</helmet>
+<div style="background:#fff;color:#111111;font-family:'Archivo',system-ui,sans-serif;line-height:1.5">
+<dc-import name="Header" active="Templates" hint-size="100%,82px"></dc-import>
+
+<!-- 1 hero -->
+<section style="position:relative;background:#0169B8;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(254,250,31,.3) 0 9px,transparent 10px),radial-gradient(circle,rgba(252,129,28,.3) 0 6px,transparent 7px),radial-gradient(circle,rgba(249,16,85,.3) 0 12px,transparent 13px),radial-gradient(circle,rgba(218,1,159,.3) 0 7px,transparent 8px),radial-gradient(circle,rgba(114,77,181,.35) 0 10px,transparent 11px),radial-gradient(circle,rgba(1,160,214,.35) 0 8px,transparent 9px),radial-gradient(circle,rgba(64,209,61,.3) 0 11px,transparent 12px),radial-gradient(circle,rgba(222,243,6,.3) 0 6px,transparent 7px);background-size:260px 260px,190px 190px,310px 310px,230px 230px,280px 280px,210px 210px,340px 340px,170px 170px;background-position:20px 30px,90px 120px,160px 60px,40px 180px,220px 140px,130px 20px,70px 250px,10px 90px"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(40px,5vw,64px) 24px clamp(44px,6vw,72px);display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="display:flex;flex-direction:column;align-items:center;max-width:780px">
+      <span style="background:#fff;color:#0169B8;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:22px">Free Downloads</span>
+      <h1 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(34px,5.2vw,62px);line-height:1;margin:0 0 18px;letter-spacing:-.01em">Free Label Templates</h1>
+      <p style="font-size:clamp(17px,2vw,21px);max-width:620px;margin:0 0 28px;color:#fff">Download free, printable templates to make your own labels. Just pick a size, open it in Microsoft Word and print.</p>
+      <a href="#templates" style="background:#fff;color:#0169B8;font-weight:700;padding:16px 30px;border-radius:10px;font-size:17px;border:2px solid #fff;letter-spacing:.02em" style-hover="background:#E6EEF6;color:#014F8A;border-color:#E6EEF6">Browse Templates</a>
+    </div>
+  </div>
+  <div style="display:flex;height:5px;position:relative"><i style="flex:1;background:#FEFA1F"></i><i style="flex:1;background:#FC811C"></i><i style="flex:1;background:#F91055"></i><i style="flex:1;background:#DA019F"></i><i style="flex:1;background:#724DB5"></i><i style="flex:1;background:#01A0D6"></i><i style="flex:1;background:#40D13D"></i><i style="flex:1;background:#DEF306"></i></div>
+</section>
+
+<!-- 2 downloads -->
+<div id="templates" style="background:#fff;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0">
+  <h2 style="text-align:center;text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:0 0 40px;letter-spacing:-.01em">Choose Your Template Size</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px">
+    <sc-for list="{{ templates }}" as="t" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #E3E8EE;border-radius:24px;padding:20px;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(17,17,17,.05)">
+        <div style="height:190px;border-radius:18px;background:#F9F9F9;display:flex;align-items:center;justify-content:center;padding:16px">
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:{{ t.gap }};max-width:230px">
+            <sc-for list="{{ t.shapes }}" as="s" hint-placeholder-count="8">
+              <i style="display:block;width:{{ t.w }};height:{{ t.h }};border-radius:{{ t.r }};background:{{ s.c }}"></i>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 8px">
+          <h3 style="font-style:italic;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;font-size:20px;line-height:1.1;margin:0">{{ t.name }}</h3>
+          <span style="flex:none;background:#EEF1F5;color:#4A5A6C;font-weight:700;font-size:12px;letter-spacing:.04em;padding:4px 10px;border-radius:20px">Word (.doc)</span>
+        </div>
+        <p style="margin:0 0 20px;color:#4A5A6C;font-size:16px;line-height:1.55">{{ t.desc }}</p>
+        <a href="{{ t.href }}" style="margin-top:auto;display:flex;align-items:center;justify-content:center;gap:10px;background:#0169B8;color:#fff;font-weight:700;padding:14px 24px;border-radius:10px;font-size:16px;border:2px solid #0169B8;letter-spacing:.02em" style-hover="background:#fff;color:#0169B8"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7.5 11l4.5 4.5 4.5-4.5M5 20h14"></path></svg>Download Template</a>
+      </div>
+    </sc-for>
+  </div>
+</section></div>
+
+<!-- 3 how to use -->
+<div style="background:#F5F7FA;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0">
+  <h2 style="text-align:center;text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:0 0 12px;letter-spacing:-.01em">How to Use the Templates</h2>
+  <p style="font-size:18px;color:#4A5A6C;max-width:620px;margin:0 auto 40px;text-align:center">Three steps from download to printed labels.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;padding-top:44px">
+    <div style="background:#fff;border:1px solid #E3E8EE;border-radius:16px;padding:64px 32px 32px;position:relative;box-shadow:0 2px 10px rgba(17,17,17,.05)">
+      <span style="position:absolute;top:-44px;left:28px;width:88px;height:88px;border-radius:50%;background:#FEFA1F;color:#111111;display:flex;align-items:center;justify-content:center;font-style:italic;font-weight:900;font-size:44px;box-shadow:0 0 0 6px #fff,0 4px 14px rgba(17,17,17,.15)">1</span>
+      <h3 style="font-style:italic;font-weight:900;letter-spacing:-.01em;font-size:26px;line-height:1.1;margin:0 0 12px;text-transform:uppercase">Download</h3>
+      <p style="margin:0;color:#4A5A6C;font-size:17px;line-height:1.6">Pick your size and download the Word template.</p>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E8EE;border-radius:16px;padding:64px 32px 32px;position:relative;box-shadow:0 2px 10px rgba(17,17,17,.05)">
+      <span style="position:absolute;top:-44px;left:28px;width:88px;height:88px;border-radius:50%;background:#01A0D6;color:#111111;display:flex;align-items:center;justify-content:center;font-style:italic;font-weight:900;font-size:44px;box-shadow:0 0 0 6px #fff,0 4px 14px rgba(17,17,17,.15)">2</span>
+      <h3 style="font-style:italic;font-weight:900;letter-spacing:-.01em;font-size:26px;line-height:1.1;margin:0 0 12px;text-transform:uppercase">Customize</h3>
+      <p style="margin:0;color:#4A5A6C;font-size:17px;line-height:1.6">Open it in Microsoft Word (or Google Docs), then type room names, numbers or notes into each label.</p>
+    </div>
+    <div style="background:#fff;border:1px solid #E3E8EE;border-radius:16px;padding:64px 32px 32px;position:relative;box-shadow:0 2px 10px rgba(17,17,17,.05)">
+      <span style="position:absolute;top:-44px;left:28px;width:88px;height:88px;border-radius:50%;background:#40D13D;color:#111111;display:flex;align-items:center;justify-content:center;font-style:italic;font-weight:900;font-size:44px;box-shadow:0 0 0 6px #fff,0 4px 14px rgba(17,17,17,.15)">3</span>
+      <h3 style="font-style:italic;font-weight:900;letter-spacing:-.01em;font-size:26px;line-height:1.1;margin:0 0 12px;text-transform:uppercase">Print</h3>
+      <p style="margin:0;color:#4A5A6C;font-size:17px;line-height:1.6">Print on matching label sheets. Run a test print on plain paper first and hold it up to your label sheet to check the alignment.</p>
+    </div>
+  </div>
+</section></div>
+
+<!-- 4 tip -->
+<div style="background:#fff;padding:clamp(40px,6vw,72px) 24px 0"><section style="max-width:900px;margin:0 auto">
+  <div style="background:#F5F7FA;border:1px solid #E3E8EE;border-left:5px solid #0169B8;border-radius:0 12px 12px 0;padding:22px 26px;font-size:18px;line-height:1.6;color:#111111"><b style="color:#0169B8">Tip:</b> Pair your printed labels with a Legend Sheet at the front door so movers know which color goes to which room. Learn more on our <a href="Label%20Benefits.dc.html" style="font-weight:700;text-decoration:underline">Label Benefits page</a>.</div>
+</section></div>
+
+<!-- 5 upsell -->
+<div style="background:#fff;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(28px,5vw,64px);align-items:center">
+    <div role="img" aria-label="TAG-A-ROOM Moving Label System" style="aspect-ratio:1/1;max-width:520px;width:100%;margin:0 auto;border-radius:20px;background:#F9F9F9 url('assets/label-systems.webp') center/cover no-repeat;border:1px solid #E3E8EE"></div>
+    <div>
+      <span style="font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#0169B8">Skip the printing</span>
+      <h2 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:10px 0 16px;letter-spacing:-.01em">Want It Done for You?</h2>
+      <p style="margin:0 0 28px;font-size:18px;line-height:1.6;color:#4A5A6C">TAG-A-ROOM's pre-printed, color-coded label systems come ready to use: bright, durable, made in the USA and designed by real movers. No printer, no alignment, no hassle.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px">
+        <a href="Moving%20Label%20Systems.dc.html" style="background:#0169B8;color:#fff;font-weight:700;padding:16px 28px;border-radius:10px;font-size:17px;border:2px solid #0169B8;letter-spacing:.02em" style-hover="background:#fff;color:#0169B8">Shop Moving Label Systems</a>
+        <a href="Do-It-Yourself%20Families.dc.html" style="border:2px solid #0169B8;color:#0169B8;font-weight:700;padding:16px 28px;border-radius:10px;font-size:17px;letter-spacing:.02em" style-hover="background:#0169B8;color:#fff">Buy for My Home</a>
+      </div>
+    </div>
+  </div>
+</section></div>
+
+<!-- 6 CTA band -->
+<section style="position:relative;background:#0169B8;color:#fff;overflow:hidden">
+  <div style="position:absolute;inset:0;background:url('assets/cta.webp') center 65%/cover no-repeat"></div>
+  <div style="position:absolute;inset:0;background:rgba(1,105,184,.88)"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(64px,9vw,112px) 24px;text-align:center">
+    <h2 style="text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(30px,4.8vw,52px);line-height:1;margin:0 0 16px;letter-spacing:-.01em">Need Custom or Bulk Labels?</h2>
+    <p style="font-size:clamp(17px,2vw,20px);max-width:620px;margin:0 auto 28px;color:#fff">Custom logo labels and bulk packs are available for movers, realtors and businesses.</p>
+    <a href="#" style="display:inline-block;background:#fff;color:#0169B8;font-weight:700;padding:16px 32px;border-radius:10px;font-size:17px" style-hover="background:#E6EEF6;color:#111111">Contact Us</a>
+  </div>
+</section>
+
+<dc-import name="Footer" hint-size="100%,520px"></dc-import>
+<a href="All%20Products.dc.html#!/~/cart" aria-label="View cart" style="position:fixed;right:20px;bottom:24px;z-index:90;width:60px;height:60px;border-radius:50%;background:#0169B8;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(1,105,184,.4),0 2px 6px rgba(0,0,0,.2);border:3px solid #fff" style-hover="background:#111111"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.5 11h10L20 7H6"></path><circle cx="9" cy="20" r="1.5"></circle><circle cx="17" cy="20" r="1.5"></circle></svg></a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { document.title = 'Label Templates | TAG-A-ROOM'; }
+  renderVals() {
+    const S = ['#FEFA1F', '#FC811C', '#F91055', '#DA019F', '#724DB5', '#01A0D6', '#40D13D', '#DEF306'];
+    const mk = (n) => Array.from({ length: n }, (_, i) => ({ c: S[i % 8] }));
+    return {
+      templates: [
+        { name: '1/2 Inch Circles', desc: 'Small round labels for tight spaces and small items.', href: 'https://tagaroom.com/wp-content/uploads/2021/01/gsp_ace_1-2inch_circles.doc', w: '36px', h: '36px', r: '50%', gap: '8px', shapes: mk(16) },
+        { name: '3/4 Inch Circles', desc: 'A mid-size round label for color-coding boxes and bins.', href: 'https://tagaroom.com/wp-content/uploads/2021/01/3-4-gsp_acd_Blank_Template_Circles_PC.doc', w: '54px', h: '54px', r: '50%', gap: '8px', shapes: mk(8) },
+        { name: '1 Inch Circles', desc: 'Larger round labels that are easy to spot from across the room.', href: 'https://tagaroom.com/wp-content/uploads/2021/01/gsp_1inch_circles.doc', w: '72px', h: '72px', r: '50%', gap: '8px', shapes: mk(6) },
+        { name: 'Small Rectangles', desc: 'Rectangular labels for writing box contents or numbers.', href: 'https://tagaroom.com/wp-content/uploads/2021/08/gsp_acr_5inx75in_rectangles.doc', w: '36px', h: '54px', r: '4px', gap: '8px', shapes: mk(10) }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

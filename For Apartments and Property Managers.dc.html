@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="Audience Template" page="{{ data }}" hint-size="100%,4200px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { data: {
+      idx: 5, nav: 'Apartments \u2013 Property Managers', who: 'Apartments & Property Managers', how: 'Property Managers',
+      headline: 'Fewer Move-In Headaches. Better First Impressions.',
+      sub: 'Give residents a simple system that keeps move-ins quick, hallways clear and staff free to do their jobs.',
+      shop: 'Shop Property Packs', shopHref: 'Apartments%20and%20Property%20Managers.dc.html',
+      cta: 'Ask About Property Programs', ctaHref: '#',
+      img: 'A residents\u2019 move-in day in an apartment hallway.',
+      challengeH: 'Move-in days get crowded', challenge: 'Busy move-in days mean crowded hallways, confused movers and staff pulled away to answer questions.',
+      benefits: [
+        ['Smoother move-ins', 'Movers know where each box goes on arrival.'],
+        ['Less hallway congestion', 'Boxes get to the right unit and crews clear out.'],
+        ['Fewer staff interruptions', 'Your team stays focused on the property.'],
+        ['Better first impressions', 'A good start to every lease means better reviews.'],
+        ['One standard system', 'The same simple process for every unit.']
+      ],
+      steps: ['Include a kit in the welcome or lease-signing packet', 'Residents label by room', 'Movers unload quickly and clear out'],
+      included: [
+        ['Color-Coded Room Labels', 'One color per room in every unit.', 'assets/color-coding.webp', 'Color%20Coding%20Labels.dc.html'],
+        ['Box Content Labels', 'Say what is inside before the tape goes on.', 'assets/box-content.webp', 'Box%20Content%20Labels.dc.html'],
+        ['Resident Kits', 'Optional kits for your welcome packet.', 'assets/apartments.webp', 'Moving%20Label%20Systems.dc.html'],
+        ['Bulk Property Programs', 'Pricing built for multi-unit properties.', 'assets/label-systems.webp', 'All%20Products.dc.html']
+      ],
+      quote: '[Placeholder testimonial. Replace with a real review from a property manager.]', quoteBy: 'Customer name, Property Management Company',
+      ctaH: 'Start Every Lease with a Better Move-In'
+    } };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="Audience Template" page="{{ data }}" hint-size="100%,4200px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { data: {
+      idx: 6, nav: 'Do-It-Yourself Families', who: 'DIY Families', how: 'DIY Families',
+      headline: 'Move Like a Pro, Without the Chaos',
+      sub: 'The same color-coded system professional movers use, made simple for families moving themselves.',
+      shop: 'Shop DIY Packs', shopHref: 'Do-It-Yourself%20Families.dc.html',
+      cta: 'See How It Works', ctaHref: 'Label%20Benefits.dc.html',
+      img: 'A family carrying labeled boxes into their new home.',
+      challengeH: 'Nobody knows where anything goes', challenge: 'Friends and family are happy to help, but nobody knows where anything goes, and unpacking turns into a search.',
+      benefits: [
+        ['Every box in the right room', 'One color per room, no guessing.'],
+        ['Helpers know where to go', 'Anyone can drop boxes by color without asking.'],
+        ['Unpack what you need first', 'Spot the essentials at a glance.'],
+        ['Less stress in move week', 'A calmer move for the whole family.'],
+        ['Tested in thousands of moves', 'Designed by real movers.'],
+        ['Made and packed in the USA', 'Quality you can count on.']
+      ],
+      steps: ['Pick a color for each room', 'Label boxes on the sides as you pack', 'Helpers drop boxes by color'],
+      included: [
+        ['Complete Moving Label Systems', 'Everything you need to label the whole move.', 'assets/label-systems.webp', 'Moving%20Label%20Systems.dc.html'],
+        ['Color-Coded Room Labels', 'One color per room.', 'assets/color-coding.webp', 'Color%20Coding%20Labels.dc.html'],
+        ['Content Labels', 'Say what is inside before the tape goes on.', 'assets/box-content.webp', 'Box%20Content%20Labels.dc.html'],
+        ['Storage and Garage Add-Ons', 'Optional labels for storage, garage and attic.', 'assets/office.webp', 'Office%20Labels%20and%20Supplies.dc.html']
+      ],
+      quote: '[Placeholder testimonial. Replace with a real review from a DIY family.]', quoteBy: 'Customer name',
+      ctaH: 'Make Move Day Easier on Everyone'
+    } };
+  }
+}
+</script>
+</body>
+</html>
