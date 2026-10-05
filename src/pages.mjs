@@ -123,6 +123,18 @@ const cartPatches = {
 };
 const CART_TOKEN = [{ id: 'tpl', name: '__NAME__', variant: '__VARIANT__', price: 0, qty: 1, img: '', badge: 'Made in USA', href: '#' }];
 
+// Blog posts: Previous / Next links under the article.
+const postPatches = {
+  template: [
+    ['  </sc-for>\n</article></div>', `  </sc-for>
+  <nav aria-label="More posts" style="display:flex;flex-wrap:wrap;gap:16px;margin-top:48px;padding-top:32px;border-top:1px solid #E3E8EE">
+    <sc-if value="{{ hasPrev }}"><a href="{{ prev.href }}" rel="prev" style="flex:1 1 260px;display:flex;flex-direction:column;gap:8px;padding:20px 22px;background:#fff;border:2px solid #E3E8EE;border-radius:16px;color:#111111;box-shadow:0 2px 10px rgba(17,17,17,.05)" style-hover="border-color:#0169B8;color:#0169B8"><span style="font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#0169B8">&larr; Previous post</span><span style="font-style:italic;font-weight:900;font-size:19px;line-height:1.2;text-transform:uppercase;letter-spacing:-.01em">{{ prev.t }}</span></a></sc-if>
+    <sc-if value="{{ hasNext }}"><a href="{{ next.href }}" rel="next" style="flex:1 1 260px;display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:8px;padding:20px 22px;background:#fff;border:2px solid #E3E8EE;border-radius:16px;color:#111111;box-shadow:0 2px 10px rgba(17,17,17,.05)" style-hover="border-color:#0169B8;color:#0169B8"><span style="font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#0169B8">Next post &rarr;</span><span style="font-style:italic;font-weight:900;font-size:19px;line-height:1.2;text-transform:uppercase;letter-spacing:-.01em">{{ next.t }}</span></a></sc-if>
+  </nav>
+</article></div>`],
+  ],
+};
+
 const config = { ecwidConfig: ECWID_CONFIG, ecwidStoreId: ECWID_STORE_ID, freeShippingThreshold: 75, contactEndpoint: '', contactEmail: 'info@tagaroom.com', categoryPages: {} };
 
 function shopPages() {
@@ -205,14 +217,20 @@ function list() {
   }
 
   // One static page per post (the design loads them at runtime from blog-posts.json).
-  for (const [slug, post] of Object.entries(posts)) {
+  // Previous / Next follow the blog listing's order (newest first).
+  const order = Object.entries(posts);
+  const near = i => (order[i] ? { href: POST(order[i][0]), t: order[i][1].title } : null);
+  order.forEach(([slug, post], i) => {
     const first = post.blocks.find(b => b[0] === 'p');
+    const prev = near(i - 1), next = near(i + 1);
     pages.push({
       design: 'Blog Post', out: `blog/${slug}.html`, title: T(post.title),
       description: first ? first[1].slice(0, 155).replace(/\s+\S*$/, '') + '…' : '',
       state: { post, slug, loaded: true },
+      extraVals: { prev, next, hasPrev: !!prev, hasNext: !!next },
+      patches: postPatches,
     });
-  }
+  });
   return pages;
 }
 
