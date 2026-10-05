@@ -63,7 +63,7 @@ export function mapLink(href) {
   }
   const out = PAGE_FILES[name];
   if (!out) throw new Error(`No page mapped for design link "${href}"`);
-  return out + hash;
+  return out + query + hash;
 }
 
 export const NAV = [

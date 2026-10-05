@@ -51,6 +51,10 @@ const home = {
       ['<a href="#" style="font-weight:700;font-size:15px">Read More →</a>', '<a href="{{ p.href }}" style="font-weight:700;font-size:15px">Read More →</a>'],
     ],
     script: [
+      // Shop links go to the designed shop pages (hero, store, CTA band) rather
+      // than the bare inline store the design opened on the homepage.
+      [".map(([s, id]) => '#!/' + s + '/c/' + id);", `.map((_, i) => ${JSON.stringify(SHOP.slice(1).map(s => encodeURI(s.design) + '.dc.html'))}[i]);`],
+      ["const ALL = '#!/~/shop', PROD = '#!/Open-First-Dont-Load-Labels-125-Count/p/62956784';", "const ALL = 'All%20Products.dc.html', PROD = 'All%20Products.dc.html?product=62956784';"],
       ['return { t: r.t, n: r.n, body:', 'return { t: r.t, n: r.n, s: r.s, f: r.f, body:'],
       ['audiences: audNames.map((t, i) => ({ t, ', `audiences: audNames.map((t, i) => ({ t, href: ${JSON.stringify(FOR)}[i], `],
       ["img: 'assets/blog-checklist.png' }", `img: 'assets/blog-checklist.png', href: '${POST('complete-interstate-moving-checklist-2026')}' }`],

@@ -5,11 +5,11 @@
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const FEATURED_ID = 62956784; // Open First / Don't Load Labels – 125 Count
-  const FEATURED_ROUTE = '#!/Open-First-Dont-Load-Labels-125-Count/p/62956784';
+  const FEATURED_PAGE = 'shop/all-products.html?product=' + FEATURED_ID;
 
   /* ---------- Inline store ----------
-     Shop links on the homepage carry Ecwid routes (#!/…). Following one swaps
-     the page for the store, like the design's "storeOpen" state. */
+     Shop links go to the shop pages. The hidden inline store gives the featured
+     product's Add to Cart access to Ecwid, and still opens for old #!/ links. */
   const storeView = $('[data-store-view]');
   const homeView = $('[data-home-view]');
   const storeEl = $('#my-store-1805034');
@@ -46,12 +46,12 @@
   window.TAR.routeCartToCartPage();
   if (location.hash.startsWith('#!/')) openStore();
 
-  // Category search: Enter searches the live store.
+  // Category search: Enter searches the store on the All Products page.
   const search = $('[data-keydown="onSearchKey"]');
   if (search) search.addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;
     const v = search.value.trim();
-    openStore(v ? '#!/~/search/keyword=' + encodeURIComponent(v) : '#!/~/shop');
+    location.href = 'shop/all-products.html' + (v ? '#!/~/search/keyword=' + encodeURIComponent(v) : '#store');
   });
 
   /* ---------- Featured product ---------- */
@@ -69,11 +69,11 @@
         btn.disabled = false;
         setQty(1);
         if (ok) location.href = 'cart.html';
-        else openStore(FEATURED_ROUTE);
+        else location.href = FEATURED_PAGE;
       } });
     } catch (err) {
       btn.disabled = false;
-      openStore(FEATURED_ROUTE);
+      location.href = FEATURED_PAGE;
     }
   });
 
