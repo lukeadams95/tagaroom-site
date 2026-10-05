@@ -73,11 +73,11 @@ const stripFloatingCart = html => html.replace(/<a href="cart\.html"[^>]*?style=
 const linkContacts = html => html.replace(/<a href="#"([^>]*)>(\s*(?:Contact[^<]*|Get Brokerage Pricing))<\/a>/g, '<a href="contact.html"$1>$2</a>');
 
 const written = [];
-function writePage(out, { title, description, body, scripts = [], css = [] }) {
+function writePage(out, { title, description, body, scripts = [], css = [], ecwid = '' }) {
   const depth = out.split('/').length - 1;
   const prefix = '../'.repeat(depth);
   const head = css.map(c => `<link rel="stylesheet" href="${c}">`).join('\n') + (css.length ? '\n' : '');
-  let html = layout({ title, description, head, body: linkContacts(stripFloatingCart(body)) + (out === 'cart.html' ? '' : '\n' + floatingCart()), scripts, root: prefix });
+  let html = layout({ title, description, head, body: linkContacts(stripFloatingCart(body)) + (out === 'cart.html' ? '' : '\n' + floatingCart()), scripts, root: prefix, ecwid, storeId: PAGES.config.ecwidStoreId });
   html = relocate(html, prefix);
   fs.mkdirSync(path.dirname(path.join(OUT, out)), { recursive: true });
   fs.writeFileSync(path.join(OUT, out), html);
@@ -93,7 +93,7 @@ function build() {
     const body = p.render
       ? p.render({ renderComponent, design, esc, ctx })
       : renderComponent(p.design, { props: p.props, state: p.state, patches: p.patches, extraVals: p.extraVals });
-    writePage(p.out, { title: p.title, description: p.description, body, scripts: p.scripts, css: currentHelmetCss.slice() });
+    writePage(p.out, { title: p.title, description: p.description, body, scripts: p.scripts, css: currentHelmetCss.slice(), ecwid: p.ecwid });
   }
 
   // Stylesheets

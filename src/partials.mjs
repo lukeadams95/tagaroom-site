@@ -41,7 +41,25 @@ export function floatingCart() {
   return `<a href="${CART}" class="floating-cart" aria-label="View cart"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.5 11h10L20 7H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg><b data-cart-count>0</b></a>`;
 }
 
-export function layout({ title, description = '', head = '', body, scripts = [], root = '' }) {
+// Ecwid storefront settings (colors and font match the site).
+export const ECWID_CONFIG = {
+  chameleon: {
+    colors: { 'color-button': '#0169B8', 'color-price': '#0169B8', 'color-link': '#0169B8', 'color-title': '#111111', 'color-foreground': '#111111', 'color-background': '#FFFFFF' },
+    font: { fontFamily: 'Archivo', fontFamilyCustom: 'Archivo' },
+  },
+};
+
+// ecwid: 'eager' starts downloading the store script with the page (shop, cart);
+// 'preconnect' only warms up the connection (homepage, which loads it later).
+function ecwidHead(mode, storeId) {
+  if (!mode) return '';
+  const pre = '<link rel="preconnect" href="https://app.ecwid.com">\n<link rel="dns-prefetch" href="https://app.ecwid.com">\n';
+  if (mode !== 'eager') return pre;
+  return pre + `<script>window.ec=window.ec||{};window.ec.config=Object.assign(window.ec.config||{},${JSON.stringify(ECWID_CONFIG)});</script>
+<script id="ecwid-script" data-cfasync="false" charset="utf-8" src="https://app.ecwid.com/script.js?${storeId}&amp;data_platform=code" async></script>\n`;
+}
+
+export function layout({ title, description = '', head = '', body, scripts = [], root = '', ecwid = '', storeId }) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +71,7 @@ ${description ? `<meta name="description" content="${esc(description)}">\n` : ''
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800;1,900&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
-${head}<script>window.TAR_ROOT=${JSON.stringify(root)};</script>
+${ecwidHead(ecwid, storeId)}${head}<script>window.TAR_ROOT=${JSON.stringify(root)};</script>
 <script src="js/config.js" defer></script>
 <script src="js/site.js" defer></script>
 ${scripts.map(s => `<script src="${s}" defer></script>`).join('\n')}

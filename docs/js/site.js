@@ -40,14 +40,17 @@
   // Load the Ecwid storefront script once.
   function loadEcwid() {
     if (loading) return loading;
-    window.ec = window.ec || {};
-    window.ec.config = window.ec.config || {};
-    window.ec.config.chameleon = {
-      colors: { 'color-button': '#0169B8', 'color-price': '#0169B8', 'color-link': '#0169B8', 'color-title': '#111111', 'color-foreground': '#111111', 'color-background': '#FFFFFF' },
-      font: { fontFamily: 'Archivo', fontFamilyCustom: 'Archivo' },
-    };
     loading = new Promise((resolve, reject) => {
       if (window.xProductBrowser) return resolve();
+      // Shop and cart pages start downloading Ecwid in <head> (see partials.mjs).
+      const early = document.getElementById('ecwid-script');
+      if (early) {
+        early.addEventListener('load', () => resolve());
+        early.addEventListener('error', () => reject(new Error('Ecwid failed to load')));
+        return;
+      }
+      window.ec = window.ec || {};
+      window.ec.config = Object.assign(window.ec.config || {}, CFG.ecwidConfig || {});
       const s = document.createElement('script');
       s.setAttribute('data-cfasync', 'false');
       s.charset = 'utf-8';
@@ -75,8 +78,29 @@
     return api;
   }
 
+
+  /* ---------- Back button on store pages ----------
+     Ecwid can add a history entry by itself (e.g. rewriting a product URL right
+     after opening it), which makes visitors press Back twice. Only navigation
+     the visitor started gets a new entry; anything else replaces the current one. */
+  function guardHistory() {
+    if (guardHistory.done) return;
+    guardHistory.done = true;
+    let userNav = false;
+    const mark = () => { userNav = true; };
+    window.addEventListener('pointerdown', mark, true);
+    window.addEventListener('keydown', mark, true);
+    const push = history.pushState.bind(history);
+    history.pushState = (state, title, url) => {
+      if (!userNav) return history.replaceState(state, title, url);
+      userNav = false;
+      return push(state, title, url);
+    };
+  }
+
   // Mount the Ecwid product browser into `el` (same options as the designs).
   async function mountStore(el, { categoryId } = {}) {
+    guardHistory();
     await loadEcwid();
     const args = ['categoriesPerRow=3', 'views=grid(20,3) list(60) table(60)', 'categoryView=grid', 'searchView=list'];
     if (categoryId) args.push('defaultCategoryId=' + categoryId);

@@ -5,6 +5,7 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { readDesign, evalVals, patch } from './lib/dc.mjs';
+import { ECWID_CONFIG } from './partials.mjs';
 import { SHOP, AUDIENCES, ECWID_STORE_ID } from './site.mjs';
 
 const T = s => `${s} | TAG-A-ROOM`;
@@ -29,7 +30,7 @@ const POST = slug => `Blog%20Post.dc.html?post=${slug}`;
 const FOR = ['For Professional Movers', 'For Realtors', 'For Mortgage Companies', 'For Restoration Companies', 'For Move Managers and Organizers', 'For Apartments and Property Managers', 'For DIY Families'].map(n => encodeURI(n) + '.dc.html');
 
 const home = {
-  design: 'Homepage', out: 'index.html', scripts: ['js/home.js'],
+  design: 'Homepage', out: 'index.html', scripts: ['js/home.js'], ecwid: 'preconnect',
   title: 'TAG-A-ROOM® | Professional Color-Coded Moving Labels',
   description: 'TAG-A-ROOM®, the original creator of the color-coded moving and storage label system. Professional moving labels trusted by movers and real estate pros. Made in USA, veteran packaged.',
   patches: {
@@ -114,7 +115,7 @@ const cartPatches = {
 };
 const CART_TOKEN = [{ id: 'tpl', name: '__NAME__', variant: '__VARIANT__', price: 0, qty: 1, img: '', badge: 'Made in USA', href: '#' }];
 
-const config = { ecwidStoreId: ECWID_STORE_ID, freeShippingThreshold: 75, contactEndpoint: '', contactEmail: 'info@tagaroom.com', categoryPages: {} };
+const config = { ecwidConfig: ECWID_CONFIG, ecwidStoreId: ECWID_STORE_ID, freeShippingThreshold: 75, contactEndpoint: '', contactEmail: 'info@tagaroom.com', categoryPages: {} };
 
 function shopPages() {
   const d = readDesign(fileURLToPath(new URL('../design/All Products.dc.html', import.meta.url)));
@@ -125,7 +126,7 @@ function shopPages() {
     if (v.catId) config.categoryPages[v.catId] = s.out;
     return {
       design: 'All Products', out: s.out, title: T(v.title), description: v.tagline,
-      props: { slug: s.slug }, state: { featured: [FEATURED_TOKEN] }, patches: shopPatches, scripts: ['js/shop.js'],
+      props: { slug: s.slug }, state: { featured: [FEATURED_TOKEN] }, patches: shopPatches, scripts: ['js/shop.js'], ecwid: 'eager',
     };
   });
 }
@@ -134,7 +135,7 @@ function list() {
   const pages = [
     home,
     ...shopPages(),
-    { design: 'Cart', out: 'cart.html', title: T('Your Cart'), scripts: ['js/cart.js'], patches: cartPatches,
+    { design: 'Cart', out: 'cart.html', title: T('Your Cart'), scripts: ['js/cart.js'], ecwid: 'eager', patches: cartPatches,
       state: { items: CART_TOKEN }, props: { freeShippingThreshold: 75 } },
     { design: 'About Us', out: 'about.html', title: T('About Us'),
       description: 'TAG-A-ROOM®: the original color-coded moving and storage label system, built by a mover, packed by veterans and trusted nationwide.' },

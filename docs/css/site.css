@@ -102,6 +102,18 @@ img { max-width: 100%; }
 @media (max-width: 899.98px) { .home-cat-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 599.98px) { .home-cat-grid { grid-template-columns: minmax(0, 1fr); } }
 
+/* Store placeholder while Ecwid loads (the store element is empty until then). */
+#my-store-1805034:empty {
+  min-height: 520px; border-radius: 20px; position: relative;
+  background: linear-gradient(100deg, #F5F7FA 30%, #E9EEF3 50%, #F5F7FA 70%) 0 0 / 300% 100%;
+  animation: tar-shimmer 1.4s ease-in-out infinite;
+}
+#my-store-1805034:empty::after {
+  content: 'Loading products…'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 17px; color: #6B7B8D;
+}
+@keyframes tar-shimmer { from { background-position: 100% 0; } to { background-position: 0 0; } }
+
 /* Hover and focus states from the designs */
 .pdafb498:hover{color:#014F8A !important}
 .pe05ac06:hover{background:rgba(255,255,255,.12) !important;color:#fff !important}
