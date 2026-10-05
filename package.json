@@ -1,0 +1,11 @@
+{
+  "name": "tagaroom-site",
+  "private": true,
+  "description": "TAG-A-ROOM website, built from the Claude Design files in design/",
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "serve": "python3 -m http.server 8000 --directory docs"
+  },
+  "engines": { "node": ">=18" }
+}
