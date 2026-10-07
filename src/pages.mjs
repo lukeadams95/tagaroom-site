@@ -173,7 +173,12 @@ function list() {
   pages.push({
     design: 'Contact Us', out: 'contact.html', title: T('Contact Us'), scripts: ['js/contact.js'],
     description: 'Questions about TAG-A-ROOM labels, bulk pricing or custom branding? Call (210) 564-0147 or send our San Antonio team a message.',
-    patches: { template: [
+    patches: { script: [
+      // The FAQ linked to the old site's policy pages; use ours.
+      ["'https://tagaroom.com/shipping-policies/'", "'shipping-policies.html'"],
+      ["'https://tagaroom.com/return-policies/'", "'return-policies.html'"],
+    ], template: [
+      ['<a href="{{ q.href }}" target="_blank" style="font-weight:700;text-decoration:underline">', '<a href="{{ q.href }}" style="font-weight:700;text-decoration:underline">'],
       // Render the success message, error line and FAQ answers hidden; contact.js reveals them.
       ['<sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">\n        <div style="text-align:center', '<sc-if value="{{ true }}">\n        <div data-form-sent hidden style="text-align:center'],
       ['<sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">', '<sc-if value="{{ true }}">'],

@@ -69,6 +69,19 @@ function relocate(html, prefix) {
 // The designs repeat a fixed cart button on each page; use the shared one.
 const stripFloatingCart = html => html.replace(/<a href="cart\.html"[^>]*?style="position:fixed[\s\S]*?<\/a>/g, '');
 
+// Images and downloads still stored on the old WordPress site (tagaroom.com,
+// being retired). When a copy exists in design/media/ (same file name), the
+// page uses it; otherwise the old URL stays and is listed in
+// design/media/files-to-download.txt so it can be saved before the site goes away.
+const MEDIA = path.join(DESIGN, 'media');
+const OLD_FILE = /https?:\/\/(?:www\.)?tagaroom\.com\/wp-content\/uploads\/\d{4}\/\d{2}\/([^"'()\s<>&]+)/g;
+const oldFilesMissing = new Map(); // file name -> original URL
+const localizeOldSite = html => html.replace(OLD_FILE, (url, name) => {
+  if (fs.existsSync(path.join(MEDIA, decodeURIComponent(name)))) return 'media/' + name;
+  oldFilesMissing.set(decodeURIComponent(name), url);
+  return url;
+});
+
 // "Contact us" style links are placeholders (href="#") in the designs.
 const linkContacts = html => html.replace(/<a href="#"([^>]*)>(\s*(?:Contact[^<]*|Get Brokerage Pricing))<\/a>/g, '<a href="contact.html"$1>$2</a>');
 
@@ -78,7 +91,7 @@ function writePage(out, { title, description, body, scripts = [], css = [], ecwi
   const prefix = '../'.repeat(depth);
   const head = css.map(c => `<link rel="stylesheet" href="${c}">`).join('\n') + (css.length ? '\n' : '');
   let html = layout({ title, description, head, body: linkContacts(stripFloatingCart(body)) + (out === 'cart.html' ? '' : '\n' + floatingCart()), scripts, root: prefix, ecwid, storeId: PAGES.config.ecwidStoreId });
-  html = relocate(html, prefix);
+  html = relocate(localizeOldSite(html), prefix);
   fs.mkdirSync(path.dirname(path.join(OUT, out)), { recursive: true });
   fs.writeFileSync(path.join(OUT, out), html);
   written.push(out);
@@ -111,8 +124,8 @@ function build() {
   const scan = text => {
     text = text.replace(/&quot;/g, '"').replace(/&amp;/g, '&');
     const add = u => refs.add(decodeURIComponent(u));
-    for (const m of text.matchAll(/(["'])((?:assets|uploads)\/[^"'<>]+?)\1/g)) add(m[2]);
-    for (const m of text.matchAll(/url\(((?:assets|uploads)\/[^"')]+)\)/g)) add(m[1]);
+    for (const m of text.matchAll(/(["'])((?:assets|uploads|media)\/[^"'<>]+?)\1/g)) add(m[2]);
+    for (const m of text.matchAll(/url\(((?:assets|uploads|media)\/[^"')]+)\)/g)) add(m[1]);
   };
   for (const f of walk(OUT)) if (/\.(html|css|js)$/.test(f)) scan(fs.readFileSync(f, 'utf8'));
   let missing = 0;
@@ -123,7 +136,34 @@ function build() {
     fs.copyFileSync(src, path.join(OUT, r));
   }
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
+  writeOldSiteReport();
   console.log(`Built ${written.length} pages, ${refs.size} assets${missing ? `, ${missing} missing` : ''}, ${sheet.rules.size} hover/focus rules.`);
+}
+
+// List what still loads from the old site, plus a PowerShell script that saves it all.
+function writeOldSiteReport() {
+  fs.mkdirSync(MEDIA, { recursive: true });
+  const urls = [...oldFilesMissing.values()].sort();
+  fs.writeFileSync(path.join(MEDIA, 'files-to-download.txt'), urls.length
+    ? `# ${urls.length} files the site still loads from the old tagaroom.com website.\n# Save each one into this folder (design/media/) with the same file name, then rebuild.\n${urls.join('\n')}\n`
+    : '# Nothing left: every image and download is served from this site.\n');
+  const ps = `# Saves the files the new site still loads from the old tagaroom.com website.
+# Run in Windows PowerShell; the files go to a "tagaroom-media" folder on your Desktop.
+# Then upload that folder's files to design/media/ in the GitHub repo.
+$out = Join-Path ([Environment]::GetFolderPath('Desktop')) 'tagaroom-media'
+New-Item -ItemType Directory -Force -Path $out | Out-Null
+$urls = @(
+${urls.map(u => `  '${u}'`).join(",\n")}
+)
+foreach ($u in $urls) {
+  $name = [System.Uri]::UnescapeDataString(($u -split '/')[-1])
+  try { Invoke-WebRequest -Uri $u -OutFile (Join-Path $out $name) -UseBasicParsing; Write-Host "Saved $name" }
+  catch { Write-Warning "Could not download $u" }
+}
+Write-Host "Done: $($urls.Count) files in $out"
+`;
+  fs.writeFileSync(path.join(MEDIA, 'download-old-site-files.ps1'), urls.length ? ps : '# Nothing left to download.\n');
+  if (urls.length) console.warn(`${urls.length} files still load from the old tagaroom.com site (see design/media/files-to-download.txt).`);
 }
 
 function* walk(dir) {

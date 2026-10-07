@@ -54,6 +54,17 @@ and fix any patch the build reports.
   JSON POST. While it's empty, the Contact form opens the visitor's email app
   addressed to `contactEmail`.
 
+## Files from the old website
+
+Some photos (gallery, blog posts, two team photos) and the label template
+downloads are still loaded from the old WordPress site (tagaroom.com), which is
+being retired. Save a copy of each into `design/media/` with the same file
+name and rebuild: the build switches to the local copy automatically.
+
+- `design/media/files-to-download.txt` lists what is still missing (updated on every build).
+- `design/media/download-old-site-files.ps1` downloads all of them on Windows
+  (paste into PowerShell; files land in a `tagaroom-media` folder on the Desktop).
+
 ## Pages
 
 - Home: `index.html`
@@ -64,4 +75,4 @@ and fix any patch the build reports.
 - Cart: `cart.html`, the designed cart showing the real Ecwid cart; checkout is Ecwid's.
 - Policies: `policies.html`, `shipping-policies.html`, `return-policies.html`. They share
   `src/policy.mjs` (PolicyLayout), and their text lives in `src/policies/*.mjs`, copied word for
-  word from tagaroom.com. Don't reword it without the client's approval.
+  word from the client's old site. Don't reword it without the client's approval.
