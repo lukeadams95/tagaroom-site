@@ -6,6 +6,10 @@ import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { readDesign, evalVals, patch } from './lib/dc.mjs';
 import { ECWID_CONFIG } from './partials.mjs';
+import { policyPage } from './policy.mjs';
+import storePolicies from './policies/store.mjs';
+import shippingPolicy from './policies/shipping.mjs';
+import returnPolicy from './policies/returns.mjs';
 import { SHOP, AUDIENCES, ECWID_STORE_ID } from './site.mjs';
 
 const T = s => `${s} | TAG-A-ROOM`;
@@ -22,7 +26,7 @@ const footerPatches = {
   ],
   script: [
     ["company: ['About', 'Blog', 'Gallery', 'Templates', 'Contact'],", "company: [['About', 'About%20Us.dc.html'], ['Blog', 'Blog.dc.html'], ['Gallery', 'Gallery.dc.html'], ['Templates', 'Label%20Templates.dc.html'], ['Contact', 'Contact%20Us.dc.html']].map(([t, href]) => ({ t, href })),"],
-    ["policies: ['Shipping', 'Returns', 'General']", "policies: [['Shipping', 'https://tagaroom.com/shipping-policies/'], ['Returns', 'https://tagaroom.com/return-policies/'], ['General', '#']].map(([t, href]) => ({ t, href }))"],
+    ["policies: ['Shipping', 'Returns', 'General']", "policies: [['Shipping', 'shipping-policies.html'], ['Returns', 'return-policies.html'], ['General', 'policies.html']].map(([t, href]) => ({ t, href }))"],
   ],
 };
 
@@ -217,6 +221,14 @@ function list() {
   }
 
   // One static page per post (the design loads them at runtime from blog-posts.json).
+  // Policy pages share PolicyLayout (src/policy.mjs); no CTA band.
+  for (const pol of [storePolicies, shippingPolicy, returnPolicy]) {
+    pages.push({
+      out: pol.out, title: pol.pageTitle, description: pol.description, scripts: ['js/policy.js'],
+      render: ({ renderComponent }) => policyPage(pol, { footer: renderComponent('Footer', { patches: footerPatches }) }),
+    });
+  }
+
   // Previous / Next follow the blog listing's order (newest first).
   const order = Object.entries(posts);
   const near = i => (order[i] ? { href: POST(order[i][0]), t: order[i][1].title } : null);

@@ -11,6 +11,7 @@ src/        Build script and the hand-written parts
   pages.mjs     page list: titles, descriptions, and small patches applied to the designs
   site.mjs      URL map (design file → page) and the header navigation
   partials.mjs  shared header, floating cart, HTML layout
+  policy.mjs    PolicyLayout for the policy pages; text in policies/
   lib/dc.mjs    renderer for the .dc.html format
   css/site.css  shared styles (header, floating cart, responsive fixes)
   js/           page behavior: site.js (menu, cart badge, Ecwid), home, shop, cart, contact, gallery, tips
@@ -61,3 +62,6 @@ and fix any patch the build reports.
 - `label-benefits`, `label-templates`, `about`, `contact`, `gallery`, `moving-tips`
 - Blog: `blog.html`, `blog-2.html`, `blog-3.html`, plus one page per post in `blog/`
 - Cart: `cart.html`, the designed cart showing the real Ecwid cart; checkout is Ecwid's.
+- Policies: `policies.html`, `shipping-policies.html`, `return-policies.html`. They share
+  `src/policy.mjs` (PolicyLayout), and their text lives in `src/policies/*.mjs`, copied word for
+  word from tagaroom.com. Don't reword it without the client's approval.
