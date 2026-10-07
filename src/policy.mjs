@@ -33,7 +33,7 @@ function summary(cards) {
   return `<div class="pol-summary" role="group" aria-label="At a glance">
   ${cards.map((c, i) => `<div class="pol-card" style="border-top-color:${STRIPE[(i * 2 + 1) % 8]}">
     <div class="pol-card-head"><span class="pol-card-icon">${icon(c.icon)}</span><h3>${esc(c.t)}</h3></div>
-    <dl>${c.facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+    ${c.facts ? `<dl>${c.facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>` : `<p class="pol-card-text">${esc(c.text)}</p>`}
   </div>`).join('\n  ')}
   <p class="pol-summary-note">At a glance. The full policy is below.</p>
 </div>`;
@@ -52,7 +52,6 @@ export function policyPage(page, { footer }) {
   <div class="pol-hero-inner">
     <nav class="pol-crumbs" aria-label="Breadcrumb">${crumbs}</nav>
     <h1>${esc(page.h1 || page.title)}</h1>
-    <!-- TODO(client): confirm the "Last updated" date. -->
     <p class="pol-updated">Last updated: ${esc(page.updated)}</p>
   </div>
   <div style="display:flex;height:5px">${RIBBON}</div>

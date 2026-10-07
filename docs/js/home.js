@@ -4,12 +4,10 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const FEATURED_ID = 62956784; // Open First / Don't Load Labels – 125 Count
-  const FEATURED_PAGE = 'shop/all-products.html?product=' + FEATURED_ID;
 
   /* ---------- Inline store ----------
-     Shop links go to the shop pages. The hidden inline store gives the featured
-     product's Add to Cart access to Ecwid, and still opens for old #!/ links. */
+     Shop links go to the shop pages. The hidden inline store still opens for
+     old #!/ links and keeps the cart badge current. */
   const storeView = $('[data-store-view]');
   const homeView = $('[data-home-view]');
   const storeEl = $('#my-store-1805034');
@@ -52,29 +50,6 @@
     if (e.key !== 'Enter') return;
     const v = search.value.trim();
     location.href = 'shop/all-products.html' + (v ? '#!/~/search/keyword=' + encodeURIComponent(v) : '#store');
-  });
-
-  /* ---------- Featured product ---------- */
-  let qty = 1;
-  const qtyEl = $('[data-qty]');
-  const setQty = n => { qty = Math.max(1, n); qtyEl.textContent = qty; };
-  $('[data-click="qtyUp"]')?.addEventListener('click', () => setQty(qty + 1));
-  $('[data-click="qtyDown"]')?.addEventListener('click', () => setQty(qty - 1));
-  $('[data-click="addToCart"]')?.addEventListener('click', async e => {
-    const btn = e.currentTarget;
-    btn.disabled = true;
-    try {
-      const Ecwid = await mount();
-      Ecwid.Cart.addProduct({ id: FEATURED_ID, quantity: qty, callback: ok => {
-        btn.disabled = false;
-        setQty(1);
-        if (ok) location.href = 'cart.html';
-        else location.href = FEATURED_PAGE;
-      } });
-    } catch (err) {
-      btn.disabled = false;
-      location.href = FEATURED_PAGE;
-    }
   });
 
   // Load the store quietly once the page is idle so the cart badge stays current.

@@ -42,11 +42,6 @@ a:hover{color:#014F8A}
 
 <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
 <section style="max-width:1240px;margin:0 auto;padding:28px 24px {{ bottomPad }}">
-  <div style="background:#fff;border:1px solid #E3E8EE;border-radius:16px;padding:20px 24px;margin-bottom:28px">
-    <p style="margin:0 0 12px;font-weight:700;font-size:17px">{{ shipMsg }}</p>
-    <div style="height:12px;border-radius:8px;background:#E3E8EE;overflow:hidden"><div style="{{ barStyle }}"></div></div>
-  </div>
-
   <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
     <div style="flex:2 1 520px;min-width:0">
       <div style="background:#fff;border:1px solid #E3E8EE;border-radius:16px;box-shadow:0 2px 10px rgba(17,17,17,.05)">
@@ -78,7 +73,7 @@ a:hover{color:#014F8A}
       <h2 style="margin:0 0 20px;text-transform:uppercase;font-style:italic;font-weight:900;font-size:24px;letter-spacing:-.01em">Order Summary</h2>
       <div style="display:flex;flex-direction:column;gap:12px;font-size:16px">
         <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4A5A6C">Subtotal</span><b style="font-weight:700">{{ subtotal }}</b></div>
-        <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4A5A6C">Shipping</span><b style="font-weight:700;color:{{ shipColor }}">{{ shipVal }}</b></div>
+        <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4A5A6C">Shipping</span><b style="font-weight:700;color:#1E9E1B">FREE</b></div>
         <div style="display:flex;justify-content:space-between;gap:12px"><span style="color:#4A5A6C">Estimated Tax</span><span style="color:#6B7A8C;text-align:right">Calculated at checkout</span></div>
       </div>
       <div style="margin:18px 0">
@@ -97,13 +92,13 @@ a:hover{color:#014F8A}
       <div style="margin-top:22px;padding-top:18px;border-top:1px solid #E3E8EE;display:flex;flex-direction:column;gap:12px;font-size:15px;font-weight:600">
         <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:32px;height:32px;border-radius:50%;background:rgba(64,209,61,.2);display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span>Secure Checkout</div>
         <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:32px;height:32px;border-radius:50%;background:rgba(1,160,214,.16);display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"></path><circle cx="7" cy="18" r="1.6"></circle><circle cx="17" cy="18" r="1.6"></circle></svg></span>Free Fast Shipping</div>
-        <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:32px;height:32px;border-radius:50%;background:rgba(249,16,85,.14);display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg></span>Made in USA · Veteran Packed</div>
+        <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:32px;height:32px;border-radius:50%;background:rgba(249,16,85,.14);display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg></span>Made in USA · Supports Veterans</div>
       </div>
     </aside>
   </div>
 
   <div style="margin-top:32px;background:#fff;border:2px solid #0169B8;border-radius:16px;padding:22px 26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
-    <p style="margin:0;flex:1 1 360px;font-size:18px;font-weight:600">Ordering for a moving company, brokerage or property? Get bulk pricing and custom logo labels.</p>
+    <p style="margin:0;flex:1 1 360px;font-size:18px;font-weight:600">Ordering for a moving company, brokerage or property? Get bulk pricing and Custom Branded Packs.</p>
     <a href="Contact%20Us.dc.html" style="flex:none;background:#0169B8;color:#fff;font-weight:700;padding:14px 26px;border-radius:10px;font-size:16px;border:2px solid #0169B8" style-hover="background:#fff;color:#0169B8">Contact Us for Bulk Pricing</a>
   </div>
 </section>
@@ -174,10 +169,6 @@ a:hover{color:#014F8A}
         </sc-for>
       </div>
       <div style="padding:20px 24px;border-top:1px solid #E3E8EE;background:#F5F7FA;display:flex;flex-direction:column;gap:14px">
-        <div>
-          <p style="margin:0 0 8px;font-weight:700;font-size:14px">{{ shipMsg }}</p>
-          <div style="height:10px;border-radius:8px;background:#E3E8EE;overflow:hidden"><div style="{{ barStyle }}"></div></div>
-        </div>
         <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-weight:700;font-size:17px">Subtotal</span><b style="font-weight:800;font-size:24px">{{ subtotal }}</b></div>
         <div style="display:flex;gap:12px">
           <button onClick="{{ closeDrawer }}" style="flex:1;height:50px;border:2px solid #0169B8;border-radius:10px;background:#fff;color:#0169B8;font-family:inherit;font-weight:700;font-size:16px;cursor:pointer" style-hover="background:#0169B8;color:#fff">View Cart</button>
@@ -196,7 +187,7 @@ class Component extends DCLogic {
     document.title = 'Your Cart | TAG-A-ROOM';
     const f = () => this.setState({ w: window.innerWidth }); f(); window.addEventListener('resize', f); this._f = f;
     this.setState({ items: this.props.showEmpty ? [] : [
-      { id: 'open-first', name: "Open First / Don't Load Labels", variant: '125 Count', price: 7.99, qty: 2, img: 'assets/open-first.png', badge: 'Veteran Packed', href: 'Alert%20Labels.dc.html' },
+      { id: 'open-first', name: "Open First / Don't Load Labels", variant: '125 Count', price: 7.99, qty: 2, img: 'assets/open-first.png', badge: 'Supports Veterans', href: 'Alert%20Labels.dc.html' },
       { id: 'system', name: 'Tag-A-Room Moving Label System', variant: 'Move By Color · 350 Count', price: 9.95, qty: 1, img: 'assets/label-systems.webp', badge: 'Made in USA', href: 'Moving%20Label%20Systems.dc.html' },
       { id: 'fragile', name: 'Fragile Labels', variant: '50 Count', price: 5.95, qty: 1, img: 'assets/alert.webp', badge: 'Made in USA', href: 'Alert%20Labels.dc.html' }
     ] });
@@ -219,7 +210,7 @@ class Component extends DCLogic {
     }));
     const CR = [
       { id: 'box', name: 'Box Content Labels', price: 9.50, img: 'assets/box-content.webp', variant: 'Packing Content · 190 Count', badge: 'Made in USA', href: 'Box%20Content%20Labels.dc.html' },
-      { id: 'alert', name: 'Alert Labels', price: 7.99, img: 'assets/alert.webp', variant: 'Alert Pack', badge: 'Veteran Packed', href: 'Alert%20Labels.dc.html' },
+      { id: 'alert', name: 'Alert Labels', price: 7.99, img: 'assets/alert.webp', variant: 'Alert Pack', badge: 'Supports Veterans', href: 'Alert%20Labels.dc.html' },
       { id: 'door', name: 'Door ID / Room Labels', price: 5.95, img: 'assets/door-ids.webp', variant: 'Room Identification Cards', badge: 'Made in USA', href: 'Moving%20Label%20Systems.dc.html' },
       { id: 'ship', name: 'Shipping Labels', price: 8.95, img: 'assets/shipping.webp', variant: 'Shipping Pack', badge: 'Made in USA', href: 'Shipping%20Labels.dc.html' }
     ];

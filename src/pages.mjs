@@ -38,7 +38,7 @@ const FOR = ['For Professional Movers', 'For Realtors', 'For Mortgage Companies'
 const home = {
   design: 'Homepage', out: 'index.html', scripts: ['js/home.js'], ecwid: 'preconnect',
   title: 'TAG-A-ROOM® | Professional Color-Coded Moving Labels',
-  description: 'TAG-A-ROOM®, the original creator of the color-coded moving and storage label system. Professional moving labels trusted by movers and real estate pros. Made in USA, veteran packaged.',
+  description: 'TAG-A-ROOM®, the original creator of the color-coded moving and storage label system. Professional moving labels trusted by movers and real estate pros. Made in USA, supports veterans.',
   patches: {
     template: [
       // Inline store view (hidden until a shop link is used) and the normal homepage.
@@ -50,7 +50,6 @@ const home = {
       ['“{{ r.body }}”', '“<span data-short>{{ r.s }}</span><span data-full hidden>{{ r.f }}</span>”'],
       // Category grid columns depended on window width; CSS media queries now.
       ['"><div style="display:grid;grid-template-columns:{{ catCols }};', '"><div class="home-cat-grid" style="display:grid;'],
-      ['<span style="min-width:36px;text-align:center;font-weight:700;font-size:18px">{{ qty }}</span>', '<span data-qty aria-live="polite" style="min-width:36px;text-align:center;font-weight:700;font-size:18px">{{ qty }}</span>'],
       // Placeholder links in the design that have real destinations now.
       ['<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:18px;width:140px', '<a href="{{ a.href }}" style="display:flex;flex-direction:column;align-items:center;gap:18px;width:140px'],
       // Moving tips: three videos from the Moving Tips page instead of blog cards.
@@ -105,10 +104,7 @@ const cartPatches = {
     ['<section style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,72px) 24px {{ bottomPad2 }}">', '<section data-cross style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,72px) 24px 72px">'],
     ['<sc-for list="{{ lines }}" as="it" hint-placeholder-count="3">', '<template data-line-tpl><sc-for list="{{ lines }}" as="it">'],
     ['        </sc-for>\n      </div>\n      <a href="All%20Products.dc.html"', '        </sc-for></template>\n      </div>\n      <a href="All%20Products.dc.html"'],
-    ['<p style="margin:0 0 12px;font-weight:700;font-size:17px">{{ shipMsg }}</p>', '<p data-ship-msg style="margin:0 0 12px;font-weight:700;font-size:17px">{{ shipMsg }}</p>'],
-    ['<div style="{{ barStyle }}"></div>', '<div data-ship-bar style="{{ barStyle }}"></div>'],
     ['<b style="font-weight:700">{{ subtotal }}</b>', '<b data-subtotal style="font-weight:700">{{ subtotal }}</b>'],
-    ['<b style="font-weight:700;color:{{ shipColor }}">{{ shipVal }}</b>', '<b data-ship-val style="font-weight:700;color:{{ shipColor }}">{{ shipVal }}</b>'],
     ['<b style="font-weight:800;font-size:32px">{{ total }}</b>', '<b data-total style="font-weight:800;font-size:32px">{{ total }}</b>'],
     ['<b style="font-weight:800;font-size:24px">{{ total }}</b>', '<b data-total style="font-weight:800;font-size:24px">{{ total }}</b>'],
     ['<sc-if value="{{ promoOpen }}" hint-placeholder-val="{{ false }}">\n          <div style=', '<sc-if value="{{ true }}">\n          <div data-promo hidden style='],
@@ -141,7 +137,7 @@ const postPatches = {
   ],
 };
 
-const config = { ecwidConfig: ECWID_CONFIG, ecwidStoreId: ECWID_STORE_ID, freeShippingThreshold: 75, contactEndpoint: '', contactEmail: 'info@tagaroom.com', categoryPages: {} };
+const config = { ecwidConfig: ECWID_CONFIG, ecwidStoreId: ECWID_STORE_ID, contactEndpoint: '', contactEmail: 'info@tagaroom.com', categoryPages: {} };
 
 function shopPages() {
   const d = readDesign(fileURLToPath(new URL('../design/All Products.dc.html', import.meta.url)));
@@ -162,24 +158,25 @@ function list() {
     home,
     ...shopPages(),
     { design: 'Cart', out: 'cart.html', title: T('Your Cart'), scripts: ['js/cart.js'], ecwid: 'eager', patches: cartPatches,
-      state: { items: CART_TOKEN }, props: { freeShippingThreshold: 75 } },
+      state: { items: CART_TOKEN },
+      description: 'Review your TAG-A-ROOM® cart. Free shipping on all orders; checkout is secure.' },
     { design: 'About Us', out: 'about.html', title: T('About Us'),
-      description: 'TAG-A-ROOM®: the original color-coded moving and storage label system, built by a mover, packed by veterans and trusted nationwide.' },
+      description: 'TAG-A-ROOM®: the original color-coded moving and storage label system, built by a mover, supporting veterans and trusted nationwide.' },
     { design: 'Label Benefits', out: 'label-benefits.html', title: T('Label Benefits'),
       description: 'Color-coded labels tell movers exactly where every box goes, so unloading is faster, less gets lost and moving day is calmer.' },
     { design: 'Label Templates', out: 'label-templates.html', title: T('Label Templates'),
       description: 'Free printable label templates for TAG-A-ROOM circle and rectangle labels.' },
   ];
-  for (const a of AUDIENCES) pages.push({ design: a.design, out: a.out, title: T(a.design) });
+  for (const a of AUDIENCES) {
+    const d = readDesign(fileURLToPath(new URL(`../design/${a.design}.dc.html`, import.meta.url)));
+    pages.push({ design: a.design, out: a.out, title: T(a.design), description: evalVals(d.script).data.sub });
+  }
 
   pages.push({
     design: 'Contact Us', out: 'contact.html', title: T('Contact Us'), scripts: ['js/contact.js'],
     description: 'Questions about TAG-A-ROOM labels, bulk pricing or custom branding? Call (210) 564-0147 or send our San Antonio team a message.',
-    patches: { script: [
-      // The FAQ linked to the old site's policy pages; use ours.
-      ["'https://tagaroom.com/shipping-policies/'", "'shipping-policies.html'"],
-      ["'https://tagaroom.com/return-policies/'", "'return-policies.html'"],
-    ], template: [
+    patches: { template: [
+      // FAQ links go to this site's policy pages; open them in the same tab.
       ['<a href="{{ q.href }}" target="_blank" style="font-weight:700;text-decoration:underline">', '<a href="{{ q.href }}" style="font-weight:700;text-decoration:underline">'],
       // Render the success message, error line and FAQ answers hidden; contact.js reveals them.
       ['<sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">\n        <div style="text-align:center', '<sc-if value="{{ true }}">\n        <div data-form-sent hidden style="text-align:center'],
@@ -215,7 +212,7 @@ function list() {
   for (let pg = 1; pg <= blogPages; pg++) {
     pages.push({
       design: 'Blog', out: pg === 1 ? 'blog.html' : `blog-${pg}.html`, title: T(pg === 1 ? 'Blog' : `Blog – Page ${pg}`),
-      description: 'Moving tips, packing guides and color-coded labeling advice from the TAG-A-ROOM team.',
+      description: `Moving tips, packing guides and color-coded labeling advice from the TAG-A-ROOM team.${pg === 1 ? '' : ` Page ${pg} of ${blogPages}.`}`,
       state: { pg, imgs },
       patches: {
         template: [

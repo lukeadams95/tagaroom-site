@@ -6,7 +6,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { readDesign, evalVals, renderTemplate, patch, PseudoSheet, esc } from './lib/dc.mjs';
-import { mapLink } from './site.mjs';
+import { mapLink, SITE_URL } from './site.mjs';
 import { header, floatingCart, layout } from './partials.mjs';
 import { PAGES } from './pages.mjs';
 
@@ -108,6 +108,8 @@ function build() {
       : renderComponent(p.design, { props: p.props, state: p.state, patches: p.patches, extraVals: p.extraVals });
     writePage(p.out, { title: p.title, description: p.description, body, scripts: p.scripts, css: currentHelmetCss.slice(), ecwid: p.ecwid });
   }
+  checkMeta(PAGES.list());
+  writeSitemapXml();
 
   // Stylesheets
   fs.mkdirSync(path.join(OUT, 'css'), { recursive: true });
@@ -138,6 +140,35 @@ function build() {
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
   writeOldSiteReport();
   console.log(`Built ${written.length} pages, ${refs.size} assets${missing ? `, ${missing} missing` : ''}, ${sheet.rules.size} hover/focus rules.`);
+}
+
+// Every page needs its own <title> and meta description.
+function checkMeta(pages) {
+  const problems = [];
+  const seen = { title: new Map(), description: new Map() };
+  for (const p of pages) {
+    for (const k of ['title', 'description']) {
+      if (!p[k] || !String(p[k]).trim()) { problems.push(`${p.out}: missing ${k}`); continue; }
+      if (seen[k].has(p[k])) problems.push(`${p.out}: same ${k} as ${seen[k].get(p[k])}`);
+      else seen[k].set(p[k], p.out);
+    }
+  }
+  if (problems.length) throw new Error('Page titles/descriptions:\n' + problems.join('\n'));
+}
+
+// sitemap.xml (all public pages except the cart) and robots.txt.
+// Cloudflare Pages serves about.html at /about, so the sitemap uses clean URLs.
+function writeSitemapXml() {
+  const today = new Date().toISOString().slice(0, 10);
+  const url = out => SITE_URL + '/' + out.replace(/(^|\/)index\.html$/, '$1').replace(/\.html$/, '');
+  const pages = written.filter(o => o !== 'cart.html').sort((a, b) => (a === 'index.html' ? -1 : b === 'index.html' ? 1 : a.localeCompare(b)));
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pages.map(o => `  <url><loc>${url(o)}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
+</urlset>
+`;
+  fs.writeFileSync(path.join(OUT, 'sitemap.xml'), xml);
+  fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 }
 
 // List what still loads from the old site, plus a PowerShell script that saves it all.

@@ -3,6 +3,9 @@
 
 export const ECWID_STORE_ID = 1805034;
 
+// Production domain, used for sitemap.xml and robots.txt.
+export const SITE_URL = 'https://tagaroom.com';
+
 // Shop pages share one design template (All Products.dc.html); only the slug differs.
 export const SHOP = [
   ['all', 'All Products', 'all-products'],

@@ -4,8 +4,6 @@
   'use strict';
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-  const CFG = window.TAR_CONFIG || {};
-  const THRESHOLD = Number(CFG.freeShippingThreshold) || 75;
   const ROOT = window.TAR_ROOT || '';
   const NATIVE_CART = ROOT + 'shop/all-products.html?native-cart#!/~/cart';
   const money = n => '$' + (Number(n) || 0).toFixed(2);
@@ -75,16 +73,10 @@
     layout();
   }
 
+  // Shipping is free on all orders, so the total is the subtotal.
   function totals(sub) {
-    const unlocked = sub >= THRESHOLD;
-    const pct = Math.min(100, (sub / THRESHOLD) * 100);
-    $$('[data-ship-msg]').forEach(el => { el.textContent = unlocked ? '🎉 You\'ve unlocked FREE shipping!' : `You're ${money(THRESHOLD - sub)} away from FREE shipping!`; });
-    $$('[data-ship-bar]').forEach(el => { el.style.width = pct + '%'; el.style.backgroundSize = (pct ? 10000 / pct : 100) + '% 100%'; });
     $$('[data-subtotal]').forEach(el => { el.textContent = money(sub); });
     $$('[data-total]').forEach(el => { el.textContent = money(sub); });
-    const ship = $('[data-ship-val]');
-    ship.textContent = unlocked ? 'FREE' : 'Calculated at next step';
-    ship.style.color = unlocked ? '#1E9E1B' : '#6B7A8C';
   }
 
   // Mobile: sticky total + checkout bar (design: below 900px with items in the cart).

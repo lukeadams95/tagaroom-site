@@ -49,7 +49,6 @@ and fix any patch the build reports.
 `src/pages.mjs` → `config`:
 
 - `ecwidStoreId`: the Ecwid store.
-- `freeShippingThreshold`: amount for the cart's free-shipping bar (75).
 - `contactEndpoint`: URL of a form service (Formspree, Basin, …) that accepts a
   JSON POST. While it's empty, the Contact form opens the visitor's email app
   addressed to `contactEmail`.
@@ -74,7 +73,9 @@ name and rebuild: the build switches to the local copy automatically.
 - Blog: `blog.html`, `blog-2.html`, `blog-3.html`, plus one page per post in `blog/`
 - Cart: `cart.html`, the designed cart showing the real Ecwid cart; checkout is Ecwid's.
 - Policies: `policies.html`, `shipping-policies.html`, `return-policies.html`. They share
-  `src/policy.mjs` (PolicyLayout), and their text lives in `src/policies/*.mjs`, copied word for
-  word from the client's old site. Don't reword it without the client's approval.
+  `src/policy.mjs` (PolicyLayout), and their text lives in `src/policies/*.mjs` (client-approved
+  wording). Don't reword it without the client's approval.
+- SEO: the build writes `sitemap.xml` (every page except the cart, on `SITE_URL` in `src/site.mjs`)
+  and `robots.txt`, and fails if any page is missing a title or description or shares one.
 - Sitemap: `sitemap.html`, generated from the navigation and page list (`src/sitemap.mjs`).
   The build fails if a page is missing from it, so new pages must be added to a group in `pages.mjs`.

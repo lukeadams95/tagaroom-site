@@ -96,7 +96,7 @@ a:hover{color:#014F8A}
           </label>
           <sc-if value="{{ hasErr }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:15px;font-weight:600;color:#C20A3F">Please fill in your name, a valid email and a message.</p></sc-if>
           <button type="submit" style="height:52px;width:100%;border:2px solid #0169B8;border-radius:10px;background:#0169B8;color:#fff;font-family:inherit;font-weight:700;font-size:17px;letter-spacing:.02em;cursor:pointer" style-hover="background:#fff;color:#0169B8">Send Message</button>
-          <p style="margin:-6px 0 0;font-size:14px;color:#4A5A6C;text-align:center">We'll reply by email as soon as possible.</p>
+          <p style="margin:-6px 0 0;font-size:14px;color:#4A5A6C;text-align:center">We respond within one business day, excluding weekends and holidays.</p>
         </form>
       </sc-if>
     </div>
@@ -112,7 +112,8 @@ a:hover{color:#014F8A}
       </div>
       <div style="background:#fff;border:1px solid #E3E8EE;border-radius:20px;padding:28px;box-shadow:0 2px 10px rgba(17,17,17,.05)">
         <h3 style="margin:0 0 12px;font-style:italic;font-weight:900;text-transform:uppercase;font-size:22px;letter-spacing:-.01em">Business Hours</h3>
-        <p style="margin:0;font-size:17px;color:#2B3642">Monday–Friday<br>8:00 AM – 5:00 PM CT</p>
+        <p style="margin:0;font-size:17px;color:#2B3642">Monday–Friday, 9:00 am – 4:00 pm Central Time</p>
+        <p style="margin:10px 0 0;font-size:15px;color:#4A5A6C">We respond within one business day, excluding weekends and holidays.</p>
       </div>
       <div style="background:#fff;border:1px solid #E3E8EE;border-radius:20px;padding:28px;box-shadow:0 2px 10px rgba(17,17,17,.05)">
         <h3 style="margin:0 0 16px;font-style:italic;font-weight:900;text-transform:uppercase;font-size:22px;letter-spacing:-.01em">Follow Us</h3>
@@ -122,7 +123,7 @@ a:hover{color:#014F8A}
         </div>
       </div>
       <div style="background:#0169B8;color:#fff;border-radius:20px;padding:28px">
-        <p style="margin:0 0 16px;font-size:18px;line-height:1.5;font-weight:600">Buying for a business? Ask about bulk pricing and custom logo labels for movers, realtors and mortgage companies.</p>
+        <p style="margin:0 0 16px;font-size:18px;line-height:1.5;font-weight:600">Buying for a business? Ask about bulk pricing and Custom Branded Packs for movers, realtors and mortgage companies.</p>
         <a href="All%20Products.dc.html" style="font-weight:700;font-size:16px;color:#fff;text-decoration:underline" style-hover="color:#E6EEF6">Shop Professional Packs &rarr;</a>
       </div>
     </div>
@@ -176,15 +177,15 @@ class Component extends DCLogic {
     const S = ['#FEFA1F', '#FC811C', '#F91055', '#DA019F', '#724DB5'];
     const FQ = [
       ['Do you offer bulk or volume pricing?', 'Yes. Movers, realtors, mortgage companies and property managers can contact us for volume pricing on professional packs.'],
-      ['Can I get labels with my company logo?', 'Yes, custom logo labels are available. Choose "Custom Logo Labels" in the form above and tell us what you need.'],
-      ['Where are your products made?', 'Our labels are made in the USA, and many are Veteran Packed through our partnership with the National Veterans Outreach Program.'],
-      ['How fast do orders ship?', '[Shipping timeframe, to be confirmed]. See our ', 'Shipping Policy', 'https://tagaroom.com/shipping-policies/', ' for details.'],
-      ['What is your return policy?', 'See our ', 'Return Policy', 'https://tagaroom.com/return-policies/', ' page for details.']
+      ['Do you offer custom branded packs?', 'Yes. We can add your company\'s logo and branding to the front of our label packs. Choose \'Custom Branded Packs\' in the form above and tell us what you need.'],
+      ['Where are your products made?', 'Our labels are made in the USA. The majority of our orders are packed through the National Veterans Outreach Program (NVOP).'],
+      ['How fast do orders ship?', 'Orders ship within 24 hours, Monday through Friday (no weekend or holiday shipping). Delivery usually takes 3–5 business days. See our ', 'Shipping Policy', 'shipping-policies.html', ' for details.'],
+      ['What is your return policy?', 'See our ', 'Return Policy', 'return-policies.html', ' page for details.']
     ];
     return {
       f, er, set, sent, notSent: !sent, hasErr: tried && (bad.name || bad.email || bad.msg),
       whoOpts: ['DIY / Family Move', 'Professional Mover', 'Realtor', 'Mortgage Company', 'Restoration Company', 'Move Manager / Organizer', 'Apartment / Property Manager', 'Retailer', 'Other'],
-      topicOpts: ['Product Question', 'Bulk / Volume Pricing', 'Custom Logo Labels', 'Order Status or Shipping', 'Returns', 'Other'],
+      topicOpts: ['Product Question', 'Bulk / Volume Pricing', 'Custom Branded Packs', 'Order Status or Shipping', 'Returns', 'Other'],
       submit: e => { e.preventDefault(); if (bad.name || bad.email || bad.msg) this.setState({ tried: true }); else this.setState({ sent: true }); },
       faqs: FQ.map((x, i) => ({
         q: x[0], pre: x[1], link: x[2] || '', href: x[3] || '', post: x[4] || '', hasLink: !!x[2],
