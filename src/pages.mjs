@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url';
 import { readDesign, evalVals, patch } from './lib/dc.mjs';
 import { ECWID_CONFIG } from './partials.mjs';
 import { policyPage } from './policy.mjs';
+import { sitemapPage } from './sitemap.mjs';
+import { NAV } from './site.mjs';
 import storePolicies from './policies/store.mjs';
 import shippingPolicy from './policies/shipping.mjs';
 import returnPolicy from './policies/returns.mjs';
@@ -25,7 +27,7 @@ const footerPatches = {
     ['style-hover="color:#014F8A">{{ n }}</a></sc-for></div>\n    </div>\n  </div>', 'style-hover="color:#014F8A">{{ n.t }}</a></sc-for></div>\n    </div>\n  </div>'],
   ],
   script: [
-    ["company: ['About', 'Blog', 'Gallery', 'Templates', 'Contact'],", "company: [['About', 'About%20Us.dc.html'], ['Blog', 'Blog.dc.html'], ['Gallery', 'Gallery.dc.html'], ['Templates', 'Label%20Templates.dc.html'], ['Contact', 'Contact%20Us.dc.html']].map(([t, href]) => ({ t, href })),"],
+    ["company: ['About', 'Blog', 'Gallery', 'Templates', 'Contact'],", "company: [['About', 'About%20Us.dc.html'], ['Blog', 'Blog.dc.html'], ['Gallery', 'Gallery.dc.html'], ['Templates', 'Label%20Templates.dc.html'], ['Contact', 'Contact%20Us.dc.html'], ['Sitemap', 'sitemap.html']].map(([t, href]) => ({ t, href })),"],
     ["policies: ['Shipping', 'Returns', 'General']", "policies: [['Shipping', 'shipping-policies.html'], ['Returns', 'return-policies.html'], ['General', 'policies.html']].map(([t, href]) => ({ t, href }))"],
   ],
 };
@@ -247,6 +249,25 @@ function list() {
       extraVals: { prev, next, hasPrev: !!prev, hasNext: !!next },
       patches: postPatches,
     });
+  });
+  // Sitemap: every page above, grouped like the site navigation.
+  const [products, benefits, , about] = NAV;
+  const sitemapGroups = [
+    { t: 'Main Pages', href: 'index.html', links: [['Home', 'index.html'], ['About Us', 'about.html'], ['Contact Us', 'contact.html'], ['Your Cart', 'cart.html']] },
+    { t: 'Products', href: products.href, links: [...products.groups[0], ...products.groups[1]] },
+    { t: 'Shop by Industry', href: products.href, links: products.groups[2] },
+    { t: 'Label Benefits', href: benefits.href, links: benefits.groups.flat() },
+    { t: 'Resources', href: about.href, links: [['Label Templates', 'label-templates.html'], ['Moving Tips', 'moving-tips.html'], ['Gallery', 'gallery.html'], ['Blog', 'blog.html']] },
+    { t: 'Policies', href: 'policies.html', links: [storePolicies, shippingPolicy, returnPolicy].map(p => [p.title, p.out]) },
+    { t: 'Blog Posts', href: 'blog.html', wide: true, links: Object.entries(posts).map(([slug, p]) => [p.title, `blog/${slug}.html`]) },
+  ];
+  const listed = new Set(sitemapGroups.flatMap(g => g.links.map(l => l[1])));
+  const unlisted = pages.map(p => p.out).filter(o => !listed.has(o) && !/^blog-\d+\.html$/.test(o));
+  if (unlisted.length) throw new Error(`Pages missing from the sitemap: ${unlisted.join(', ')}`);
+  pages.push({
+    out: 'sitemap.html', title: 'Sitemap | TAG-A-ROOM®',
+    description: 'Every page on the TAG-A-ROOM® website: products, industries, label benefits, resources, blog posts and policies.',
+    render: ({ renderComponent }) => sitemapPage(sitemapGroups, { footer: renderComponent('Footer', { patches: footerPatches }) }),
   });
   return pages;
 }

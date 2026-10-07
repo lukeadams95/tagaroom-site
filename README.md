@@ -76,3 +76,5 @@ name and rebuild: the build switches to the local copy automatically.
 - Policies: `policies.html`, `shipping-policies.html`, `return-policies.html`. They share
   `src/policy.mjs` (PolicyLayout), and their text lives in `src/policies/*.mjs`, copied word for
   word from the client's old site. Don't reword it without the client's approval.
+- Sitemap: `sitemap.html`, generated from the navigation and page list (`src/sitemap.mjs`).
+  The build fails if a page is missing from it, so new pages must be added to a group in `pages.mjs`.
