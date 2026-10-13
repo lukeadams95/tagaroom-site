@@ -79,7 +79,7 @@ a:hover{color:#014F8A}
 </section></div>
 
 <!-- 5 included -->
-<div style="background:#fff;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0">
+<sc-if value="{{ showIncluded }}"><div style="background:#fff;padding-bottom:clamp(56px,8vw,96px)"><section style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px 0">
   <h2 style="text-align:center;text-transform:uppercase;font-style:italic;font-weight:900;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:0 0 40px;letter-spacing:-.01em">{{ includedH }}</h2>
   <sc-if value="{{ hasStore }}">
     <p style="max-width:720px;margin:-16px auto 32px;text-align:center;color:#4A5A6C;font-size:18px;line-height:1.55">{{ page.storeIntro }}</p>
@@ -97,7 +97,7 @@ a:hover{color:#014F8A}
     </sc-for>
   </div>
   </sc-if>
-</section></div>
+</section></div></sc-if>
 
 <!-- 6 testimonial -->
 <div style="background:#F5F7FA;padding:clamp(56px,8vw,96px) 24px"><section style="max-width:900px;margin:0 auto">
@@ -168,6 +168,7 @@ class Component extends DCLogic {
       includedH: p.includedH || 'What\'s Included',
       hasStore: !!p.storeCat,
       hasIncluded: (p.included || []).length > 0,
+      showIncluded: !!p.storeCat || (p.included || []).length > 0,
       incTop: p.storeCat ? '32px' : '0',
       incW: 'calc((100% - ' + 24 * (Math.min((p.included || []).length || 4, 5) - 1) + 'px)/' + Math.min((p.included || []).length || 4, 5) + ')',
       included: (p.included || []).map(x => ({ t: x[0], d: x[1], img: x[2], href: x[3] })),
