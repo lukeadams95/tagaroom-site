@@ -85,10 +85,10 @@ a:hover{color:#014F8A}
     <p style="max-width:720px;margin:-16px auto 32px;text-align:center;color:#4A5A6C;font-size:18px;line-height:1.55">{{ page.storeIntro }}</p>
     <div id="my-store-1805034" data-category="{{ page.storeCat }}"></div>
   </sc-if>
-  <sc-if value="{{ noStore }}">
-  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:24px">
+  <sc-if value="{{ hasIncluded }}">
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin-top:{{ incTop }}">
     <sc-for list="{{ included }}" as="p" hint-placeholder-count="4">
-      <div style="flex:0 1 {{ incW }};min-width:min(100%,200px);background:#fff;border:1px solid #E3E8EE;border-radius:24px;padding:20px;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(17,17,17,.05)">
+      <div style="flex:0 1 {{ incW }};min-width:min(100%,200px);max-width:300px;background:#fff;border:1px solid #E3E8EE;border-radius:24px;padding:20px;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(17,17,17,.05)">
         <div role="img" aria-label="{{ p.t }}" style="aspect-ratio:1/1;border-radius:18px;background:#F9F9F9 center/cover no-repeat;background-image:url({{ p.img }})"></div>
         <h3 style="font-style:italic;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;font-size:20px;line-height:1.1;margin:18px 0 8px">{{ p.t }}</h3>
         <p style="margin:0 0 18px;color:#4A5A6C;font-size:16px;line-height:1.55">{{ p.d }}</p>
@@ -167,7 +167,8 @@ class Component extends DCLogic {
       steps: (p.steps || []).map((x, i) => ({ n: i + 1, t: [].concat(x)[0], d: [].concat(x)[1] || '', hasD: Array.isArray(x) && !!x[1], c: SC[i % 3] })),
       includedH: p.includedH || 'What\'s Included',
       hasStore: !!p.storeCat,
-      noStore: !p.storeCat,
+      hasIncluded: (p.included || []).length > 0,
+      incTop: p.storeCat ? '32px' : '0',
       incW: 'calc((100% - ' + 24 * (Math.min((p.included || []).length || 4, 5) - 1) + 'px)/' + Math.min((p.included || []).length || 4, 5) + ')',
       included: (p.included || []).map(x => ({ t: x[0], d: x[1], img: x[2], href: x[3] })),
       others: AUD.filter((a, i) => i !== p.idx).map((a, i) => ({ t: a.t, href: encodeURI(a.f), c: S[(i + 1) % 8] }))
