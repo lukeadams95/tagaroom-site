@@ -169,7 +169,10 @@ function list() {
   ];
   for (const a of AUDIENCES) {
     const d = readDesign(fileURLToPath(new URL(`../design/${a.design}.dc.html`, import.meta.url)));
-    pages.push({ design: a.design, out: a.out, title: T(a.design), description: evalVals(d.script).data.sub });
+    const data = evalVals(d.script).data;
+    // Audience pages with a store category show that category's live products.
+    const store = data.storeCat ? { scripts: ['js/audience-store.js'], ecwid: 'eager', helmetFrom: ['All Products'] } : {};
+    pages.push({ design: a.design, out: a.out, title: T(a.design), description: data.sub, ...store });
   }
 
   pages.push({

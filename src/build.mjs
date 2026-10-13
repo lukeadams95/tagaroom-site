@@ -106,6 +106,8 @@ function build() {
     const body = p.render
       ? p.render({ renderComponent, design, esc, ctx })
       : renderComponent(p.design, { props: p.props, state: p.state, patches: p.patches, extraVals: p.extraVals });
+    // Store styles from another design, for pages that embed the Ecwid store.
+    for (const name of p.helmetFrom || []) collectHelmet(design(name).helmet);
     writePage(p.out, { title: p.title, description: p.description, body, scripts: p.scripts, css: currentHelmetCss.slice(), ecwid: p.ecwid });
   }
   checkMeta(PAGES.list());
