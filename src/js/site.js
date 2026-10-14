@@ -26,6 +26,16 @@
     }));
   }
 
+  /* ---------- Review cards: Read more / Show less ---------- */
+  $$('[data-more]').forEach(btn => btn.addEventListener('click', () => {
+    const card = btn.closest('figure');
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    card.querySelector('[data-short]').hidden = open;
+    card.querySelector('[data-full]').hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.textContent = open ? 'Show less' : 'Read more';
+  }));
+
   /* ---------- Cart badge ----------
      Ecwid owns the cart. Pages that load Ecwid publish the count here so pages
      without the store can still show it. */
