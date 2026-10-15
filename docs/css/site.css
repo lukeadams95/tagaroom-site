@@ -206,6 +206,12 @@ img { max-width: 100%; }
 .sm-group li a { color: #2B3642; font-weight: 600; }
 .sm-group li a:hover { color: #0169B8; text-decoration: underline; }
 
+/* Store grids: no colored dot above product and category titles. */
+html body #my-store-1805034 .grid-product__title::before,
+html body #my-store-1805034 .grid-category__title::before {
+  display: none !important;
+}
+
 /* Hover and focus states from the designs */
 .pdafb498:hover{color:#014F8A !important}
 .p00a919a:hover{background:#fff !important;color:#0169B8 !important;border-color:#fff !important}
