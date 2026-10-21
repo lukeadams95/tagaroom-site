@@ -75,13 +75,6 @@ ${ecwidHead(ecwid, storeId)}${head}<script>window.TAR_ROOT=${JSON.stringify(root
 <script src="js/config.js" defer></script>
 <script src="js/site.js" defer></script>
 ${scripts.map(s => `<script src="${s}" defer></script>`).join('\n')}
-<script type="text/javascript">
-    (function(k) {
-        let s=document.createElement('script');s.defer=true;
-        s.src="https://cdn.feedbucket.app/assets/feedbucket.js";
-        s.dataset.feedbucket=k;document.head.appendChild(s);
-    })('WyEPyngU4KgIU764m9ZH')
-</script>
 </head>
 <body>
 ${body}
