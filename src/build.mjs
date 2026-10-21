@@ -67,6 +67,13 @@ function relocate(html, prefix) {
     .replace(/url\((&quot;|['"]?)(.*?)\1\)/g, (_, q, u) => `url(${q}${fix(u)}${q})`);
 }
 
+// Cloudflare Pages serves about.html at /about and 308-redirects the .html URL,
+// so internal links point at the clean URL directly (no extra redirect hop).
+const cleanLinks = html => html.replace(/(\shref=")((?![a-z]+:|\/\/|#)[^"?#]*?)\.html((?:[?#][^"]*)?)"/g, (_, a, p, rest) => {
+  if (p === 'index' || p.endsWith('/index')) p = p.slice(0, -5) || './';
+  return `${a}${p}${rest}"`;
+});
+
 // The designs repeat a fixed cart button on each page; use the shared one.
 const stripFloatingCart = html => html.replace(/<a href="cart\.html"[^>]*?style="position:fixed[\s\S]*?<\/a>/g, '');
 
@@ -104,7 +111,7 @@ function writePage(out, { title, description, body, scripts = [], css = [], ecwi
   const head = css.map(c => `<link rel="stylesheet" href="${c}">`).join('\n') + (css.length ? '\n' : '');
   let html = layout({ title, description, head, body: linkContacts(stripFloatingCart(body)) + (out === 'cart.html' ? '' : '\n' + floatingCart()), scripts, root: prefix, ecwid, storeId: PAGES.config.ecwidStoreId,
     canonical: noindex ? '' : pageUrl(out), image: absImage(image), noindex, ogType });
-  html = relocate(localizeOldSite(html), prefix);
+  html = cleanLinks(relocate(localizeOldSite(html), prefix));
   fs.mkdirSync(path.dirname(path.join(OUT, out)), { recursive: true });
   fs.writeFileSync(path.join(OUT, out), html);
   written.push(out);
