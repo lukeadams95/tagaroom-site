@@ -4,8 +4,6 @@
 export const REDIRECTS = [
   ["/contact-us", "/contact"],
   ["/contact-us/", "/contact"],
-  ["/moving-coach", "/"],
-  ["/moving-coach/", "/"],
   ["/search-products", "/shop/all-products"],
   ["/search-products/", "/shop/all-products"],
   ["/shop-moving-labels-organization", "/shop/all-products"],

@@ -1,8 +1,6 @@
 # Old WordPress URLs (generated from src/redirects.mjs)
 /contact-us /contact 301
 /contact-us/ /contact 301
-/moving-coach / 301
-/moving-coach/ / 301
 /search-products /shop/all-products 301
 /search-products/ /shop/all-products 301
 /shop-moving-labels-organization /shop/all-products 301

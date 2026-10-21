@@ -8,6 +8,7 @@ import { readDesign, evalVals, patch } from './lib/dc.mjs';
 import { ECWID_CONFIG } from './partials.mjs';
 import { policyPage } from './policy.mjs';
 import { sitemapPage, notFoundPage } from './sitemap.mjs';
+import { coach, coachPage } from './coach.mjs';
 import { NAV } from './site.mjs';
 import storePolicies from './policies/store.mjs';
 import shippingPolicy from './policies/shipping.mjs';
@@ -250,6 +251,11 @@ function list() {
       patches: postPatches,
     });
   });
+  // Moving Coach (old /moving-coach/ page; printed QR cards link to it).
+  pages.push({
+    out: coach.out, title: coach.title, description: coach.description,
+    render: ({ renderComponent }) => coachPage(coach, { footer: renderComponent('Footer', { patches: footerPatches }) }),
+  });
   // Sitemap: every page above, grouped like the site navigation.
   const [products, benefits, , about] = NAV;
   const sitemapGroups = [
@@ -257,7 +263,7 @@ function list() {
     { t: 'Products', href: products.href, links: [...products.groups[0], ...products.groups[1]] },
     { t: 'Shop by Industry', href: products.href, links: products.groups[2] },
     { t: 'Label Benefits', href: benefits.href, links: benefits.groups.flat() },
-    { t: 'Resources', href: about.href, links: [['Label Templates', 'label-templates.html'], ['Moving Tips', 'moving-tips.html'], ['Gallery', 'gallery.html'], ['Blog', 'blog.html']] },
+    { t: 'Resources', href: about.href, links: [['Label Templates', 'label-templates.html'], ['Moving Tips', 'moving-tips.html'], ['Gallery', 'gallery.html'], ['Blog', 'blog.html'], ['Moving Coach', coach.out]] },
     { t: 'Policies', href: 'policies.html', links: [storePolicies, shippingPolicy, returnPolicy].map(p => [p.title, p.out]) },
     { t: 'Blog Posts', href: 'blog.html', wide: true, links: Object.entries(posts).map(([slug, p]) => [p.title, `blog/${slug}.html`]) },
   ];
