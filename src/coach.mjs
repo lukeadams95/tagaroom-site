@@ -45,6 +45,49 @@ export const coach = {
   ],
 };
 
+// Company pages (old /dd-moving-and-storage/, /fantastic-moves/, /firefightings-finest/).
+// Each moving company's printed QR labels point at its page. Same layout as the
+// Moving Coach page; the intro and card text are verbatim from the old pages.
+// The old logos aren't recoverable (not in the Wayback Machine), so the cards are text only.
+// The company name heading stands in for the old logo (it uses the logo's alt text).
+const companyPage = (slug, crumb, title, description, partner) => ({
+  out: `${slug}/index.html`, title, description, h1: coach.h1, intro: coach.intro,
+  partnersTitle: 'Moving Coach Partner', crumb, crumbs: [['Moving Coach', coach.out]], partners: [partner],
+});
+
+export const companies = [
+  companyPage('dd-moving-and-storage', 'DD Moving and Storage',
+    'DD Moving and Storage | Moving Coach Partner | TAG-A-ROOM',
+    'DD Moving and Storage, a TAG-A-ROOM® Moving Coach partner: trusted local and long-distance movers serving Bryan, College Station and all of Texas for over 25 years.',
+    {
+      name: 'DD Moving and Storage',
+      sub: 'Top Moving Company in Bryan-College Station, TX',
+      text: ['Trusted local and long-distance movers serving Bryan, College Station, and all of Texas. Over 25 years of reliable moving, packing, and storage services for families and businesses.'],
+      // The old page's logo linked to firefightermovers.com by mistake; every link here goes to ddmovers.com.
+      href: 'https://ddmovers.com/', cta: 'Visit Our Partner',
+    }),
+  companyPage('fantastic-moves', 'Fantastic Moves',
+    'Fantastic Moves | Moving Coach Partner | TAG-A-ROOM',
+    'Fantastic Moves, a TAG-A-ROOM® Moving Coach partner: voted Dallas Best Moving Company, moving across Texas and licensed to move out of state.',
+    {
+      name: 'Fantastic Moves',
+      text: [
+        'Around the block or across the Metroplex. Voted Dallas Best Moving Company multiple years Dallas Voice.',
+        'Fantastic Moves can move anywhere in the vast state of Texas- we’re always moving to San Antonio, Houston, Austin, or to the cool lakes of East Texas!',
+        'We are licensed to move out of Texas. Your belongings to you! Door to door. Our crews enjoy visiting other states.',
+      ],
+      href: 'https://www.fantasticmoves.com/', cta: 'Visit Our Partner',
+    }),
+  companyPage('firefightings-finest', 'Firefighting’s Finest',
+    'Firefighting’s Finest Moving & Storage | Moving Coach Partner | TAG-A-ROOM',
+    'Firefighting’s Finest Moving & Storage, a TAG-A-ROOM® Moving Coach partner: all-inclusive local and long-distance moves with friendly firefighter movers.',
+    {
+      name: 'Firefighting’s Finest Moving & Storage',
+      text: ['Moving is stressful, but it doesn’t have to be a major burden on you and your family. When you work with Firefighting’s Finest Moving & Storage, you’ll have the benefits of all-inclusive services and friendly firefighter movers. With many moving companies to choose from, you can rest assured you’ll have peace of mind when you decide to work with our company. We’re committed to being a moving company you can trust—whether you’re making a local or long-distance move. Our helpful moving consultants would love to speak with you.'],
+      href: 'https://firefightermovers.com/', cta: 'Visit Our Partner',
+    }),
+];
+
 // Logos come from the old page; they're shown only when a copy is in design/media/.
 const logo = p => (p.logo && fs.existsSync(MEDIA + p.logo.file)
   ? `<a class="mc-logo${p.logo.dark ? ' mc-logo--dark' : ''}" href="${esc(p.href)}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="media/${esc(p.logo.file)}" alt="${esc(p.logo.alt)}" loading="lazy" decoding="async"></a>`
@@ -55,7 +98,7 @@ export function coachPage(page, { footer }) {
 
 <section class="pol-hero">
   <div class="pol-hero-inner">
-    <nav class="pol-crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Moving Coach</span></nav>
+    <nav class="pol-crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span>${page.crumbs ? page.crumbs.map(([t, h]) => `<a href="${esc(h)}">${esc(t)}</a><span aria-hidden="true">/</span>`).join('') : ''}<span aria-current="page">${esc(page.crumb || 'Moving Coach')}</span></nav>
     <h1>${esc(page.h1)}</h1>
   </div>
   <div style="display:flex;height:5px">${RIBBON}</div>
@@ -75,7 +118,7 @@ export function coachPage(page, { footer }) {
     ${page.partners.map((p, i) => `<section class="sm-group mc-card" style="border-top-color:${STRIPE[(i * 3 + 1) % 8]}" aria-labelledby="mc-${i}">
       ${logo(p)}
       <h3 id="mc-${i}">${esc(p.name)}</h3>
-      <p class="mc-sub">${esc(p.sub)}</p>
+      ${p.sub ? `<p class="mc-sub">${esc(p.sub)}</p>` : ''}
       ${p.text.map(t => `<p>${esc(t)}</p>`).join('')}
       <a class="btn-primary mc-btn" href="${esc(p.href)}" target="_blank" rel="noopener">${esc(p.cta)}</a>
     </section>`).join('\n    ')}

@@ -204,6 +204,12 @@ function writeRedirects() {
   const bad = REDIRECTS.filter(([, to]) => !targets.has(to.replace(/[?#].*$/, '')));
   if (bad.length) throw new Error('Redirect targets that are not pages:\n' + bad.map(r => r.join(' -> ')).join('\n'));
   fs.writeFileSync(path.join(OUT, '_redirects'), '# Old WordPress URLs (generated from src/redirects.mjs)\n' + lines.join('\n') + '\n');
+  // functions/_middleware.js applies the same redirects (Pages skips _redirects on Function routes).
+  // Static folders skip Functions; _redirects still covers them.
+  fs.writeFileSync(path.join(OUT, '_routes.json'), JSON.stringify({
+    version: 1, include: ['/*'],
+    exclude: ['/css/*', '/js/*', '/assets/*', '/media/*', '/uploads/*', '/robots.txt', '/sitemap.xml'],
+  }, null, 2) + '\n');
 }
 
 // List what still loads from the old site, plus a PowerShell script that saves it all.

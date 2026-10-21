@@ -8,7 +8,8 @@ import { readDesign, evalVals, patch } from './lib/dc.mjs';
 import { ECWID_CONFIG } from './partials.mjs';
 import { policyPage } from './policy.mjs';
 import { sitemapPage, notFoundPage } from './sitemap.mjs';
-import { coach, coachPage } from './coach.mjs';
+import { coach, coachPage, companies } from './coach.mjs';
+import { offerPages } from './offers.mjs';
 import { NAV } from './site.mjs';
 import storePolicies from './policies/store.mjs';
 import shippingPolicy from './policies/shipping.mjs';
@@ -256,6 +257,16 @@ function list() {
     out: coach.out, title: coach.title, description: coach.description,
     render: ({ renderComponent }) => coachPage(coach, { footer: renderComponent('Footer', { patches: footerPatches }) }),
   });
+  // Moving company partner pages (old URLs; each company's QR labels point at its page).
+  for (const c of companies) {
+    pages.push({
+      out: c.out, title: c.title, description: c.description,
+      render: ({ renderComponent }) => coachPage(c, { footer: renderComponent('Footer', { patches: footerPatches }) }),
+    });
+  }
+  // Partner offer posts (old URLs at the site root).
+  const offers = offerPages();
+  pages.push(...offers);
   // Sitemap: every page above, grouped like the site navigation.
   const [products, benefits, , about] = NAV;
   const sitemapGroups = [
@@ -264,6 +275,8 @@ function list() {
     { t: 'Shop by Industry', href: products.href, links: products.groups[2] },
     { t: 'Label Benefits', href: benefits.href, links: benefits.groups.flat() },
     { t: 'Resources', href: about.href, links: [['Label Templates', 'label-templates.html'], ['Moving Tips', 'moving-tips.html'], ['Gallery', 'gallery.html'], ['Blog', 'blog.html'], ['Moving Coach', coach.out]] },
+    { t: 'Moving Coach Partners', href: coach.out, links: companies.map(c => [c.partners[0].name, c.out]) },
+    { t: 'Special Offers', href: 'blog.html', links: offers.map(o => [o.state.post.title, o.out]) },
     { t: 'Policies', href: 'policies.html', links: [storePolicies, shippingPolicy, returnPolicy].map(p => [p.title, p.out]) },
     { t: 'Blog Posts', href: 'blog.html', wide: true, links: Object.entries(posts).map(([slug, p]) => [p.title, `blog/${slug}.html`]) },
   ];
