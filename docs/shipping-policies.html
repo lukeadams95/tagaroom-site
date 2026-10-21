@@ -22,7 +22,7 @@
 /* GA4 (G-PKGJLJM4ZQ): gtag.js loads on the first interaction, or after 9 s. Calls before then are queued. */
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','G-PKGJLJM4ZQ');
-(function(){if(!/^(www.)?tagaroom.com$/.test(location.hostname))return; /* live site only: no preview/test hits */
+(function(){if(!/^(www\.)?tagaroom\.com$/.test(location.hostname))return; /* live site only: no preview/test hits */
 var done=false,ev=['pointerdown','keydown','scroll','touchstart','focusin'];
 function load(){if(done)return;done=true;ev.forEach(function(e){removeEventListener(e,load,true);});
 var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-PKGJLJM4ZQ';document.head.appendChild(s);}
