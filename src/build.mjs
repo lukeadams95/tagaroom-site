@@ -9,6 +9,7 @@ import { readDesign, evalVals, renderTemplate, patch, PseudoSheet, esc } from '.
 import { mapLink, SITE_URL } from './site.mjs';
 import { header, floatingCart, layout } from './partials.mjs';
 import { PAGES } from './pages.mjs';
+import { REDIRECTS } from './redirects.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DESIGN = path.join(ROOT, 'design');
@@ -86,11 +87,23 @@ const localizeOldSite = html => html.replace(OLD_FILE, (url, name) => {
 const linkContacts = html => html.replace(/<a href="#"([^>]*)>(\s*(?:Contact[^<]*|Get Brokerage Pricing))<\/a>/g, '<a href="contact.html"$1>$2</a>');
 
 const written = [];
-function writePage(out, { title, description, body, scripts = [], css = [], ecwid = '' }) {
+const DEFAULT_OG_IMAGE = 'media/tagaroom-moving-boxes.jpg';
+const pageUrl = out => SITE_URL + '/' + out.replace(/(^|\/)index\.html$/, '$1').replace(/\.html$/, '');
+// Absolute URL for an og:image: old-site files use their local copy in media/.
+function absImage(src) {
+  if (!src) src = DEFAULT_OG_IMAGE;
+  const m = src.match(/\/wp-content\/uploads\/\d{4}\/\d{2}\/([^"'()\s<>&]+)$/);
+  if (m) src = fs.existsSync(path.join(MEDIA, decodeURIComponent(m[1]))) ? 'media/' + m[1] : src;
+  return /^https?:/.test(src) ? src : SITE_URL + '/' + src.replace(/^\//, '');
+}
+
+function writePage(out, { title, description, body, scripts = [], css = [], ecwid = '', image = '', noindex = false, ogType, rootAbsolute = false }) {
   const depth = out.split('/').length - 1;
-  const prefix = '../'.repeat(depth);
+  // The 404 page is served at any depth, so it links from the site root.
+  const prefix = rootAbsolute ? '/' : '../'.repeat(depth);
   const head = css.map(c => `<link rel="stylesheet" href="${c}">`).join('\n') + (css.length ? '\n' : '');
-  let html = layout({ title, description, head, body: linkContacts(stripFloatingCart(body)) + (out === 'cart.html' ? '' : '\n' + floatingCart()), scripts, root: prefix, ecwid, storeId: PAGES.config.ecwidStoreId });
+  let html = layout({ title, description, head, body: linkContacts(stripFloatingCart(body)) + (out === 'cart.html' ? '' : '\n' + floatingCart()), scripts, root: prefix, ecwid, storeId: PAGES.config.ecwidStoreId,
+    canonical: noindex ? '' : pageUrl(out), image: absImage(image), noindex, ogType });
   html = relocate(localizeOldSite(html), prefix);
   fs.mkdirSync(path.dirname(path.join(OUT, out)), { recursive: true });
   fs.writeFileSync(path.join(OUT, out), html);
@@ -108,10 +121,11 @@ function build() {
       : renderComponent(p.design, { props: p.props, state: p.state, patches: p.patches, extraVals: p.extraVals });
     // Store styles from another design, for pages that embed the Ecwid store.
     for (const name of p.helmetFrom || []) collectHelmet(design(name).helmet);
-    writePage(p.out, { title: p.title, description: p.description, body, scripts: p.scripts, css: currentHelmetCss.slice(), ecwid: p.ecwid });
+    writePage(p.out, { title: p.title, description: p.description, body, scripts: p.scripts, css: currentHelmetCss.slice(), ecwid: p.ecwid, image: p.image, noindex: p.noindex, ogType: p.ogType, rootAbsolute: p.rootAbsolute });
   }
   checkMeta(PAGES.list());
   writeSitemapXml();
+  writeRedirects();
 
   // Stylesheets
   fs.mkdirSync(path.join(OUT, 'css'), { recursive: true });
@@ -162,8 +176,8 @@ function checkMeta(pages) {
 // Cloudflare Pages serves about.html at /about, so the sitemap uses clean URLs.
 function writeSitemapXml() {
   const today = new Date().toISOString().slice(0, 10);
-  const url = out => SITE_URL + '/' + out.replace(/(^|\/)index\.html$/, '$1').replace(/\.html$/, '');
-  const pages = written.filter(o => o !== 'cart.html').sort((a, b) => (a === 'index.html' ? -1 : b === 'index.html' ? 1 : a.localeCompare(b)));
+  const url = pageUrl;
+  const pages = written.filter(o => o !== 'cart.html' && o !== '404.html').sort((a, b) => (a === 'index.html' ? -1 : b === 'index.html' ? 1 : a.localeCompare(b)));
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map(o => `  <url><loc>${url(o)}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
@@ -171,6 +185,18 @@ ${pages.map(o => `  <url><loc>${url(o)}</loc><lastmod>${today}</lastmod></url>`)
 `;
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'), xml);
   fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+}
+
+// Cloudflare Pages _redirects: old WordPress URLs → their new pages (src/redirects.mjs).
+function writeRedirects() {
+  const lines = REDIRECTS.map(([from, to]) => `${from} ${to} 301`);
+  const dynamic = lines.filter(l => /[*:]/.test(l.split(' ')[0])).length;
+  if (lines.length - dynamic > 2000 || dynamic > 100) throw new Error(`_redirects over the Pages limits: ${lines.length - dynamic} static, ${dynamic} dynamic`);
+  const targets = new Set(written.map(o => '/' + o.replace(/(^|\/)index\.html$/, '$1').replace(/\.html$/, '')));
+  targets.add('/sitemap.xml');
+  const bad = REDIRECTS.filter(([, to]) => !targets.has(to.replace(/[?#].*$/, '')));
+  if (bad.length) throw new Error('Redirect targets that are not pages:\n' + bad.map(r => r.join(' -> ')).join('\n'));
+  fs.writeFileSync(path.join(OUT, '_redirects'), '# Old WordPress URLs (generated from src/redirects.mjs)\n' + lines.join('\n') + '\n');
 }
 
 // List what still loads from the old site, plus a PowerShell script that saves it all.

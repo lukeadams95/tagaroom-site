@@ -31,3 +31,29 @@ export function sitemapPage(groups, { footer }) {
 ${footer}`;
 }
 
+
+// 404 page: same header and hero as the sitemap, with the main ways back in.
+export function notFoundPage({ footer }) {
+  const links = [['Home', 'index.html'], ['Shop All Products', 'shop/all-products.html'], ['Label Benefits', 'label-benefits.html'], ['Label Templates', 'label-templates.html'], ['Blog', 'blog.html'], ['Contact Us', 'contact.html'], ['Sitemap', 'sitemap.html']];
+  return `${header()}
+
+<section class="pol-hero">
+  <div class="pol-hero-inner">
+    <nav class="pol-crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Page not found</span></nav>
+    <h1>Page Not Found</h1>
+    <p class="pol-updated">The page you were looking for isn't here. It may have moved when our website was updated.</p>
+  </div>
+  <div style="display:flex;height:5px">${RIBBON}</div>
+</section>
+
+<div class="sm-body">
+  <div class="sm-grid">
+    <section class="sm-group" style="border-top-color:${STRIPE[1]}" aria-labelledby="nf-links">
+      <h2 id="nf-links">Try one of these pages</h2>
+      <ul>${links.map(([t, href]) => `<li><a href="${href}">${esc(t)}</a></li>`).join('')}</ul>
+    </section>
+  </div>
+</div>
+
+${footer}`;
+}

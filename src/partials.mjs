@@ -59,14 +59,21 @@ function ecwidHead(mode, storeId) {
 <script id="ecwid-script" data-cfasync="false" charset="utf-8" src="https://app.ecwid.com/script.js?${storeId}&amp;data_platform=code" async></script>\n`;
 }
 
-export function layout({ title, description = '', head = '', body, scripts = [], root = '', ecwid = '', storeId }) {
+export function layout({ title, description = '', head = '', body, scripts = [], root = '', ecwid = '', storeId, canonical = '', image = '', noindex = false, ogType = 'website' }) {
+  const og = canonical ? `<link rel="canonical" href="${esc(canonical)}">
+<meta property="og:site_name" content="TAG-A-ROOM®">
+<meta property="og:type" content="${ogType}">
+<meta property="og:title" content="${esc(title)}">
+${description ? `<meta property="og:description" content="${esc(description)}">\n` : ''}<meta property="og:url" content="${esc(canonical)}">
+${image ? `<meta property="og:image" content="${esc(image)}">\n` : ''}<meta name="twitter:card" content="${image ? 'summary_large_image' : 'summary'}">
+` : '';
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
-${description ? `<meta name="description" content="${esc(description)}">\n` : ''}<link rel="icon" href="uploads/logo-1790711738779-iq0a.webp">
+${description ? `<meta name="description" content="${esc(description)}">\n` : ''}${noindex ? '<meta name="robots" content="noindex">\n' : ''}${og}<link rel="icon" href="uploads/logo-1790711738779-iq0a.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800;1,900&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">

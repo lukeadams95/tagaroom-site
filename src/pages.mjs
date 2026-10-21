@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { readDesign, evalVals, patch } from './lib/dc.mjs';
 import { ECWID_CONFIG } from './partials.mjs';
 import { policyPage } from './policy.mjs';
-import { sitemapPage } from './sitemap.mjs';
+import { sitemapPage, notFoundPage } from './sitemap.mjs';
 import { NAV } from './site.mjs';
 import storePolicies from './policies/store.mjs';
 import shippingPolicy from './policies/shipping.mjs';
@@ -243,7 +243,7 @@ function list() {
     const first = post.blocks.find(b => b[0] === 'p');
     const prev = near(i - 1), next = near(i + 1);
     pages.push({
-      design: 'Blog Post', out: `blog/${slug}.html`, title: T(post.title),
+      design: 'Blog Post', out: `blog/${slug}.html`, title: T(post.title), image: post.img, ogType: 'article',
       description: first ? first[1].slice(0, 155).replace(/\s+\S*$/, '') + '…' : '',
       state: { post, slug, loaded: true },
       extraVals: { prev, next, hasPrev: !!prev, hasNext: !!next },
@@ -268,6 +268,12 @@ function list() {
     out: 'sitemap.html', title: 'Sitemap | TAG-A-ROOM®',
     description: 'Every page on the TAG-A-ROOM® website: products, industries, label benefits, resources, blog posts and policies.',
     render: ({ renderComponent }) => sitemapPage(sitemapGroups, { footer: renderComponent('Footer', { patches: footerPatches }) }),
+  });
+  // Cloudflare Pages serves 404.html, with a 404 status, for any path that isn't a page or file.
+  pages.push({
+    out: '404.html', title: 'Page Not Found | TAG-A-ROOM®', noindex: true, rootAbsolute: true,
+    description: 'This page is not on the TAG-A-ROOM® website. Shop color-coded moving labels or find a page in the sitemap.',
+    render: ({ renderComponent }) => notFoundPage({ footer: renderComponent('Footer', { patches: footerPatches }) }),
   });
   return pages;
 }
