@@ -56,6 +56,8 @@
 /post_tag-sitemap.xml /sitemap.xml 301
 /ecstore-1-sitemap.xml /sitemap.xml 301
 /wp-sitemap.xml /sitemap.xml 301
+/sitemaps.xml/ /sitemap.xml 301
+/sitemaps.xml /sitemap.xml 301
 /sitemap.rss /sitemap.xml 301
 /feed /blog 301
 /feed/ /blog 301

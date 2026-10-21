@@ -59,6 +59,8 @@ export const REDIRECTS = [
   ["/post_tag-sitemap.xml", "/sitemap.xml"],
   ["/ecstore-1-sitemap.xml", "/sitemap.xml"],
   ["/wp-sitemap.xml", "/sitemap.xml"],
+  ["/sitemaps.xml/", "/sitemap.xml"],
+  ["/sitemaps.xml", "/sitemap.xml"],
   ["/sitemap.rss", "/sitemap.xml"],
   ["/feed", "/blog"],
   ["/feed/", "/blog"],
