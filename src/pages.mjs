@@ -137,7 +137,7 @@ const postPatches = {
   ],
 };
 
-const config = { ecwidConfig: ECWID_CONFIG, ecwidStoreId: ECWID_STORE_ID, contactEndpoint: '', contactEmail: 'info@tagaroom.com', categoryPages: {} };
+const config = { ecwidConfig: ECWID_CONFIG, ecwidStoreId: ECWID_STORE_ID, contactEndpoint: '/api/contact', turnstileSiteKey: '0x4AAAAAAFBNs42qga-3gTfJ', contactEmail: 'info@tagaroom.com', categoryPages: {} };
 
 function shopPages() {
   const d = readDesign(fileURLToPath(new URL('../design/All Products.dc.html', import.meta.url)));
