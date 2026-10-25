@@ -163,6 +163,7 @@ function build() {
     fs.copyFileSync(src, path.join(OUT, r));
   }
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
+  fs.copyFileSync(path.join(ROOT, 'src/cc6dd13c9360600e3225aa7e5d9a8be8.txt'), path.join(OUT, 'cc6dd13c9360600e3225aa7e5d9a8be8.txt')); // IndexNow key
   writeOldSiteReport();
   console.log(`Built ${written.length} pages, ${refs.size} assets${missing ? `, ${missing} missing` : ''}, ${sheet.rules.size} hover/focus rules.`);
 }
