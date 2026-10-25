@@ -6,6 +6,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { readDesign, evalVals, renderTemplate, patch, PseudoSheet, esc } from './lib/dc.mjs';
+import { applyInBodyLinks } from './inbody-links.mjs';
 import { mapLink, SITE_URL } from './site.mjs';
 import { header, floatingCart, layout } from './partials.mjs';
 import { PAGES } from './pages.mjs';
@@ -105,6 +106,7 @@ function absImage(src) {
 }
 
 function writePage(out, { title, description, body, scripts = [], css = [], ecwid = '', image = '', noindex = false, ogType, rootAbsolute = false }) {
+  body = applyInBodyLinks(out, body);
   const depth = out.split('/').length - 1;
   // The 404 page is served at any depth, so it links from the site root.
   const prefix = rootAbsolute ? '/' : '../'.repeat(depth);
