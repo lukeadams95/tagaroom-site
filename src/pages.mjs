@@ -10,6 +10,7 @@ import { policyPage } from './policy.mjs';
 import { sitemapPage, notFoundPage } from './sitemap.mjs';
 import { coach, coachPage, companies } from './coach.mjs';
 import { offerPages } from './offers.mjs';
+import { guidePage, guideJsonLd, storageUnitLabels } from './guides.mjs';
 import { NAV } from './site.mjs';
 import storePolicies from './policies/store.mjs';
 import shippingPolicy from './policies/shipping.mjs';
@@ -264,6 +265,13 @@ function list() {
       render: ({ renderComponent }) => coachPage(c, { footer: renderComponent('Footer', { patches: footerPatches }) }),
     });
   }
+  // Guide pages (long-form how-tos at the site root).
+  for (const g of [storageUnitLabels]) {
+    pages.push({
+      out: g.out, title: g.title, description: g.description, image: g.image, jsonLd: guideJsonLd(g),
+      render: ({ renderComponent }) => guidePage(g, { footer: renderComponent('Footer', { patches: footerPatches }) }),
+    });
+  }
   // Partner offer posts (old URLs at the site root).
   const offers = offerPages();
   pages.push(...offers);
@@ -274,7 +282,7 @@ function list() {
     { t: 'Products', href: products.href, links: [...products.groups[0], ...products.groups[1]] },
     { t: 'Shop by Industry', href: products.href, links: products.groups[2] },
     { t: 'Label Benefits', href: benefits.href, links: benefits.groups.flat() },
-    { t: 'Resources', href: about.href, links: [['Label Templates', 'label-templates.html'], ['Moving Tips', 'moving-tips.html'], ['Gallery', 'gallery.html'], ['Blog', 'blog.html'], ['Moving Coach', coach.out]] },
+    { t: 'Resources', href: about.href, links: [['Label Templates', 'label-templates.html'], ['Moving Tips', 'moving-tips.html'], ['Gallery', 'gallery.html'], ['Blog', 'blog.html'], ['Moving Coach', coach.out], ['Storage Unit Labels', storageUnitLabels.out]] },
     { t: 'Moving Coach Partners', href: coach.out, links: companies.map(c => [c.partners[0].name, c.out]) },
     { t: 'Special Offers', href: 'blog.html', links: offers.map(o => [o.state.post.title, o.out]) },
     { t: 'Policies', href: 'policies.html', links: [storePolicies, shippingPolicy, returnPolicy].map(p => [p.title, p.out]) },
