@@ -59,7 +59,7 @@ function ecwidHead(mode, storeId) {
 <script id="ecwid-script" data-cfasync="false" charset="utf-8" src="https://app.ecwid.com/script.js?${storeId}&amp;data_platform=code" async></script>\n`;
 }
 
-export function layout({ title, description = '', head = '', body, scripts = [], root = '', ecwid = '', storeId, canonical = '', image = '', noindex = false, ogType = 'website' }) {
+export function layout({ title, description = '', head = '', body, scripts = [], root = '', ecwid = '', storeId, canonical = '', image = '', noindex = false, ogType = 'website', jsonLd = null }) {
   const og = canonical ? `<link rel="canonical" href="${esc(canonical)}">
 <meta property="og:site_name" content="TAG-A-ROOM®">
 <meta property="og:type" content="${ogType}">
@@ -88,7 +88,7 @@ function load(){if(done)return;done=true;ev.forEach(function(e){removeEventListe
 var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-PKGJLJM4ZQ';document.head.appendChild(s);}
 ev.forEach(function(e){addEventListener(e,load,{capture:true,passive:true,once:true});});setTimeout(load,9000);})();
 </script>
-${ecwidHead(ecwid, storeId)}${head}<script>window.TAR_ROOT=${JSON.stringify(root)};</script>
+${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>\n` : ''}${ecwidHead(ecwid, storeId)}${head}<script>window.TAR_ROOT=${JSON.stringify(root)};</script>
 <script src="js/config.js" defer></script>
 <script src="js/site.js" defer></script>
 ${scripts.map(s => `<script src="${s}" defer></script>`).join('\n')}

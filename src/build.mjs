@@ -105,14 +105,14 @@ function absImage(src) {
   return /^https?:/.test(src) ? src : SITE_URL + '/' + src.replace(/^\//, '');
 }
 
-function writePage(out, { title, description, body, scripts = [], css = [], ecwid = '', image = '', noindex = false, ogType, rootAbsolute = false }) {
+function writePage(out, { title, description, body, scripts = [], css = [], ecwid = '', image = '', noindex = false, ogType, rootAbsolute = false, jsonLd = null }) {
   body = applyInBodyLinks(out, body);
   const depth = out.split('/').length - 1;
   // The 404 page is served at any depth, so it links from the site root.
   const prefix = rootAbsolute ? '/' : '../'.repeat(depth);
   const head = css.map(c => `<link rel="stylesheet" href="${c}">`).join('\n') + (css.length ? '\n' : '');
   let html = layout({ title, description, head, body: linkContacts(stripFloatingCart(body)) + (out === 'cart.html' ? '' : '\n' + floatingCart()), scripts, root: prefix, ecwid, storeId: PAGES.config.ecwidStoreId,
-    canonical: noindex ? '' : pageUrl(out), image: absImage(image), noindex, ogType });
+    canonical: noindex ? '' : pageUrl(out), image: absImage(image), noindex, ogType, jsonLd });
   html = cleanLinks(relocate(localizeOldSite(html), prefix));
   fs.mkdirSync(path.dirname(path.join(OUT, out)), { recursive: true });
   fs.writeFileSync(path.join(OUT, out), html);
@@ -130,7 +130,7 @@ function build() {
       : renderComponent(p.design, { props: p.props, state: p.state, patches: p.patches, extraVals: p.extraVals });
     // Store styles from another design, for pages that embed the Ecwid store.
     for (const name of p.helmetFrom || []) collectHelmet(design(name).helmet);
-    writePage(p.out, { title: p.title, description: p.description, body, scripts: p.scripts, css: currentHelmetCss.slice(), ecwid: p.ecwid, image: p.image, noindex: p.noindex, ogType: p.ogType, rootAbsolute: p.rootAbsolute });
+    writePage(p.out, { title: p.title, description: p.description, body, scripts: p.scripts, css: currentHelmetCss.slice(), ecwid: p.ecwid, image: p.image, noindex: p.noindex, ogType: p.ogType, rootAbsolute: p.rootAbsolute, jsonLd: p.jsonLd });
   }
   checkMeta(PAGES.list());
   writeSitemapXml();
