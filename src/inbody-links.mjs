@@ -31,6 +31,19 @@ export const IN_BODY_LINKS = {
   'blog/handling-with-care-the-art-of-protecting-fragile-items-during-your-move.html': [
     ['The idea of protecting fragile items might seem intuitive, but its impact on your move is substantial.', 'fragile', 'shop/alert-labels.html'],
   ],
+  // CP-023 loan approval borrower gift post (Nov 2026): its own in-body links, plus one link to it from the realtor gift guide.
+  'blog/loan-approval-borrower-gift.html': [
+    ['You can find all of them on our mortgage companies shop page.', 'mortgage companies shop page', 'shop/mortgage-companies.html'],
+    ["If you're closing a lot of loans, you're not ordering one kit at a time. Bulk pricing is available, and you can contact us for custom or bulk orders.", 'contact us', 'contact.html'],
+    ['Our realtor moving gift guide covers that side.', 'realtor moving gift guide', 'blog/realtor-closing-gift-guide-practical-moving-solutions.html'],
+    ['Yes. Bulk pricing is available, and you can contact us for custom or bulk orders.', 'contact us', 'contact.html'],
+    ['See the full lineup on our mortgage companies page', 'mortgage companies page', 'for/mortgage-companies.html'],
+    ['or go straight to shop mortgage packs.', 'shop mortgage packs', 'shop/mortgage-companies.html'],
+    ['You can also browse all of our marketing gifts for loan officers, realtors and moving companies.', 'marketing gifts', 'shop/marketing-gifts.html'],
+  ],
+  'blog/realtor-closing-gift-guide-practical-moving-solutions.html': [
+    ['Present the gift once they get a loan approval or when an offer is accepted by the seller.', 'loan approval', 'blog/loan-approval-borrower-gift.html'],
+  ],
   'blog/properly-pack-a-cardboard-box-for-moving-storage.html': [
     ["Add FRAGILE labels on boxes with delicate items to ensure they're handled with care.", 'FRAGILE labels', 'shop/alert-labels.html'],
   ],
