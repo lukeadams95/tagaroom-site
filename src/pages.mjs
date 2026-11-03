@@ -15,7 +15,7 @@ import { NAV } from './site.mjs';
 import storePolicies from './policies/store.mjs';
 import shippingPolicy from './policies/shipping.mjs';
 import returnPolicy from './policies/returns.mjs';
-import { SHOP, AUDIENCES, ECWID_STORE_ID } from './site.mjs';
+import { SHOP, AUDIENCES, ECWID_STORE_ID, SITE_URL } from './site.mjs';
 
 const T = s => `${s} | TAG-A-ROOM`;
 
@@ -131,6 +131,9 @@ const CART_TOKEN = [{ id: 'tpl', name: '__NAME__', variant: '__VARIANT__', price
 // Blog posts: Previous / Next links under the article.
 const postPatches = {
   template: [
+    // Optional bold lead-in on a paragraph (["p", text, lead]) and table blocks (["table", { head, rows }]).
+    ['<p style="margin:0 0 20px;font-size:19px;line-height:1.7;color:#2B3642">{{ b.text }}</p>', '<p style="margin:0 0 20px;font-size:19px;line-height:1.7;color:#2B3642"><sc-if value="{{ b.hasLead }}"><strong style="color:#111111">{{ b.lead }}</strong> </sc-if>{{ b.text }}</p>'],
+    ['<sc-if value="{{ b.isOl }}"', `<sc-if value="{{ b.isTable }}"><div style="overflow-x:auto;margin:0 0 28px;border:1px solid #E3E8EE;border-radius:12px"><table style="width:100%;border-collapse:collapse;font-size:17px;line-height:1.5;color:#2B3642"><thead><tr style="background:#F5F7FA"><sc-for list="{{ b.head }}" as="h"><th scope="col" style="text-align:left;padding:12px 14px;font-weight:800;color:#111111;border-bottom:2px solid #E3E8EE">{{ h }}</th></sc-for></tr></thead><tbody><sc-for list="{{ b.rows }}" as="r"><tr><th scope="row" style="text-align:left;vertical-align:top;padding:12px 14px;font-weight:700;color:#111111;border-top:1px solid #E3E8EE">{{ r.first }}</th><sc-for list="{{ r.rest }}" as="c"><td style="vertical-align:top;padding:12px 14px;border-top:1px solid #E3E8EE">{{ c }}</td></sc-for></tr></sc-for></tbody></table></div></sc-if><sc-if value="{{ b.isOl }}"`],
     ['  </sc-for>\n</article></div>', `  </sc-for>
   <nav aria-label="More posts" style="display:flex;flex-wrap:wrap;gap:16px;margin-top:48px;padding-top:32px;border-top:1px solid #E3E8EE">
     <sc-if value="{{ hasPrev }}"><a href="{{ prev.href }}" rel="prev" style="flex:1 1 260px;display:flex;flex-direction:column;gap:8px;padding:20px 22px;background:#fff;border:2px solid #E3E8EE;border-radius:16px;color:#111111;box-shadow:0 2px 10px rgba(17,17,17,.05)" style-hover="border-color:#0169B8;color:#0169B8"><span style="font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#0169B8">&larr; Previous post</span><span style="font-style:italic;font-weight:900;font-size:19px;line-height:1.2;text-transform:uppercase;letter-spacing:-.01em">{{ prev.t }}</span></a></sc-if>
@@ -138,7 +141,41 @@ const postPatches = {
   </nav>
 </article></div>`],
   ],
+  script: [
+    ["isOl: b[0] === 'ol'", "isOl: b[0] === 'ol', isTable: b[0] === 'table', head: b[0] === 'table' ? b[1].head : [], rows: b[0] === 'table' ? b[1].rows.map(r => ({ first: r[0], rest: r.slice(1) })) : [], lead: b[2] || '', hasLead: !!b[2]"],
+  ],
 };
+
+// Opt-in JSON-LD for blog posts that set "schema": true in blog-posts.json:
+// BlogPosting, plus FAQPage built from the h3/p pairs under an "FAQ" h2. No Offer or price markup.
+function postJsonLd(slug, post) {
+  const url = `${SITE_URL}/blog/${slug}`;
+  const faq = [];
+  let inFaq = false;
+  post.blocks.forEach((b, i) => {
+    if (b[0] === 'h2') inFaq = /^(FAQ|Frequently asked questions)/i.test(b[1]);
+    else if (inFaq && b[0] === 'h3' && post.blocks[i + 1] && post.blocks[i + 1][0] === 'p') faq.push([b[1], post.blocks[i + 1][1]]);
+  });
+  const img = post.img ? (/^https?:/.test(post.img) ? post.img : `${SITE_URL}/${post.img}`) : undefined;
+  const org = { '@type': 'Organization', name: 'TAG-A-ROOM', url: `${SITE_URL}/` };
+  const graph = [
+    {
+      '@type': 'BlogPosting', '@id': `${url}#article`, mainEntityOfPage: url, url, headline: post.title,
+      description: post.metaDescription, datePublished: post.datePublished, dateModified: post.dateModified || post.datePublished,
+      author: { '@type': 'Organization', name: post.author || 'TAG-A-ROOM', url: `${SITE_URL}/` }, publisher: org, inLanguage: 'en-US',
+      ...(img ? { image: img } : {}),
+    },
+    {
+      '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+        { '@type': 'ListItem', position: 3, name: post.title, item: url },
+      ],
+    },
+  ];
+  if (faq.length) graph.push({ '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
+  return { '@context': 'https://schema.org', '@graph': graph };
+}
 
 const config = { ecwidConfig: ECWID_CONFIG, ecwidStoreId: ECWID_STORE_ID, contactEndpoint: '/api/contact', turnstileSiteKey: '0x4AAAAAAFBNs42qga-3gTfJ', contactEmail: 'info@tagaroom.com', categoryPages: {} };
 
@@ -225,7 +262,11 @@ function list() {
           ['<button onClick="{{ g.go }}" aria-label="Page {{ g.n }}" style="', '<a href="{{ g.href }}#posts" aria-label="Page {{ g.n }}" style="display:inline-flex;align-items:center;justify-content:center;'],
           ['>{{ g.n }}</button>', '>{{ g.n }}</a>'],
         ],
-        script: [['go: () =>', "href: i === 0 ? 'Blog.dc.html' : 'blog-' + (i + 1) + '.html', go: () =>"]],
+        script: [
+          ['go: () =>', "href: i === 0 ? 'Blog.dc.html' : 'blog-' + (i + 1) + '.html', go: () =>"],
+          // Newer posts (newest first), ahead of the design's original list.
+          ['    const A = [\n', "    const A = [\n      ['loan-approval-borrower-gift', 'The Best Borrower Gift Comes at Loan Approval, Not Closing', 'Why lenders give a moving kit at loan approval, not at the closing table.', 'Mortgage Companies'],\n"],
+        ],
       },
     });
   }
@@ -246,8 +287,9 @@ function list() {
     const first = post.blocks.find(b => b[0] === 'p');
     const prev = near(i - 1), next = near(i + 1);
     pages.push({
-      design: 'Blog Post', out: `blog/${slug}.html`, title: T(post.title), image: post.img, ogType: 'article',
-      description: first ? first[1].slice(0, 155).replace(/\s+\S*$/, '') + '…' : '',
+      design: 'Blog Post', out: `blog/${slug}.html`, title: post.metaTitle || T(post.title), image: post.img, ogType: 'article',
+      description: post.metaDescription || (first ? first[1].slice(0, 155).replace(/\s+\S*$/, '') + '…' : ''),
+      jsonLd: post.schema ? postJsonLd(slug, post) : null,
       state: { post, slug, loaded: true },
       extraVals: { prev, next, hasPrev: !!prev, hasNext: !!next },
       patches: postPatches,
