@@ -7,6 +7,9 @@
 import { esc } from './lib/dc.mjs';
 
 export const IN_BODY_LINKS = {
+  'for/move-managers.html': [
+    ['See our page for senior move managers if the job is a downsizing or senior transition.', 'senior move managers', 'for/senior-move-managers.html'],
+  ],
   // October 2026 internal-linking pass
   'blog/the-stress-free-move-why-color-coded-labels-are-a-game-changer-for-your-new-home.html': [
     ["There's a reason color-coded moving labels are recommended by professional movers.", 'moving labels', 'shop/moving-label-systems.html'],
