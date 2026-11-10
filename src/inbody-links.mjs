@@ -41,6 +41,16 @@ export const IN_BODY_LINKS = {
     ['or go straight to shop mortgage packs.', 'shop mortgage packs', 'shop/mortgage-companies.html'],
     ['You can also browse all of our marketing gifts for loan officers, realtors and moving companies.', 'marketing gifts', 'shop/marketing-gifts.html'],
   ],
+  'blog/moving-in-winter-tips-color-coded-packing-plan.html': [
+    ["Color tells the crew where a box goes. A content label tells you what's in it when you're unpacking. Our box content labels cover everyday categories like dishes, linens, books, toys and electronics, and the Packing Content Labels 190 Total Labels pack gives you a mix in one set.", "box content labels", "shop/box-content-labels.html"],
+    ["Fragile, heavy, open first, don't load. Our alert labels let you mark these so they get the right handling in a busy, slippery move.", "alert labels", "shop/alert-labels.html"],
+    ["If you want everything in one place, the Tag-A-Room Move By Color Labeling System 350 Count and the Smooth Move 500 Color Coded Moving Labels sets are built for a full-house move. You can browse all of them on our moving label systems page.", "moving label systems", "shop/moving-label-systems.html"],
+    ["The Open First / Don't Load Labels 125 Count make it obvious which boxes ride in your car instead of the truck. For more on packing a first-night box, see our tip on the moving essentials box.", "moving essentials box", "blog/moving-tip-essentials-box.html"],
+    ["Use sturdy boxes and tape the bottoms well. Our guide on how to properly pack a cardboard box walks through it.", "properly pack a cardboard box", "blog/properly-pack-a-cardboard-box-for-moving-storage.html"],
+    ["Yes. We have sets for every size move, including Apartment Moving Labels 60 Count. See what's built for do-it-yourself families.", "do-it-yourself families", "for/diy-families.html"],
+    ["Get organized before the weather turns. Shop moving label systems.", "Shop moving label systems", "shop/moving-label-systems.html"],
+    ["Need a custom or bulk order? Contact us.", "Contact us", "contact.html"],
+  ],
   'blog/realtor-closing-gift-guide-practical-moving-solutions.html': [
     ['Present the gift once they get a loan approval or when an offer is accepted by the seller.', 'loan approval', 'blog/loan-approval-borrower-gift.html'],
   ],
