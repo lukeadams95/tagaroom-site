@@ -7,6 +7,9 @@
 import { esc } from './lib/dc.mjs';
 
 export const IN_BODY_LINKS = {
+  'label-templates.html': [
+    ['Custom Branded Packs and bulk packs are available for movers, realtors and businesses.', 'movers', 'shop/professional-movers.html'],
+  ],
   // October 2026 internal-linking pass
   'blog/the-stress-free-move-why-color-coded-labels-are-a-game-changer-for-your-new-home.html': [
     ["There's a reason color-coded moving labels are recommended by professional movers.", 'moving labels', 'shop/moving-label-systems.html'],
