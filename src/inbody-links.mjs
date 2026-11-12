@@ -7,6 +7,9 @@
 import { esc } from './lib/dc.mjs';
 
 export const IN_BODY_LINKS = {
+  'for/move-managers.html': [
+    ['See our page for senior move managers if the job is a downsizing or senior transition.', 'senior move managers', 'for/senior-move-managers.html'],
+  ],
   'label-templates.html': [
     ['Custom Branded Packs and bulk packs are available for movers, realtors and businesses.', 'movers', 'shop/professional-movers.html'],
   ],
