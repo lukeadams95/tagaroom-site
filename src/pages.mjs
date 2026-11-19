@@ -30,7 +30,7 @@ const footerPatches = {
     ['style-hover="color:#014F8A">{{ n }}</a></sc-for></div>\n    </div>\n  </div>', 'style-hover="color:#014F8A">{{ n.t }}</a></sc-for></div>\n    </div>\n  </div>'],
   ],
   script: [
-    ["company: ['About', 'Blog', 'Gallery', 'Templates', 'Contact'],", "company: [['About', 'About%20Us.dc.html'], ['Blog', 'Blog.dc.html'], ['Gallery', 'Gallery.dc.html'], ['Templates', 'Label%20Templates.dc.html'], ['Contact', 'Contact%20Us.dc.html'], ['Sitemap', 'sitemap.html']].map(([t, href]) => ({ t, href })),"],
+    ["company: ['About', 'Blog', 'Gallery', 'Templates', 'Contact'],", "company: [['About', 'About%20Us.dc.html'], ['Blog', 'Blog.dc.html'], ['Gallery', 'Gallery.dc.html'], ['Templates', 'Label%20Templates.dc.html'], ['Contact', 'Contact%20Us.dc.html'], ['Sitemap', 'sitemap.html'], ['XML Sitemap', 'sitemap.xml']].map(([t, href]) => ({ t, href })),"],
     ["policies: ['Shipping', 'Returns', 'General']", "policies: [['Shipping', 'shipping-policies.html'], ['Returns', 'return-policies.html'], ['General', 'policies.html']].map(([t, href]) => ({ t, href }))"],
   ],
 };
