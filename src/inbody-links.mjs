@@ -7,6 +7,19 @@
 import { esc } from './lib/dc.mjs';
 
 export const IN_BODY_LINKS = {
+  'blog/packing-holiday-decorations-so-next-year-is-easy.html': [
+    ["TAG-A-ROOM box content labels are made for that.", "box content labels", "shop/box-content-labels.html"],
+    ["Shop box content labels", "Shop box content labels", "shop/box-content-labels.html"],
+    ["If you're labeling boxes that are going into a storage unit for a move or a longer hold, we already have a page on color-coded labels for storage units.", "color-coded labels for storage units", "storage-unit-labels.html"],
+    ["Color coding labels help you see the group from across the garage.", "Color coding labels", "shop/color-coding-labels.html"],
+    ["You can shop box content labels and", "shop box content labels", "shop/box-content-labels.html"],
+    ["and color coding labels on the site.", "color coding labels", "shop/color-coding-labels.html"],
+    ["If you need a custom or bulk order, contact us.", "contact us", "contact.html"],
+    ["Use box content labels and be specific: what's inside, where it belongs, and whether it's fragile.", "box content labels", "shop/box-content-labels.html"],
+    ["Color coding labels mark the category so you can find the right stack.", "Color coding labels", "shop/color-coding-labels.html"],
+    ["If you're packing holiday decorations this week, shop box content labels and add", "shop box content labels", "shop/box-content-labels.html"],
+    ["and add color coding labels if you want the stacks easy to spot.", "color coding labels", "shop/color-coding-labels.html"],
+  ],
   'for/move-managers.html': [
     ['See our page for senior move managers if the job is a downsizing or senior transition.', 'senior move managers', 'for/senior-move-managers.html'],
   ],

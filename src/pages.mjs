@@ -265,7 +265,7 @@ function list() {
         script: [
           ['go: () =>', "href: i === 0 ? 'Blog.dc.html' : 'blog-' + (i + 1) + '.html', go: () =>"],
           // Newer posts (newest first), ahead of the design's original list.
-          ['    const A = [\n', "    const A = [\n      ['moving-in-winter-tips-color-coded-packing-plan', 'Moving in Winter: A Color-Coded Packing Plan for Snowy Move Days', 'Snow, slush and short days make winter moves harder. A simple color-coded packing plan that keeps boxes organized, dry and fast to unload.', 'Moving Tips'],\n      ['loan-approval-borrower-gift', 'The Best Borrower Gift Comes at Loan Approval, Not Closing', 'Why lenders give a moving kit at loan approval, not at the closing table.', 'Mortgage Companies'],\n"],
+          ['    const A = [\n', "    const A = [\n      ['packing-holiday-decorations-so-next-year-is-easy', 'Packing Holiday Decorations So Next Year Is Easy', 'Packing holiday decorations this week? Use box content labels so next year you can find the lights, ornaments, and wrapping without opening every box.', 'Moving Tips'],\n      ['moving-in-winter-tips-color-coded-packing-plan', 'Moving in Winter: A Color-Coded Packing Plan for Snowy Move Days', 'Snow, slush and short days make winter moves harder. A simple color-coded packing plan that keeps boxes organized, dry and fast to unload.', 'Moving Tips'],\n      ['loan-approval-borrower-gift', 'The Best Borrower Gift Comes at Loan Approval, Not Closing', 'Why lenders give a moving kit at loan approval, not at the closing table.', 'Mortgage Companies'],\n"],
         ],
       },
     });
