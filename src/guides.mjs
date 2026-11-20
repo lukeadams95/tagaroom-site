@@ -258,3 +258,298 @@ export const seniorMoveManagers = {
     ['Moving label systems', 'shop/moving-label-systems.html'],
   ] },
 };
+
+// CP-189: numbered box inventory labels for long-distance moves (root URL).
+export const numberedBoxInventory = {
+  "out": "numbered-box-inventory-labels-long-distance-moves.html",
+  "title": "Numbered Box Inventory Labels for Long-Distance Moves | TAG-A-ROOM",
+  "description": "Give every box a number, a content label, and a room color. Keep a one-page inventory and check boxes off at delivery so nothing goes missing on the way.",
+  "crumb": "Box Inventory Labels",
+  "h1": "Numbered Box Inventory Labels for Long-Distance Moves",
+  "byline": "From the TAG-A-ROOM team. Our color-coded labels are made in the USA.",
+  "image": "assets/box-content.webp",
+  "tldr": "A local move can survive a vague label. A long-distance or interstate move cannot. Boxes ride a truck for days, get handled by people who have never seen your kitchen, and come off at a house where you are tired and trying to count. If a box does not have a number, a content label, and a room color, it is easy for it to disappear into the wrong room, or off the inventory entirely.",
+  "intro": [
+    [
+      "img",
+      {
+        "src": "assets/box-content.webp",
+        "alt": "TAG-A-ROOM Box Content Labels",
+        "w": 1317,
+        "h": 1194
+      }
+    ],
+    [
+      "p",
+      "TAG-A-ROOM labels are made in the USA and designed by real movers. The system is color-coded, and it is built for this job: number every box, say what is inside, mark the room it belongs to, keep a one-page inventory, and check boxes off at delivery."
+    ],
+    [
+      "p",
+      [
+        {
+          "a": "Shop Box Content Labels",
+          "href": "shop/box-content-labels.html"
+        },
+        " or ",
+        {
+          "a": "shop moving label systems",
+          "href": "shop/moving-label-systems.html"
+        },
+        "."
+      ]
+    ],
+    [
+      "p",
+      "This page is for year-end and January moves where the job, the school calendar, or a lease is sending you across the state or across state lines. It is not a storage-unit guide, a move-manager pitch, or a kids'-room project."
+    ]
+  ],
+  "sections": [
+    {
+      "h": "Why long-distance moves lose boxes",
+      "body": [
+        [
+          "p",
+          "On a long haul, you are rarely standing next to every box the whole way. The truck is packed tight. Labels on the top get hidden. \"Kitchen\" written once in marker does not tell you whether box 14 made it off the truck, or whether the missing stand mixer is in 14 or 27."
+        ],
+        [
+          "p",
+          "An inventory only works if the box in your hand and the line on the page are the same thing. That means:"
+        ],
+        [
+          "ul",
+          [
+            "A unique number on the box",
+            "A short list of what's inside",
+            "A color for the destination room",
+            "A one-page inventory you can actually check at delivery"
+          ]
+        ],
+        [
+          "p",
+          "Do that once, at pack-out, and delivery becomes a count, not a scavenger hunt."
+        ]
+      ]
+    },
+    {
+      "h": "Number every box, and write it down",
+      "body": [
+        [
+          "p",
+          "Give each box its own number, and don't reuse numbers. Put the number where it can be seen when boxes are stacked, not only on the top. Then add that same number to a one-page inventory, with a short line for the contents and the room."
+        ],
+        [
+          "p",
+          "The inventory can be a printed sheet, a simple spreadsheet, or a note on your phone. The format matters less than this: you can see every number, and you can check it off when that box comes off the truck. Take a photo of the finished list before the truck leaves, so you still have it if the paper gets packed."
+        ],
+        [
+          "p",
+          [
+            {
+              "a": "Box Content Labels",
+              "href": "shop/box-content-labels.html"
+            },
+            " are the place to write what's inside, and they're a natural spot to put the number too. The live line on that shop page is the right habit: say what is inside before the tape goes on. \"Pans, cutting boards, everyday dishes\" beats \"misc kitchen.\""
+          ]
+        ],
+        [
+          "p",
+          [
+            "If you want a printable starting point for making your own labels, we also have free ",
+            {
+              "a": "label templates",
+              "href": "label-templates.html"
+            },
+            ". The templates are for printing labels, not a substitute for the inventory itself."
+          ]
+        ],
+        [
+          "img",
+          {
+            "src": "assets/color-coding.webp",
+            "alt": "TAG-A-ROOM Color Coding Labels",
+            "w": 1442,
+            "h": 1091
+          }
+        ]
+      ]
+    },
+    {
+      "h": "Give every box a room color",
+      "body": [
+        [
+          "p",
+          [
+            "A number tells you which box it is. A color tells the crew, and you, where it belongs in the new house. ",
+            {
+              "a": "Color Coding Labels",
+              "href": "shop/color-coding-labels.html"
+            },
+            " are bright room colors your crew can read from across the house, which matters when a long-distance truck is being unloaded in a driveway you just got the keys to."
+          ]
+        ],
+        [
+          "p",
+          "One room, one color. Put the color on more than one side of the box. At the new house, the color gets the box to the right doorway. The number and the inventory confirm it actually arrived."
+        ],
+        [
+          "p",
+          [
+            "If you're packing a whole home, ",
+            {
+              "a": "Moving Label Systems",
+              "href": "shop/moving-label-systems.html"
+            },
+            " are the complete color-coded system: label every room, box, and item once. You can also pick up Color Coding Labels and Box Content Labels separately if that's all you need for this move."
+          ]
+        ]
+      ]
+    },
+    {
+      "h": "Keep a one-page inventory, and use it at delivery",
+      "body": [
+        [
+          "p",
+          "The inventory is not extra paperwork. It's how you know the job is complete."
+        ],
+        [
+          "p",
+          "Before the truck leaves:"
+        ],
+        [
+          "ol",
+          [
+            "Number every box",
+            "Add the number, the room, and a short contents line to the inventory",
+            "Make sure the box itself has the number, the content label, and the room color",
+            "Photograph the list"
+          ]
+        ],
+        [
+          "p",
+          "At delivery:"
+        ],
+        [
+          "ol",
+          [
+            "As each box comes off the truck, find that number on the inventory and check it off",
+            "Use the color to send it to the right room",
+            "When the truck is empty, look at what's still unchecked"
+          ]
+        ],
+        [
+          "p",
+          "If a number is missing, you know it on moving day, not three weeks later when you can't find the box with the chargers. This does not guarantee that a carrier will never misplace a box. It does give you a clear list to talk from, instead of a memory of how many boxes you thought you had."
+        ],
+        [
+          "p",
+          [
+            "This page does not name shipping cutoffs, transit times, or label prices. Shop the products above, or ",
+            {
+              "a": "contact us",
+              "href": "contact.html"
+            },
+            " if you need a custom or bulk order. We don't list bulk discounts here."
+          ]
+        ]
+      ]
+    },
+    {
+      "h": "FAQ",
+      "body": [
+        [
+          "faq",
+          [
+            [
+              "Do I need a special inventory label, or can I use Box Content Labels?",
+              [
+                "Use ",
+                {
+                  "a": "Box Content Labels",
+                  "href": "shop/box-content-labels.html"
+                },
+                " for what's inside, and put a unique number on each box. The inventory is the one-page list you keep and check off at delivery."
+              ]
+            ],
+            [
+              "What's the difference between a number and a color?",
+              [
+                "The number identifies the box on your list. The color, from ",
+                {
+                  "a": "Color Coding Labels",
+                  "href": "shop/color-coding-labels.html"
+                },
+                ", tells everyone which room it belongs in."
+              ]
+            ],
+            [
+              "Is this the same as labeling a storage unit?",
+              "No. A storage unit stays put, and the goal is finding things later. A long-distance move has to survive the truck and a delivery count. The same product names can be used in both places, but this page is about the move itself."
+            ],
+            [
+              "Can I get the complete system in one place?",
+              [
+                "Yes. ",
+                {
+                  "a": "Moving Label Systems",
+                  "href": "shop/moving-label-systems.html"
+                },
+                " are the complete color-coded system."
+              ]
+            ],
+            [
+              "Are TAG-A-ROOM labels made in the USA?",
+              "Yes. They're made in the USA and designed by real movers."
+            ]
+          ]
+        ]
+      ]
+    },
+    {
+      "h": "Start with the labels, then build the list",
+      "body": [
+        [
+          "p",
+          [
+            "If you're planning a year-end or January long-distance move, start with ",
+            {
+              "a": "Box Content Labels",
+              "href": "shop/box-content-labels.html"
+            },
+            " and ",
+            {
+              "a": "Color Coding Labels",
+              "href": "shop/color-coding-labels.html"
+            },
+            ", or go straight to ",
+            {
+              "a": "Moving Label Systems",
+              "href": "shop/moving-label-systems.html"
+            },
+            ". Number every box, keep one inventory page, and check it at the door of the new house."
+          ]
+        ]
+      ]
+    }
+  ],
+  "cta": [
+    "Shop Box Content Labels",
+    "shop/box-content-labels.html"
+  ],
+  "itemList": {
+    "name": "Labels for a long-distance move",
+    "items": [
+      [
+        "Box Content Labels",
+        "shop/box-content-labels.html"
+      ],
+      [
+        "Color Coding Labels",
+        "shop/color-coding-labels.html"
+      ],
+      [
+        "Moving Label Systems",
+        "shop/moving-label-systems.html"
+      ]
+    ]
+  }
+};
