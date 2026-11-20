@@ -11,6 +11,7 @@ import { mapLink, SITE_URL } from './site.mjs';
 import { header, floatingCart, layout } from './partials.mjs';
 import { PAGES } from './pages.mjs';
 import { REDIRECTS } from './redirects.mjs';
+import { injectLatestPosts } from './latest-posts.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DESIGN = path.join(ROOT, 'design');
@@ -107,6 +108,7 @@ function absImage(src) {
 
 function writePage(out, { title, description, body, scripts = [], css = [], ecwid = '', image = '', noindex = false, ogType, rootAbsolute = false, jsonLd = null }) {
   body = applyInBodyLinks(out, body);
+  if (out === 'index.html') body = injectLatestPosts(body);
   const depth = out.split('/').length - 1;
   // The 404 page is served at any depth, so it links from the site root.
   const prefix = rootAbsolute ? '/' : '../'.repeat(depth);
