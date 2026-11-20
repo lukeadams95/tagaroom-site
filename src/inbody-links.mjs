@@ -57,6 +57,17 @@ export const IN_BODY_LINKS = {
     ["Get organized before the weather turns. Shop moving label systems.", "Shop moving label systems", "shop/moving-label-systems.html"],
     ["Need a custom or bulk order? Contact us.", "Contact us", "contact.html"],
   ],
+  'blog/year-end-office-moves-labeling-desks-it-files.html': [
+    ["TAG-A-ROOM office labels are built for that job. They keep an office move organized from desk to floor, so IT, files, and furniture land in the right rooms instead of in a pile by the elevator.", "office labels", "shop/office-labels.html"],
+    ["This post is about labeling a workplace move at the end of the year: desks, IT, and files, plus the boxes that have to be opened first. It is not a packing-services sales page, and it is not about holiday decorations at home. If you also need general box content labels for mixed cartons, those are in the box content labels shop.", "box content labels", "shop/box-content-labels.html"],
+    ["If a piece cannot be stacked, cannot go on the truck yet, or has to be handled a certain way, that is what alert labels are for. \"Open first,\" \"do not load,\" \"fragile,\" and \"caution\" flag what matters at a glance, so a mover does not have to guess.", "alert labels", "shop/alert-labels.html"],
+    ["On the office label, write:", "office label", "shop/office-labels.html"],
+    ["Start with office labels for desks, IT,", "office labels", "shop/office-labels.html"],
+    [" and files. Add alert labels for boxes that should be opened first, not loaded yet, or handled as fragile.", "alert labels", "shop/alert-labels.html"],
+    ["Yes. Contact us for custom or bulk orders. We don't list prices in this post.", "Contact us", "contact.html"],
+    ["If you're planning a year-end office move, shop office labels and", "shop office labels", "shop/office-labels.html"],
+    [" add alert labels for the boxes that have to stand out. Label the desks, the IT, and the files before the tape goes on, and Monday morning gets a lot quieter.", "alert labels", "shop/alert-labels.html"],
+  ],
   'blog/realtor-closing-gift-guide-practical-moving-solutions.html': [
     ['Present the gift once they get a loan approval or when an offer is accepted by the seller.', 'loan approval', 'blog/loan-approval-borrower-gift.html'],
   ],
