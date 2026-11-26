@@ -139,6 +139,7 @@ export const storageUnitLabels = {
     ] },
     { h: 'Step 5: Number every box and keep a master list', body: [
       ['p', 'Number each box and write down what\'s in each number. Customers do this already. One told us: "Now I have numbered all the boxes, added these colored labels and the category labels by Tag-a-Room, and written everything in a book." Another plans to use "a master sheet to confirm where each color goes." Snap a photo of the list so it\'s on your phone at the unit.'],
+      ['p', ['Moving long distance instead? Here is how to use ', { a: 'numbered box inventory labels for long-distance moves', href: 'numbered-box-inventory-labels-long-distance-moves.html' }, '.']],
     ] },
     { h: 'Step 6: Post a legend at the unit door', body: [
       ['p', 'At a new home, a Legend Sheet at the front entrance shows movers the color for every room. A storage unit works the same way. Tape a legend inside the door with each color and what it means, and add a quick sketch of which colors sit along the back wall and which are near the front.'],
